@@ -14,8 +14,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Fear & Greed Index Today (Live Chart & Market Sentiment)</title>  
-  <meta name="description" content="Track the live Crypto Fear & Greed Index today. View historical sentiment trends, market psychology, fear vs greed levels, and Bitcoin sentiment in real time.">  
+  <title>Crypto Fear & Greed Index Today (Live Chart & Market Sentiment)</title>
+  <meta name="description" content="Track the live Crypto Fear & Greed Index today. View historical sentiment trends, market psychology, fear vs greed levels, and Bitcoin sentiment in real time.">
   <meta name="theme-color" content="#0f172a">
   <meta name="robots" content="index,follow,max-image-preview:large">
 
@@ -91,9 +91,43 @@
   </script>
 
   <style>
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+    }
 
-    html{ scroll-behavior:smooth; }
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial, sans-serif;
+      background:#0f172a;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      min-height:100vh;
+      margin:0;
+      padding:24px 0;
+    }
+
+    .toptext{
+      font-size:14px;
+      color:#6b7a99;
+      margin-bottom:5px;
+    }
+
+    .menu{
+      margin-bottom:25px;
+    }
+
+    .menu a{
+      color:#3b82f6;
+      margin:10px;
+      text-decoration:none;
+      font-weight:600;
+    }
 
     .container{
       background:#1e293b;
@@ -103,6 +137,7 @@
       max-width:760px;
       box-shadow:0 10px 25px rgba(0,0,0,0.35);
       border:1px solid rgba(255,255,255,0.05);
+      backdrop-filter:blur(6px);
     }
 
     h1{
@@ -110,6 +145,48 @@
       margin-bottom:10px;
       font-size:32px;
       line-height:1.15;
+    }
+
+    .quick-answer{
+      background:rgba(59,130,246,0.12);
+      border:1px solid rgba(59,130,246,0.25);
+      padding:12px 14px;
+      border-radius:10px;
+      font-size:15px;
+      line-height:1.6;
+      color:#e2e8f0;
+      margin:0 0 18px;
+    }
+
+    .subhead{
+      color:#94a3b8;
+      font-size:15px;
+      line-height:1.6;
+      margin-bottom:18px;
+    }
+
+    .badge-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:14px 0 6px;
+    }
+
+    .badge{
+      display:inline-flex;
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      background:rgba(59,130,246,0.12);
+      color:#bfdbfe;
+      border:1px solid rgba(59,130,246,0.22);
+    }
+
+    .badge.soft{
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.08);
+      color:#dbeafe;
     }
 
     .live-header{
@@ -135,9 +212,32 @@
       margin-top:6px;
     }
 
+    .tiny{
+      font-size:12px;
+      color:#94a3b8;
+    }
+
+    .loading-state,
+    .error-state{
+      margin-top:16px;
+      padding:16px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      color:#cbd5e1;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .error-state{
+      border-color:rgba(239,68,68,0.25);
+      background:rgba(239,68,68,0.08);
+      color:#fecaca;
+    }
+
     .dashboard{
       display:grid;
-      grid-template-columns:220px 1fr;
+      grid-template-columns:240px 1fr;
       gap:18px;
       align-items:center;
       margin-top:18px;
@@ -147,36 +247,59 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:14px;
+      gap:12px;
     }
 
     .gauge{
-      width:180px;
-      height:180px;
-      border-radius:50%;
+      width:210px;
+      aspect-ratio:1 / 1;
       position:relative;
-      box-shadow:0 0 0 1px rgba(255,255,255,0.04) inset;
-      background:conic-gradient(
-        #ef4444 0deg 40deg,
-        #f97316 40deg 74deg,
-        #facc15 74deg 105deg,
-        #22c55e 105deg 150deg,
-        #06b6d4 150deg 180deg,
-        #06b6d4 180deg 210deg,
-        #22c55e 210deg 255deg,
-        #facc15 255deg 286deg,
-        #f97316 286deg 320deg,
-        #ef4444 320deg 360deg
-      );
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      filter:drop-shadow(0 12px 30px rgba(0,0,0,0.28));
     }
 
-    .gauge::after{
+    .gauge-ring{
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 45%),
+        conic-gradient(
+          from 205deg,
+          #ef4444 0deg,
+          #f97316 28deg,
+          #f59e0b 58deg,
+          #eab308 85deg,
+          #84cc16 118deg,
+          #22c55e 156deg,
+          #10b981 185deg,
+          #06b6d4 212deg,
+          #3b82f6 238deg,
+          transparent 238deg 360deg
+        );
+      box-shadow:0 0 0 1px rgba(255,255,255,0.04) inset;
+    }
+
+    .gauge-ring::after{
       content:"";
       position:absolute;
-      inset:16px;
+      inset:14px;
       border-radius:50%;
       background:#0f172a;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .gauge-inner{
+      position:absolute;
+      inset:16px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(59,130,246,0.10), transparent 42%),
+        linear-gradient(180deg, rgba(15,23,42,0.98), rgba(15,23,42,0.92));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04);
+      z-index:1;
     }
 
     .needle{
@@ -184,13 +307,13 @@
       left:50%;
       top:50%;
       width:3px;
-      height:74px;
-      background:#e2e8f0;
+      height:82px;
+      border-radius:999px;
+      background:linear-gradient(180deg, #f8fafc, #cbd5e1);
       transform-origin:bottom center;
       transform:translate(-50%, -100%) rotate(-90deg);
-      border-radius:999px;
-      z-index:2;
-      box-shadow:0 0 10px rgba(255,255,255,0.15);
+      z-index:3;
+      box-shadow:0 0 12px rgba(255,255,255,0.18);
     }
 
     .needle::before{
@@ -198,17 +321,18 @@
       position:absolute;
       left:50%;
       top:-8px;
-      width:12px;
-      height:12px;
-      transform:translateX(-50%);
+      width:13px;
+      height:13px;
       border-radius:50%;
-      background:#e2e8f0;
+      background:linear-gradient(180deg, #f8fafc, #cbd5e1);
+      transform:translateX(-50%);
+      box-shadow:0 0 12px rgba(255,255,255,0.18);
     }
 
     .score-box{
       position:absolute;
       inset:0;
-      z-index:3;
+      z-index:4;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -218,7 +342,7 @@
     }
 
     .score-value{
-      font-size:44px;
+      font-size:42px;
       line-height:1;
       font-weight:800;
       color:#fff;
@@ -226,9 +350,8 @@
 
     .score-label{
       margin-top:8px;
-      font-size:14px;
-      color:#cbd5e1;
-      font-weight:700;
+      font-size:13px;
+      font-weight:800;
       text-transform:uppercase;
       letter-spacing:0.08em;
     }
@@ -239,6 +362,26 @@
       color:#94a3b8;
     }
 
+    .gauge-scale{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:2px;
+      color:#94a3b8;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:0.06em;
+    }
+
+    .gauge-caption{
+      color:#94a3b8;
+      font-size:12px;
+      line-height:1.5;
+      text-align:center;
+      max-width:220px;
+    }
+
     .summary-grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -246,17 +389,34 @@
     }
 
     .summary-card{
-      background:rgba(15,23,42,0.78);
+      background:
+        linear-gradient(180deg, rgba(59,130,246,0.12), rgba(15,23,42,0.78));
       border:1px solid rgba(255,255,255,0.06);
       border-radius:16px;
       padding:16px;
-      min-height:86px;
+      min-height:92px;
+      box-shadow:0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .summary-card:nth-child(2){
+      background:
+        linear-gradient(180deg, rgba(34,197,94,0.10), rgba(15,23,42,0.78));
+    }
+
+    .summary-card:nth-child(3){
+      background:
+        linear-gradient(180deg, rgba(250,204,21,0.10), rgba(15,23,42,0.78));
+    }
+
+    .summary-card:nth-child(4){
+      background:
+        linear-gradient(180deg, rgba(14,165,233,0.10), rgba(15,23,42,0.78));
     }
 
     .summary-card span{
       display:block;
       font-size:12px;
-      color:#94a3b8;
+      color:#cbd5e1;
       text-transform:uppercase;
       letter-spacing:0.08em;
       margin-bottom:8px;
@@ -298,40 +458,14 @@
       font-size:14px;
     }
 
-    .meta-row{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:12px;
-      margin-top:16px;
-    }
-
-    .meta-card{
-      background:rgba(15,23,42,0.78);
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:14px;
-      padding:14px 16px;
-    }
-
-    .meta-card span{
-      display:block;
-      color:#94a3b8;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      font-weight:700;
-      margin-bottom:6px;
-    }
-
-    .meta-card strong{
-      font-size:16px;
-      line-height:1.3;
-    }
-
     .chart-wrap{
       margin-top:24px;
     }
 
-    canvas{ margin-top:8px; }
+    canvas{
+      margin-top:8px;
+      max-width:100%;
+    }
 
     .source-line{
       margin-top:12px;
@@ -368,29 +502,94 @@
       font-size:15px;
     }
 
-    .content ul{ padding-left:20px; }
-    
-    .loading-state,
-    .error-state{
-      margin-top:16px;
-      padding:16px;
-      border-radius:14px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.06);
+    .content ul{
+      padding-left:20px;
+    }
+
+    .formula{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:14px 16px;
+      border-radius:12px;
+      margin:12px 0;
+      color:#e2e8f0;
+      overflow:auto;
+      line-height:1.7;
+    }
+
+    .faq{
+      margin-top:14px;
+    }
+
+    .faq-item{
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-question{
+      width:100%;
+      background:none;
+      border:none;
+      color:white;
+      text-align:left;
+      padding:14px 8px;
+      font-size:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+    }
+
+    .faq-question:hover{
+      color:#93c5fd;
+    }
+
+    .arrow{
+      transition:0.25s;
+    }
+
+    .faq-item.active .arrow{
+      transform:rotate(180deg);
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.3s ease;
       color:#cbd5e1;
-      line-height:1.6;
       font-size:14px;
+      padding:0 8px;
     }
 
-    .error-state{
-      border-color:rgba(239,68,68,0.25);
-      background:rgba(239,68,68,0.08);
-      color:#fecaca;
+    .faq-item.active .faq-answer{
+      max-height:260px;
+      padding-bottom:12px;
     }
 
-    .tiny{
-      font-size:12px;
-      color:#94a3b8;
+    .related{
+      width:90%;
+      max-width:900px;
+      margin-top:34px;
+    }
+
+    .related a{
+      color:#93c5fd;
+      text-decoration:none;
+    }
+
+    .related a:hover{
+      text-decoration:underline;
+    }
+
+    .disclaimer{
+      margin-top:40px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,0.1);
+      font-size:13px;
+      color:#9ca3af;
+      max-width:900px;
+      text-align:center;
+      line-height:1.6;
+      width:90%;
     }
 
     .insight-weak{ color:#ef4444; }
@@ -399,15 +598,37 @@
     .insight-aggressive{ color:#06b6d4; }
 
     @media (max-width:760px){
-      .dashboard{ grid-template-columns:1fr; }
-      .gauge-wrap{ padding-top:6px; }
-      .summary-grid,
-      .meta-row{ grid-template-columns:1fr; }
-      .container{ padding:22px; }
-      h1{ font-size:28px; }
-      .content h2{ font-size:24px; }
-      .gauge{ width:160px; height:160px; }
-      .score-value{ font-size:38px; }
+      .dashboard{
+        grid-template-columns:1fr;
+      }
+
+      .gauge-wrap{
+        padding-top:6px;
+      }
+
+      .summary-grid{
+        grid-template-columns:1fr;
+      }
+
+      .container{
+        padding:22px;
+      }
+
+      h1{
+        font-size:28px;
+      }
+
+      .content h2{
+        font-size:24px;
+      }
+
+      .gauge{
+        width:170px;
+      }
+
+      .score-value{
+        font-size:38px;
+      }
     }
   </style>
 </head>
@@ -448,7 +669,9 @@
     <div id="dashboard" style="display:none;">
       <div class="dashboard">
         <div class="gauge-wrap">
-          <div class="gauge" id="gauge">
+          <div class="gauge">
+            <div class="gauge-ring"></div>
+            <div class="gauge-inner"></div>
             <div class="needle" id="needle"></div>
             <div class="score-box">
               <div class="score-value" id="scoreValue">—</div>
@@ -456,7 +679,13 @@
               <div class="score-sub">0 = Fear · 100 = Greed</div>
             </div>
           </div>
-          <div class="tiny" id="scaleHint">Fear on the left, greed on the right.</div>
+
+          <div class="gauge-scale">
+            <span>0</span>
+            <span>100</span>
+          </div>
+
+          <div class="gauge-caption">Fear on the left, greed on the right.</div>
         </div>
 
         <div>
@@ -483,18 +712,18 @@
             </div>
           </div>
 
-          <div class="meta-row">
-            <div class="meta-card">
-              <span>Yesterday</span>
-              <strong id="yesterdayValue">—</strong>
+          <div class="meta-row" style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px;margin-top:16px;">
+            <div class="meta-card" style="background:rgba(15,23,42,0.78);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:14px 16px;">
+              <span style="display:block;color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:6px;">Yesterday</span>
+              <strong id="yesterdayValue" style="font-size:16px;line-height:1.3;">—</strong>
             </div>
-            <div class="meta-card">
-              <span>Last week</span>
-              <strong id="weekValue">—</strong>
+            <div class="meta-card" style="background:rgba(15,23,42,0.78);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:14px 16px;">
+              <span style="display:block;color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:6px;">Last week</span>
+              <strong id="weekValue" style="font-size:16px;line-height:1.3;">—</strong>
             </div>
-            <div class="meta-card">
-              <span>Last month</span>
-              <strong id="monthValue">—</strong>
+            <div class="meta-card" style="background:rgba(15,23,42,0.78);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:14px 16px;">
+              <span style="display:block;color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:6px;">Last month</span>
+              <strong id="monthValue" style="font-size:16px;line-height:1.3;">—</strong>
             </div>
           </div>
         </div>
@@ -696,11 +925,13 @@
     }
 
     function updateNeedle(score){
-      const angle = (Number(score) / 100) * 180 - 90;
+      // 0 = left side, 100 = right side, small gap stays at the bottom
+      const angle = 205 - (Number(score) / 100) * 240;
       needle.style.transform = `translate(-50%, -100%) rotate(${angle}deg)`;
 
       const hue = Number(score) < 25 ? '#ef4444' : Number(score) < 45 ? '#f97316' : Number(score) < 75 ? '#22c55e' : '#06b6d4';
       scoreValue.style.color = hue;
+      scoreLabel.style.color = hue;
     }
 
     function startCountdown(seconds){
