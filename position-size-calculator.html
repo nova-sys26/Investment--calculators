@@ -99,9 +99,7 @@
 
     body{
       font-family:Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(59,130,246,0.10), transparent 28%),
-        linear-gradient(180deg, #071321 0%, #0b1a33 100%);
+      background:#0b1a33;
       color:white;
       display:flex;
       justify-content:center;
@@ -114,9 +112,8 @@
 
     .toptext{
       font-size:14px;
-      color:#7c8ca8;
+      color:#6b7a99;
       margin-bottom:5px;
-      letter-spacing:0.01em;
     }
 
     .menu{
@@ -124,23 +121,21 @@
     }
 
     .menu a{
-      color:#60a5fa;
+      color:#3b82f6;
       margin:10px;
       text-decoration:none;
       font-weight:600;
     }
 
     .container{
-      width:90%;
-      max-width:1180px;
-      background:linear-gradient(180deg, rgba(23,35,58,0.96), rgba(17,27,45,0.96));
-      border:1px solid rgba(96,165,250,0.28);
-      border-radius:26px;
-      padding:34px;
-      box-shadow:
-        0 0 0 1px rgba(96,165,250,0.08) inset,
-        0 24px 70px rgba(0,0,0,0.30);
-      backdrop-filter: blur(10px);
+      background:#1e293b;
+      padding:30px;
+      border-radius:16px;
+      width:92%;
+      max-width:1080px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(6px);
     }
 
     h1{
@@ -148,44 +143,35 @@
       margin-bottom:10px;
       font-size:32px;
       line-height:1.15;
-      letter-spacing:-0.03em;
     }
 
     .quick-answer{
-      background: linear-gradient(180deg, rgba(59,130,246,0.14), rgba(37,99,235,0.10));
-      border: 1px solid rgba(96,165,250,0.28);
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #e5eefc;
-      margin: 0 0 18px;
+      background:rgba(59,130,246,0.12);
+      border:1px solid rgba(59,130,246,0.25);
+      padding:12px 14px;
+      border-radius:10px;
+      font-size:15px;
+      line-height:1.6;
+      color:#e2e8f0;
+      margin:0 0 18px;
     }
 
     .subhead{
-      color:#a9b9d4;
+      color:#94a3b8;
       font-size:15px;
       line-height:1.6;
       margin-bottom:18px;
     }
 
-    .layout{
+    .calculator-layout{
       display:grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap:18px;
+      grid-template-columns:minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap:22px;
       align-items:start;
-      margin-top:8px;
     }
 
     .panel{
-      background: linear-gradient(180deg, rgba(35,50,78,0.72), rgba(22,33,53,0.82));
-      border:1px solid rgba(96,165,250,0.20);
-      border-radius:22px;
-      padding:20px;
-    }
-
-    .panel.soft{
-      background: linear-gradient(180deg, rgba(30,44,70,0.58), rgba(18,28,46,0.78));
+      min-width:0;
     }
 
     .toggle{
@@ -193,9 +179,7 @@
       margin:12px 0 14px;
       gap:0;
       overflow:hidden;
-      border-radius:14px;
-      border:1px solid rgba(96,165,250,0.16);
-      background:rgba(255,255,255,0.03);
+      border-radius:8px;
     }
 
     .toggle button{
@@ -203,94 +187,94 @@
       padding:12px;
       border:none;
       cursor:pointer;
-      background:rgba(255,255,255,0.03);
+      background:#334155;
       color:white;
       margin-top:0;
       border-radius:0;
       width:auto;
       transition:0.2s;
       font-size:15px;
-      font-weight:800;
-      letter-spacing:0.01em;
+      font-weight:700;
     }
 
     .toggle button:first-child{
-      border-radius:14px 0 0 14px;
+      border-radius:8px 0 0 8px;
     }
 
     .toggle button:last-child{
-      border-radius:0 14px 14px 0;
+      border-radius:0 8px 8px 0;
     }
 
     .toggle button.active{
-      background:linear-gradient(180deg, #4f8ef7, #3b82f6);
-      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08);
+      background:#3b82f6;
     }
 
     input{
       width:100%;
-      padding:14px 15px;
+      padding:14px;
       margin:12px 0;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.06);
-      background:rgba(234,242,255,0.96);
-      color:#0f172a;
+      border-radius:10px;
+      border:none;
+      background:#e5e7eb;
       font-size:16px;
       outline:none;
-      transition:0.2s;
-    }
-
-    input::placeholder{
-      color:#64748b;
     }
 
     input:focus{
       box-shadow:0 0 0 3px rgba(59,130,246,0.18);
-      border-color:rgba(96,165,250,0.34);
-      background:#f3f8ff;
     }
 
     button{
       padding:14px 18px;
-      background:linear-gradient(180deg, #4f8ef7, #3b82f6);
+      background:#3b82f6;
       border:none;
-      border-radius:12px;
+      border-radius:10px;
       color:white;
       cursor:pointer;
       margin-top:10px;
       width:100%;
       font-size:16px;
-      font-weight:800;
+      font-weight:700;
       transition:0.2s;
-      box-shadow: 0 10px 24px rgba(59,130,246,0.20);
     }
 
     button:hover{
-      background:linear-gradient(180deg, #5a98ff, #2f74e8);
-      transform:translateY(-1px);
+      background:#2563eb;
+    }
+
+    .secondary-btn{
+      background:rgba(255,255,255,0.08);
+    }
+
+    .secondary-btn:hover{
+      background:rgba(255,255,255,0.14);
+    }
+
+    .field-label{
+      display:block;
+      font-size:13px;
+      color:#cbd5e1;
+      font-weight:600;
+      margin:12px 0 6px;
     }
 
     .result-card{
-      display:none;
-      height:100%;
+      margin-top:0;
       padding:18px;
-      border-radius:20px;
-      background: linear-gradient(180deg, rgba(17,27,45,0.92), rgba(12,20,34,0.95));
-      border:1px solid rgba(96,165,250,0.28);
-      box-shadow:
-        0 0 0 1px rgba(96,165,250,0.08) inset,
-        0 16px 42px rgba(2,8,23,0.28);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(15,23,42,0.92), rgba(17,24,39,0.88));
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 18px 40px rgba(0,0,0,0.22);
       overflow:hidden;
-      position:relative;
+      position:sticky;
+      top:18px;
     }
 
     .result-card::before{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 36%),
-        radial-gradient(circle at bottom left, rgba(96,165,250,0.06), transparent 30%);
+      background:radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 35%);
       pointer-events:none;
     }
 
@@ -312,19 +296,19 @@
       padding:5px 10px;
       border-radius:999px;
       font-size:11px;
-      font-weight:900;
+      font-weight:800;
       letter-spacing:0.08em;
       text-transform:uppercase;
-      background:rgba(59,130,246,0.14);
-      color:#cde2ff;
-      border:1px solid rgba(96,165,250,0.22);
+      background:rgba(59,130,246,0.12);
+      color:#bfdbfe;
+      border:1px solid rgba(59,130,246,0.20);
     }
 
     .result-title{
       margin:0;
       font-size:14px;
-      font-weight:800;
-      color:#d8e5f7;
+      font-weight:700;
+      color:#cbd5e1;
       letter-spacing:0.01em;
     }
 
@@ -336,23 +320,31 @@
     }
 
     .result-value-big{
-      font-size:clamp(2.4rem, 4vw, 3.7rem);
+      font-size:clamp(2.1rem, 6vw, 3.2rem);
       line-height:1;
-      font-weight:900;
-      letter-spacing:-0.05em;
-      color:#ffffff;
+      font-weight:800;
+      letter-spacing:-0.04em;
+      color:#22c55e;
       word-break:break-word;
+    }
+
+    .result-value-big.warn{
+      color:#f59e0b;
+    }
+
+    .result-value-big.bad{
+      color:#ef4444;
     }
 
     .result-unit{
       font-size:14px;
-      color:#9fb1cb;
-      font-weight:700;
+      color:#94a3b8;
+      font-weight:600;
       letter-spacing:0.02em;
     }
 
     .result-sub{
-      color:#a9b9d4;
+      color:#94a3b8;
       font-size:13px;
       line-height:1.55;
       margin:0;
@@ -361,50 +353,49 @@
 
     .result-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:1fr;
       gap:12px;
       position:relative;
       z-index:1;
     }
 
-    .metric{
-      background:rgba(35,50,78,0.46);
-      border:1px solid rgba(96,165,250,0.12);
-      border-radius:16px;
+    .result-box{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:14px;
       padding:14px;
       transition:0.2s ease;
-      min-height:92px;
     }
 
-    .metric:hover{
+    .result-box:hover{
       transform:translateY(-1px);
-      border-color:rgba(96,165,250,0.26);
-      background:rgba(40,58,91,0.54);
+      border-color:rgba(59,130,246,0.18);
+      background:rgba(255,255,255,0.05);
     }
 
-    .metric-label{
+    .result-label{
       display:block;
-      color:#a9b9d4;
+      color:#94a3b8;
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:0.10em;
-      font-weight:900;
+      font-weight:800;
       margin-bottom:8px;
     }
 
-    .metric-value{
+    .result-value{
       display:block;
       font-size:18px;
       line-height:1.2;
-      font-weight:900;
-      color:#e5eefc;
+      font-weight:800;
+      color:#e2e8f0;
       word-break:break-word;
     }
 
-    .metric-note{
+    .result-note{
       display:block;
       margin-top:6px;
-      color:#a9b9d4;
+      color:#94a3b8;
       font-size:12px;
       line-height:1.45;
     }
@@ -422,31 +413,28 @@
     }
 
     .tip-box{
-      margin-top:18px;
-      padding:16px 16px 15px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(35,50,78,0.56), rgba(18,28,46,0.80));
-      border:1px solid rgba(96,165,250,0.20);
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#243041;
+      border:1px solid rgba(255,255,255,0.08);
       color:#dbe4f0;
-      display:none;
-      position:relative;
-      z-index:1;
     }
 
     .tip-box strong{
       display:block;
       margin-bottom:6px;
       font-size:13px;
-      font-weight:900;
+      font-weight:700;
       letter-spacing:0.2px;
-      color:#cde2ff;
+      color:#bfdbfe;
     }
 
     .tip-box p{
       margin:0;
       font-size:14px;
       line-height:1.65;
-      color:#d2dceb;
+      color:#cbd5e1;
     }
 
     .content{
@@ -558,54 +546,28 @@
       width:90%;
     }
 
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-
-    .section-title{
-      font-size:13px;
-      color:#a9b9d4;
-      margin:14px 0 6px;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      font-weight:800;
-    }
-
-    .toggle + .section-title{
-      margin-top:14px;
-    }
-
-    .result-placeholder{
+    .result-empty{
+      min-height:64px;
       display:flex;
       align-items:center;
-      justify-content:center;
-      min-height:100%;
       color:#94a3b8;
       font-size:14px;
       line-height:1.6;
-      text-align:center;
-      padding:26px;
-      border:1px dashed rgba(96,165,250,0.18);
-      border-radius:16px;
-      background:rgba(255,255,255,0.02);
     }
 
-    @media (max-width: 980px){
-      .layout{
-        grid-template-columns: 1fr;
+    @media (max-width: 900px){
+      .calculator-layout{
+        grid-template-columns:1fr;
       }
 
       .result-card{
-        min-height:auto;
+        position:static;
       }
     }
 
     @media (max-width: 700px){
       .container{
         padding:22px;
-        border-radius:22px;
       }
 
       h1{
@@ -620,7 +582,7 @@
         grid-template-columns:1fr;
       }
 
-      .grid-2{
+      .calculator-layout{
         grid-template-columns:1fr;
       }
     }
@@ -645,62 +607,71 @@
       Enter your account balance, risk per trade, entry price, and stop loss to calculate position size and trade value.
     </p>
 
-    <div class="layout">
+    <div class="calculator-layout">
       <div class="panel">
         <div class="toggle">
           <button id="basicBtn" class="active" type="button" onclick="switchMode('basic')">Basic</button>
           <button id="advBtn" type="button" onclick="switchMode('advanced')">Advanced</button>
         </div>
 
+        <label class="field-label" for="balance">Account Balance ($)</label>
         <input id="balance" placeholder="Account Balance ($)">
+
+        <label class="field-label" for="risk">Risk % per Trade</label>
         <input id="risk" placeholder="Risk % per trade">
+
+        <label class="field-label" for="entry">Entry Price</label>
         <input id="entry" placeholder="Entry Price">
+
+        <label class="field-label" for="stop">Stop Loss Price</label>
         <input id="stop" placeholder="Stop Loss Price">
 
         <div id="advancedInputs" style="display:none;">
+          <label class="field-label" for="spread">Spread (price units)</label>
           <input id="spread" placeholder="Spread (price units)">
+
+          <label class="field-label" for="slippage">Slippage (price units)</label>
           <input id="slippage" placeholder="Slippage (price units)">
+
+          <label class="field-label" for="pipValue">Pip Value / Multiplier (default = 1)</label>
           <input id="pipValue" placeholder="Pip Value / Multiplier (default = 1)">
         </div>
 
         <button type="button" onclick="calculate()">Calculate</button>
-
-        <div class="section-title">How it works</div>
-        <p class="subhead" style="margin-bottom:0;">
-          The basic version uses raw entry-to-stop distance. Advanced mode adds spread and slippage for a more realistic trade size.
-        </p>
       </div>
 
-      <aside class="result-card" id="resultCard" aria-live="polite">
-        <div class="result-top">
-          <span class="result-kicker">Trade size result</span>
-          <h2 class="result-title">Recommended position size</h2>
+      <div class="panel">
+        <div id="resultCard" class="result-card" aria-live="polite">
+          <div class="result-top">
+            <span class="result-kicker">Trade size result</span>
+            <h2 class="result-title">Recommended position size</h2>
 
-          <div class="result-main">
-            <span id="positionSizeOut" class="result-value-big">—</span>
-            <span class="result-unit" id="positionUnitOut">units</span>
+            <div class="result-main">
+              <span id="positionSizeOut" class="result-value-big">—</span>
+              <span class="result-unit" id="positionUnitOut">units</span>
+            </div>
+
+            <p id="positionNote" class="result-sub">Enter your values and calculate to see the result.</p>
           </div>
 
-          <p id="positionNote" class="result-sub">—</p>
-        </div>
+          <div class="result-grid">
+            <div class="result-box">
+              <span class="result-label">Position Value</span>
+              <span id="positionValueOut" class="result-value">—</span>
+              <span class="result-note">Estimated trade value at entry</span>
+            </div>
 
-        <div class="result-grid">
-          <div class="metric">
-            <span class="metric-label">Position Value</span>
-            <span id="positionValueOut" class="metric-value">—</span>
-            <span class="metric-note">Estimated trade value at entry</span>
-          </div>
+            <div class="result-box">
+              <span class="result-label">Risk Amount</span>
+              <span id="riskAmountOut" class="result-value">—</span>
+              <span class="result-note">Capital at risk on this setup</span>
+            </div>
 
-          <div class="metric">
-            <span class="metric-label">Risk Amount</span>
-            <span id="riskAmountOut" class="metric-value">—</span>
-            <span class="metric-note">Capital at risk on this setup</span>
-          </div>
-
-          <div class="metric">
-            <span class="metric-label">Effective Stop</span>
-            <span id="stopDistanceOut" class="metric-value">—</span>
-            <span id="stopNote" class="metric-note">—</span>
+            <div class="result-box">
+              <span class="result-label">Effective Stop</span>
+              <span id="stopDistanceOut" class="result-value">—</span>
+              <span id="stopNote" class="result-note">—</span>
+            </div>
           </div>
         </div>
 
@@ -710,11 +681,7 @@
             Position sizing is not just a formula. It should be aligned with the strategy, stop placement, volatility, spread, slippage, and overall market structure. A clean setup with poor sizing can still be a bad trade.
           </p>
         </div>
-
-        <div id="placeholder" class="result-placeholder">
-          Your calculated trade size will appear here after you press Calculate.
-        </div>
-      </aside>
+      </div>
     </div>
   </div>
 
@@ -994,11 +961,16 @@
       const positionSize = riskAmount / stopDistance;
       const positionValue = positionSize * entry;
 
-      document.getElementById("positionSizeOut").innerHTML = `${formatNumber(positionSize)}`;
+      const positionSizeOut = document.getElementById("positionSizeOut");
+      const positionValueOut = document.getElementById("positionValueOut");
+      const riskAmountOut = document.getElementById("riskAmountOut");
+      const stopDistanceOut = document.getElementById("stopDistanceOut");
+
+      positionSizeOut.innerHTML = `${formatNumber(positionSize)}`;
       document.getElementById("positionUnitOut").innerHTML = "units";
-      document.getElementById("positionValueOut").innerHTML = money(positionValue);
-      document.getElementById("riskAmountOut").innerHTML = money(riskAmount);
-      document.getElementById("stopDistanceOut").innerHTML = `${stopDistance.toFixed(4)} price units`;
+      positionValueOut.innerHTML = money(positionValue);
+      riskAmountOut.innerHTML = money(riskAmount);
+      stopDistanceOut.innerHTML = `${stopDistance.toFixed(4)} price units`;
 
       document.getElementById("positionNote").innerHTML =
         mode === "advanced"
@@ -1010,14 +982,18 @@
           ? `Effective distance after trading costs.`
           : `Distance between entry and stop loss.`;
 
-      const sizeValueEl = document.getElementById("positionSizeOut");
-      sizeValueEl.classList.remove("good","warn","bad");
-      if (positionSize > 0) sizeValueEl.classList.add("good");
+      positionSizeOut.classList.remove("good","warn","bad");
+
+      if (riskPercent <= 1.5) {
+        positionSizeOut.classList.add("good");
+      } else if (riskPercent <= 3) {
+        positionSizeOut.classList.add("warn");
+      } else {
+        positionSizeOut.classList.add("bad");
+      }
 
       document.getElementById("resultCard").style.display = "block";
       document.getElementById("tipBox").style.display = "block";
-      document.getElementById("placeholder").style.display = "none";
-
       document.getElementById("resultCard").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
