@@ -98,7 +98,7 @@
     }
 
     body{
-      font-family: Arial, sans-serif;
+      font-family:Arial, sans-serif;
       background:#0b1a33;
       color:white;
       display:flex;
@@ -131,9 +131,11 @@
       background:#1e293b;
       padding:30px;
       border-radius:16px;
-      width:90%;
-      max-width:560px;
+      width:92%;
+      max-width:1080px;
       box-shadow:0 10px 25px rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(6px);
     }
 
     h1{
@@ -144,14 +146,14 @@
     }
 
     .quick-answer{
-      background: rgba(59,130,246,0.12);
-      border: 1px solid rgba(59,130,246,0.25);
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #e2e8f0;
-      margin-bottom: 18px;
+      background:rgba(59,130,246,0.12);
+      border:1px solid rgba(59,130,246,0.25);
+      padding:12px 14px;
+      border-radius:10px;
+      font-size:15px;
+      line-height:1.6;
+      color:#e2e8f0;
+      margin:0 0 18px;
     }
 
     .subhead{
@@ -159,6 +161,17 @@
       font-size:15px;
       line-height:1.6;
       margin-bottom:18px;
+    }
+
+    .calculator-layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap:22px;
+      align-items:start;
+    }
+
+    .panel{
+      min-width:0;
     }
 
     .toggle{
@@ -221,23 +234,40 @@
       margin-top:10px;
       width:100%;
       font-size:16px;
-      font-weight:600;
+      font-weight:700;
+      transition:0.2s;
     }
 
     button:hover{
       background:#2563eb;
     }
 
+    .secondary-btn{
+      background:rgba(255,255,255,0.08);
+    }
+
+    .secondary-btn:hover{
+      background:rgba(255,255,255,0.14);
+    }
+
+    .field-label{
+      display:block;
+      font-size:13px;
+      color:#cbd5e1;
+      font-weight:600;
+      margin:12px 0 6px;
+    }
+
     .result-card{
-      display:none;
-      margin-top:20px;
+      margin-top:0;
       padding:18px;
       border-radius:18px;
       background:linear-gradient(180deg, rgba(15,23,42,0.92), rgba(17,24,39,0.88));
       border:1px solid rgba(255,255,255,0.08);
       box-shadow:0 18px 40px rgba(0,0,0,0.22);
       overflow:hidden;
-      position:relative;
+      position:sticky;
+      top:18px;
     }
 
     .result-card::before{
@@ -294,8 +324,16 @@
       line-height:1;
       font-weight:800;
       letter-spacing:-0.04em;
-      color:#ffffff;
+      color:#22c55e;
       word-break:break-word;
+    }
+
+    .result-value-big.warn{
+      color:#f59e0b;
+    }
+
+    .result-value-big.bad{
+      color:#ef4444;
     }
 
     .result-unit{
@@ -315,28 +353,27 @@
 
     .result-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:1fr;
       gap:12px;
       position:relative;
       z-index:1;
     }
 
-    .metric{
+    .result-box{
       background:rgba(255,255,255,0.03);
       border:1px solid rgba(255,255,255,0.06);
       border-radius:14px;
       padding:14px;
       transition:0.2s ease;
-      min-height:92px;
     }
 
-    .metric:hover{
+    .result-box:hover{
       transform:translateY(-1px);
       border-color:rgba(59,130,246,0.18);
       background:rgba(255,255,255,0.05);
     }
 
-    .metric-label{
+    .result-label{
       display:block;
       color:#94a3b8;
       font-size:11px;
@@ -346,7 +383,7 @@
       margin-bottom:8px;
     }
 
-    .metric-value{
+    .result-value{
       display:block;
       font-size:18px;
       line-height:1.2;
@@ -355,7 +392,7 @@
       word-break:break-word;
     }
 
-    .metric-note{
+    .result-note{
       display:block;
       margin-top:6px;
       color:#94a3b8;
@@ -376,13 +413,12 @@
     }
 
     .tip-box{
-      margin-top:22px;
+      margin-top:16px;
       padding:14px 16px;
       border-radius:14px;
       background:#243041;
       border:1px solid rgba(255,255,255,0.08);
       color:#dbe4f0;
-      display:none;
     }
 
     .tip-box strong{
@@ -510,6 +546,25 @@
       width:90%;
     }
 
+    .result-empty{
+      min-height:64px;
+      display:flex;
+      align-items:center;
+      color:#94a3b8;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    @media (max-width: 900px){
+      .calculator-layout{
+        grid-template-columns:1fr;
+      }
+
+      .result-card{
+        position:static;
+      }
+    }
+
     @media (max-width: 700px){
       .container{
         padding:22px;
@@ -524,6 +579,10 @@
       }
 
       .result-grid{
+        grid-template-columns:1fr;
+      }
+
+      .calculator-layout{
         grid-template-columns:1fr;
       }
     }
@@ -548,63 +607,81 @@
       Enter your account balance, risk per trade, entry price, and stop loss to calculate position size and trade value.
     </p>
 
-    <div class="toggle">
-      <button id="basicBtn" class="active" type="button" onclick="switchMode('basic')">Basic</button>
-      <button id="advBtn" type="button" onclick="switchMode('advanced')">Advanced</button>
-    </div>
-
-    <input id="balance" placeholder="Account Balance ($)">
-    <input id="risk" placeholder="Risk % per trade">
-    <input id="entry" placeholder="Entry Price">
-    <input id="stop" placeholder="Stop Loss Price">
-
-    <div id="advancedInputs" style="display:none;">
-      <input id="spread" placeholder="Spread (price units)">
-      <input id="slippage" placeholder="Slippage (price units)">
-      <input id="pipValue" placeholder="Pip Value / Multiplier (default = 1)">
-    </div>
-
-    <button type="button" onclick="calculate()">Calculate</button>
-
-    <div id="resultCard" class="result-card" aria-live="polite">
-      <div class="result-top">
-        <span class="result-kicker">Trade size result</span>
-        <h2 class="result-title">Recommended position size</h2>
-
-        <div class="result-main">
-          <span id="positionSizeOut" class="result-value-big">—</span>
-          <span class="result-unit" id="positionUnitOut">units</span>
+    <div class="calculator-layout">
+      <div class="panel">
+        <div class="toggle">
+          <button id="basicBtn" class="active" type="button" onclick="switchMode('basic')">Basic</button>
+          <button id="advBtn" type="button" onclick="switchMode('advanced')">Advanced</button>
         </div>
 
-        <p id="positionNote" class="result-sub">—</p>
+        <label class="field-label" for="balance">Account Balance ($)</label>
+        <input id="balance" placeholder="Account Balance ($)">
+
+        <label class="field-label" for="risk">Risk % per Trade</label>
+        <input id="risk" placeholder="Risk % per trade">
+
+        <label class="field-label" for="entry">Entry Price</label>
+        <input id="entry" placeholder="Entry Price">
+
+        <label class="field-label" for="stop">Stop Loss Price</label>
+        <input id="stop" placeholder="Stop Loss Price">
+
+        <div id="advancedInputs" style="display:none;">
+          <label class="field-label" for="spread">Spread (price units)</label>
+          <input id="spread" placeholder="Spread (price units)">
+
+          <label class="field-label" for="slippage">Slippage (price units)</label>
+          <input id="slippage" placeholder="Slippage (price units)">
+
+          <label class="field-label" for="pipValue">Pip Value / Multiplier (default = 1)</label>
+          <input id="pipValue" placeholder="Pip Value / Multiplier (default = 1)">
+        </div>
+
+        <button type="button" onclick="calculate()">Calculate</button>
       </div>
 
-      <div class="result-grid">
-        <div class="metric">
-          <span class="metric-label">Position Value</span>
-          <span id="positionValueOut" class="metric-value">—</span>
-          <span class="metric-note">Estimated trade value at entry</span>
+      <div class="panel">
+        <div id="resultCard" class="result-card" aria-live="polite">
+          <div class="result-top">
+            <span class="result-kicker">Trade size result</span>
+            <h2 class="result-title">Recommended position size</h2>
+
+            <div class="result-main">
+              <span id="positionSizeOut" class="result-value-big">—</span>
+              <span class="result-unit" id="positionUnitOut">units</span>
+            </div>
+
+            <p id="positionNote" class="result-sub">Enter your values and calculate to see the result.</p>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-box">
+              <span class="result-label">Position Value</span>
+              <span id="positionValueOut" class="result-value">—</span>
+              <span class="result-note">Estimated trade value at entry</span>
+            </div>
+
+            <div class="result-box">
+              <span class="result-label">Risk Amount</span>
+              <span id="riskAmountOut" class="result-value">—</span>
+              <span class="result-note">Capital at risk on this setup</span>
+            </div>
+
+            <div class="result-box">
+              <span class="result-label">Effective Stop</span>
+              <span id="stopDistanceOut" class="result-value">—</span>
+              <span id="stopNote" class="result-note">—</span>
+            </div>
+          </div>
         </div>
 
-        <div class="metric">
-          <span class="metric-label">Risk Amount</span>
-          <span id="riskAmountOut" class="metric-value">—</span>
-          <span class="metric-note">Capital at risk on this setup</span>
-        </div>
-
-        <div class="metric">
-          <span class="metric-label">Effective Stop</span>
-          <span id="stopDistanceOut" class="metric-value">—</span>
-          <span id="stopNote" class="metric-note">—</span>
+        <div id="tipBox" class="tip-box">
+          <strong>Professional Trading Note</strong>
+          <p>
+            Position sizing is not just a formula. It should be aligned with the strategy, stop placement, volatility, spread, slippage, and overall market structure. A clean setup with poor sizing can still be a bad trade.
+          </p>
         </div>
       </div>
-    </div>
-
-    <div id="tipBox" class="tip-box">
-      <strong>Professional Trading Note</strong>
-      <p>
-        Position sizing is not just a formula. It should be aligned with the strategy, stop placement, volatility, spread, slippage, and overall market structure. A clean setup with poor sizing can still be a bad trade.
-      </p>
     </div>
   </div>
 
@@ -884,11 +961,16 @@
       const positionSize = riskAmount / stopDistance;
       const positionValue = positionSize * entry;
 
-      document.getElementById("positionSizeOut").innerHTML = `${formatNumber(positionSize)}`;
+      const positionSizeOut = document.getElementById("positionSizeOut");
+      const positionValueOut = document.getElementById("positionValueOut");
+      const riskAmountOut = document.getElementById("riskAmountOut");
+      const stopDistanceOut = document.getElementById("stopDistanceOut");
+
+      positionSizeOut.innerHTML = `${formatNumber(positionSize)}`;
       document.getElementById("positionUnitOut").innerHTML = "units";
-      document.getElementById("positionValueOut").innerHTML = money(positionValue);
-      document.getElementById("riskAmountOut").innerHTML = money(riskAmount);
-      document.getElementById("stopDistanceOut").innerHTML = `${stopDistance.toFixed(4)} price units`;
+      positionValueOut.innerHTML = money(positionValue);
+      riskAmountOut.innerHTML = money(riskAmount);
+      stopDistanceOut.innerHTML = `${stopDistance.toFixed(4)} price units`;
 
       document.getElementById("positionNote").innerHTML =
         mode === "advanced"
@@ -900,13 +982,18 @@
           ? `Effective distance after trading costs.`
           : `Distance between entry and stop loss.`;
 
-      const sizeValueEl = document.getElementById("positionSizeOut");
-      sizeValueEl.classList.remove("good","warn","bad");
-      if (positionSize > 0) sizeValueEl.classList.add("good");
+      positionSizeOut.classList.remove("good","warn","bad");
+
+      if (riskPercent <= 1.5) {
+        positionSizeOut.classList.add("good");
+      } else if (riskPercent <= 3) {
+        positionSizeOut.classList.add("warn");
+      } else {
+        positionSizeOut.classList.add("bad");
+      }
 
       document.getElementById("resultCard").style.display = "block";
       document.getElementById("tipBox").style.display = "block";
-
       document.getElementById("resultCard").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
@@ -925,4 +1012,4 @@
     });
   </script>
 </body>
-        </html>
+</html>
