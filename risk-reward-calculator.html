@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- saved from url=(0066)file:///C:/Users/salih/Downloads/risk-reward-calculator%20(2).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="canonical" href="https://novainvesttools.com/risk-reward-calculator.html">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPCXDVE8C5"></script>
+  <script async="" src="./risk.reward_files/js"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -12,11 +12,11 @@
     gtag('config', 'G-ZPCXDVE8C5');
   </script>
 
-  <meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Risk Reward Calculator – Optimize Your Trades</title>
   <meta name="description" content="Analyze risk vs reward ratio before entering a trade. Improve your trading strategy instantly with a clean risk reward calculator for stocks, forex, and crypto.">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#060c1a">
   <meta name="robots" content="index,follow,max-image-preview:large">
 
   <meta property="og:type" content="website">
@@ -24,14 +24,14 @@
   <meta property="og:title" content="Risk Reward Calculator – Optimize Your Trades">
   <meta property="og:description" content="Analyze risk vs reward ratio before entering a trade. Improve your trading strategy instantly.">
 
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net/">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net/">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="file:///C:/Users/salih/Downloads/style.css">
+  <link rel="icon" href="file:///C:/Users/salih/Downloads/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="file:///C:/Users/salih/Downloads/favicon.png">
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./risk.reward_files/chart.js.indir"></script>
 
   <script type="application/ld+json">
   {
@@ -42,12 +42,12 @@
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "All",
     "browserRequirements": "Requires JavaScript",
-    "description": "Analyze risk versus reward before entering a trade.",
+    "description": "Analyze risk vs reward ratio before entering a trade using entry, position size, stop loss, and take profit values.",
     "featureList": [
-      "Risk calculation",
-      "Reward calculation",
-      "Risk / reward ratio",
-      "Trade planning"
+      "Risk/reward ratio calculation",
+      "Dollar risk and reward calculation",
+      "Long and short trade support",
+      "Trade visualization chart"
     ],
     "offers": {
       "@type": "Offer",
@@ -64,26 +64,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is a good risk/reward ratio?",
+        "name": "What is a risk reward calculator?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Many traders aim for at least 1:2, meaning they are trying to make twice as much as they are risking."
+          "text": "A risk reward calculator compares how much you could lose on a trade with how much you could gain."
         }
       },
       {
         "@type": "Question",
-        "name": "Is a higher risk/reward ratio always better?",
+        "name": "Why is risk reward important?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Not always. A very high ratio is useless if the target is unrealistic or the setup has no real edge."
+          "text": "It helps you decide whether a trade offers enough potential upside to justify the downside."
         }
       },
       {
         "@type": "Question",
-        "name": "Why does position size matter in risk/reward?",
+        "name": "Can I use this calculator for long and short trades?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Position size determines how much money each price move is worth, so it directly affects the real dollar risk and reward."
+          "text": "Yes. It supports both long and short trade setups."
         }
       }
     ]
@@ -91,1214 +91,867 @@
   </script>
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      font-family: Arial, sans-serif;
-      background:#0f172a;
-      color:white;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      min-height:100vh;
-      margin:0;
-      padding:24px 0;
-    }
-
-    .toptext{
-      font-size:14px;
-      color:#6b7a99;
-      margin-bottom:5px;
-    }
-
-    .menu{
-      margin-bottom:25px;
-    }
-
-    .menu a{
-      color:#3b82f6;
-      margin:10px;
-      text-decoration:none;
-      font-weight:600;
-    }
-
-    .container{
-      background:#1e293b;
-      padding:30px;
-      border-radius:16px;
-      width:90%;
-      max-width:520px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.35);
-    }
-
-    h1{
-      margin-top:0;
-      margin-bottom:10px;
-      font-size:32px;
-      line-height:1.15;
-    }
-
-    .quick-answer{
-      background: rgba(59,130,246,0.12);
-      border: 1px solid rgba(59,130,246,0.25);
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #e2e8f0;
-      margin-bottom: 18px;
-    }
-
-    .subhead{
-      color:#94a3b8;
-      font-size:15px;
-      line-height:1.6;
-      margin-bottom:18px;
-    }
-
-    .section-title{
-      font-size:13px;
-      color:#94a3b8;
-      margin:14px 0 6px;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      font-weight:700;
-    }
-
-    .toggle{
-      display:flex;
-      margin:12px 0 14px;
-      gap:0;
-      overflow:hidden;
-      border-radius:8px;
-    }
-
-    .toggle button{
-      flex:1;
-      padding:12px;
-      border:none;
-      cursor:pointer;
-      background:#334155;
-      color:white;
-      margin-top:0;
-      border-radius:0;
-      width:auto;
-      transition:0.2s;
-      font-size:15px;
-      font-weight:700;
-    }
-
-    .toggle button:first-child{
-      border-radius:8px 0 0 8px;
-    }
-
-    .toggle button:last-child{
-      border-radius:0 8px 8px 0;
-    }
-
-    .toggle button.active{
-      background:#3b82f6;
-    }
-
-    input{
-      width:100%;
-      padding:14px;
-      margin:10px 0;
-      border-radius:10px;
-      border:none;
-      background:#e5e7eb;
-      font-size:16px;
-      outline:none;
-    }
-
-    input:focus{
-      box-shadow:0 0 0 3px rgba(59,130,246,0.18);
-    }
-
-    button{
-      padding:14px 18px;
-      background:#3b82f6;
-      border:none;
-      border-radius:10px;
-      color:white;
-      cursor:pointer;
-      margin-top:10px;
-      width:100%;
-      font-size:16px;
-      font-weight:700;
-      transition:0.2s;
-    }
-
-    button:hover{
-      background:#2563eb;
-      transform:translateY(-1px);
-    }
-
-    .result-card{
-      display:none;
-      margin-top:20px;
+    .chart-wrap{
+      margin-top:18px;
       padding:18px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(15,23,42,0.92), rgba(17,24,39,0.88));
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 18px 40px rgba(0,0,0,0.22);
-      overflow:hidden;
-      position:relative;
+      border-radius:var(--r-xl);
+      background:var(--surface-1);
+      border:1px solid var(--border-subtle);
+      box-shadow:var(--shadow-md), var(--shadow-inset);
     }
 
-    .result-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 35%);
-      pointer-events:none;
-    }
-
-    .result-card.tone-good{
-      border-color:rgba(34,197,94,0.22);
-      box-shadow:0 18px 40px rgba(34,197,94,0.08);
-    }
-
-    .result-card.tone-warn{
-      border-color:rgba(250,204,21,0.22);
-      box-shadow:0 18px 40px rgba(250,204,21,0.08);
-    }
-
-    .result-card.tone-bad{
-      border-color:rgba(239,68,68,0.22);
-      box-shadow:0 18px 40px rgba(239,68,68,0.08);
-    }
-
-    .result-card.tone-aggressive{
-      border-color:rgba(248,113,113,0.25);
-      box-shadow:0 18px 40px rgba(248,113,113,0.09);
-    }
-
-    .result-card.tone-good::before{
-      background:radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 36%);
-    }
-
-    .result-card.tone-warn::before{
-      background:radial-gradient(circle at top right, rgba(250,204,21,0.10), transparent 36%);
-    }
-
-    .result-card.tone-bad::before{
-      background:radial-gradient(circle at top right, rgba(239,68,68,0.10), transparent 36%);
-    }
-
-    .result-card.tone-aggressive::before{
-      background:radial-gradient(circle at top right, rgba(248,113,113,0.12), transparent 36%);
-    }
-
-    .result-top{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      padding-bottom:16px;
-      border-bottom:1px solid rgba(255,255,255,0.06);
-      margin-bottom:16px;
-      position:relative;
-      z-index:1;
-    }
-
-    .result-kicker{
-      display:inline-flex;
-      align-items:center;
-      width:max-content;
-      padding:5px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:0.08em;
-      text-transform:uppercase;
-      background:rgba(59,130,246,0.12);
-      color:#bfdbfe;
-      border:1px solid rgba(59,130,246,0.20);
-    }
-
-    .result-card.tone-good .result-kicker{
-      background:rgba(34,197,94,0.12);
-      color:#bbf7d0;
-      border-color:rgba(34,197,94,0.22);
-    }
-
-    .result-card.tone-warn .result-kicker{
-      background:rgba(250,204,21,0.12);
-      color:#fef08a;
-      border-color:rgba(250,204,21,0.22);
-    }
-
-    .result-card.tone-bad .result-kicker{
-      background:rgba(239,68,68,0.12);
-      color:#fecaca;
-      border-color:rgba(239,68,68,0.22);
-    }
-
-    .result-card.tone-aggressive .result-kicker{
-      background:rgba(248,113,113,0.12);
-      color:#fecaca;
-      border-color:rgba(248,113,113,0.24);
-    }
-
-    .result-title{
-      margin:0;
-      font-size:14px;
-      font-weight:700;
-      color:#cbd5e1;
-      letter-spacing:0.01em;
-    }
-
-    .result-main{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:baseline;
-      gap:10px;
-    }
-
-    .result-value-big{
-      font-size:clamp(2.1rem, 6vw, 3.2rem);
-      line-height:1;
-      font-weight:800;
-      letter-spacing:-0.04em;
-      color:#ffffff;
-      word-break:break-word;
-    }
-
-    .result-value-big.good{
-      color:#22c55e;
-      text-shadow:0 0 14px rgba(34,197,94,0.18);
-    }
-
-    .result-value-big.warn{
-      color:#facc15;
-      text-shadow:0 0 14px rgba(250,204,21,0.16);
-    }
-
-    .result-value-big.bad{
-      color:#ef4444;
-      text-shadow:0 0 14px rgba(239,68,68,0.16);
-    }
-
-    .result-value-big.aggressive{
-      color:#fb7185;
-      text-shadow:0 0 16px rgba(251,113,133,0.18);
-    }
-
-    .result-unit{
-      font-size:14px;
-      color:#94a3b8;
-      font-weight:600;
-      letter-spacing:0.02em;
-    }
-
-    .result-sub{
-      color:#94a3b8;
-      font-size:13px;
-      line-height:1.55;
-      margin:0;
-      max-width:46ch;
-    }
-
-    .result-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:12px;
-      position:relative;
-      z-index:1;
-    }
-
-    .metric{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:14px;
-      padding:14px;
-      transition:0.2s ease;
-      min-height:92px;
-    }
-
-    .metric:hover{
-      transform:translateY(-1px);
-      border-color:rgba(59,130,246,0.18);
-      background:rgba(255,255,255,0.05);
-    }
-
-    .metric-label{
+    .chart-wrap canvas{
+      width:100% !important;
+      height:300px !important;
       display:block;
-      color:#94a3b8;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:0.10em;
-      font-weight:800;
-      margin-bottom:8px;
-    }
-
-    .metric-value{
-      display:block;
-      font-size:18px;
-      line-height:1.2;
-      font-weight:800;
-      color:#e2e8f0;
-      word-break:break-word;
-    }
-
-    .metric-value.good{
-      color:#22c55e;
-    }
-
-    .metric-value.warn{
-      color:#f59e0b;
-    }
-
-    .metric-value.bad{
-      color:#ef4444;
-    }
-
-    .metric-note{
-      display:block;
-      margin-top:6px;
-      color:#94a3b8;
-      font-size:12px;
-      line-height:1.45;
-    }
-
-    .metric--compact{
-      min-height:74px;
-    }
-
-    .metric--compact .metric-note{
-      display:none;
     }
 
     .insight-stack{
-      margin-top:14px;
-      display:grid;
+      display:flex;
+      flex-direction:column;
       gap:12px;
+      margin-top:12px;
     }
 
     .insight-row{
-      padding:14px 15px;
+      padding:14px 16px;
       border-radius:14px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.06);
-      color:#e5e7eb;
-      font-size:14px;
-      line-height:1.58;
-      box-shadow:0 8px 18px rgba(0,0,0,0.10);
+      border:1px solid var(--border-subtle);
+      background:var(--surface-2);
+      display:flex;
+      flex-direction:column;
+      gap:4px;
     }
 
     .insight-row strong{
-      display:block;
-      margin-bottom:4px;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:0.09em;
+      font-size:13px;
       font-weight:800;
+      letter-spacing:.02em;
+      color:var(--text-1);
     }
 
     .insight-row span{
-      display:block;
-      color:#cbd5e1;
-    }
-
-    .insight-row.insight-good{
-      background:rgba(34,197,94,0.09);
-      border-color:rgba(34,197,94,0.18);
-      box-shadow:0 0 0 1px rgba(34,197,94,0.05), 0 10px 24px rgba(34,197,94,0.08);
-    }
-
-    .insight-row.insight-good strong{
-      color:#86efac;
-      text-shadow:0 0 10px rgba(34,197,94,0.12);
-    }
-
-    .insight-row.insight-warn{
-      background:rgba(250,204,21,0.08);
-      border-color:rgba(250,204,21,0.18);
-      box-shadow:0 0 0 1px rgba(250,204,21,0.04), 0 10px 24px rgba(250,204,21,0.08);
-    }
-
-    .insight-row.insight-warn strong{
-      color:#fde68a;
-      text-shadow:0 0 10px rgba(250,204,21,0.12);
-    }
-
-    .insight-row.insight-bad{
-      background:rgba(239,68,68,0.08);
-      border-color:rgba(239,68,68,0.18);
-      box-shadow:0 0 0 1px rgba(239,68,68,0.04), 0 10px 24px rgba(239,68,68,0.08);
-    }
-
-    .insight-row.insight-bad strong{
-      color:#fca5a5;
-      text-shadow:0 0 10px rgba(239,68,68,0.12);
-    }
-
-    .insight-row.insight-aggressive{
-      background:rgba(248,113,113,0.09);
-      border-color:rgba(248,113,113,0.20);
-      box-shadow:0 0 0 1px rgba(248,113,113,0.04), 0 10px 24px rgba(248,113,113,0.09);
-    }
-
-    .insight-row.insight-aggressive strong{
-      color:#fda4af;
-      text-shadow:0 0 10px rgba(248,113,113,0.15);
-    }
-
-    canvas{
-      margin-top:24px;
-      max-width:100%;
-    }
-
-    .content{
-      width:90%;
-      max-width:900px;
-      margin-top:34px;
-    }
-
-    .content h2{
-      margin-top:34px;
-      margin-bottom:10px;
-      font-size:28px;
-    }
-
-    .content p,
-    .content li{
-      color:#cbd5e1;
-      line-height:1.7;
-      font-size:15px;
-    }
-
-    .content ul{
-      padding-left:20px;
-    }
-
-    .formula{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:14px 16px;
-      border-radius:12px;
-      margin:12px 0;
-      color:#e2e8f0;
-      overflow:auto;
-      line-height:1.7;
-    }
-
-    .faq{
-      margin-top:14px;
-    }
-
-    .faq-item{
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .faq-question{
-      width:100%;
-      background:none;
-      border:none;
-      color:white;
-      text-align:left;
-      padding:14px 8px;
-      font-size:15px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      cursor:pointer;
-    }
-
-    .faq-question:hover{
-      color:#93c5fd;
-    }
-
-    .arrow{
-      transition:0.25s;
-    }
-
-    .faq-item.active .arrow{
-      transform:rotate(180deg);
-    }
-
-    .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 0.3s ease;
-      color:#cbd5e1;
-      font-size:14px;
-      padding:0 8px;
-    }
-
-    .faq-item.active .faq-answer{
-      max-height:240px;
-      padding-bottom:12px;
-    }
-
-    .related{
-      width:90%;
-      max-width:900px;
-      margin-top:34px;
-    }
-
-    .related a{
-      color:#93c5fd;
-      text-decoration:none;
-    }
-
-    .related a:hover{
-      text-decoration:underline;
-    }
-
-    .disclaimer{
-      margin-top:40px;
-      padding-top:20px;
-      border-top:1px solid rgba(255,255,255,0.1);
       font-size:13px;
-      color:#9ca3af;
-      max-width:900px;
-      text-align:center;
       line-height:1.6;
-      width:90%;
+      color:var(--text-2);
     }
 
-    @media (max-width: 700px){
-      .container{
-        padding:22px;
-      }
+    .insight-good{
+      border-color:rgba(34,197,94,.18);
+      background:rgba(34,197,94,.08);
+    }
 
-      h1{
-        font-size:28px;
-      }
+    .insight-warn{
+      border-color:rgba(245,158,11,.18);
+      background:rgba(245,158,11,.08);
+    }
 
-      .content h2{
-        font-size:24px;
-      }
+    .insight-bad{
+      border-color:rgba(239,68,68,.18);
+      background:rgba(239,68,68,.08);
+    }
 
-      .result-grid{
-        grid-template-columns:1fr;
-      }
+    .insight-aggressive{
+      border-color:rgba(59,130,246,.18);
+      background:rgba(59,130,246,.08);
+    }
+
+    .result-box.metric--compact{
+      min-height:92px;
+    }
+
+    .result-box.metric--compact .result-label{
+      margin-bottom:8px;
+    }
+
+    .result-box.metric--compact .result-value,
+    .result-box.metric--compact .result-value-big{
+      font-size:18px;
     }
   </style>
 </head>
 
 <body>
-  <p class="toptext">Explore more calculators</p>
-
-  <div class="menu">
-    <a href="index.html">Home</a>
-  </div>
-
-  <div class="container" data-search="risk reward calculator ratio trading profit loss entry stop take">
-    <h1>Risk Reward Calculator</h1>
-    <p class="quick-answer">
-      A risk/reward calculator shows whether a trade is worth taking by comparing potential loss and potential gain.
-    </p>
-    <p class="subhead">
-      Compare potential loss and gain before taking a trade. Useful for stocks, forex, crypto, and other markets.
-    </p>
-
-    <div class="toggle">
-      <button id="longBtn" class="active" type="button" onclick="setSide('long')">Long</button>
-      <button id="shortBtn" type="button" onclick="setSide('short')">Short</button>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <nav class="site-nav">
+        <a href="file:///C:/Users/salih/Downloads/index.html">Home</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="section-title">Trade inputs</div>
-    <input id="entry" type="number" min="0" step="any" placeholder="Entry Price">
-    <input id="position" type="number" min="0" step="any" placeholder="Position Size">
-    <input id="stop" type="number" min="0" step="any" placeholder="Stop Loss Price">
-    <input id="take" type="number" min="0" step="any" placeholder="Take Profit Price">
+  <main>
+    <div class="container">
+      <div class="hero">
+        <p class="eyebrow">Trade Quality</p>
+        <h1>Risk Reward Calculator</h1>
 
-    <button onclick="calculate()" type="button">Calculate</button>
+        <p class="quick-answer">
+          A risk reward calculator shows whether the upside of a trade is worth the downside — use it to compare how much you could lose versus how much you could gain.
+        </p>
 
-    <div id="resultsBox" class="result-card">
-      <div class="result-top">
-        <span class="result-kicker">Trade quality result</span>
-        <h2 class="result-title">Risk / reward ratio</h2>
+        <p class="subhead">
+          Enter your entry price, position size, stop loss, and take profit to calculate your risk/reward ratio, dollar risk, and dollar reward.
+        </p>
 
-        <div class="result-main">
-          <span id="ratioOut" class="result-value-big">—</span>
-          <span class="result-unit">reward per 1 risk</span>
-        </div>
-
-        <p id="ratioNote" class="result-sub">—</p>
-      </div>
-
-      <div class="result-grid">
-        <div class="metric">
-          <span class="metric-label">Risk</span>
-          <span id="riskOut" class="metric-value">—</span>
-          <span class="metric-note">Dollar amount you can lose</span>
-        </div>
-
-        <div class="metric">
-          <span class="metric-label">Reward</span>
-          <span id="rewardOut" class="metric-value">—</span>
-          <span class="metric-note">Dollar amount you can gain</span>
-        </div>
-
-        <div class="metric metric--compact">
-          <span class="metric-label">Position Size</span>
-          <span id="positionOut" class="metric-value">—</span>
+        <div class="badge-row">
+          <span class="badge">Long / short support</span>
+          <span class="badge badge--soft">Auto updates</span>
+          <span class="badge badge--soft">Forex • Crypto • Stocks</span>
         </div>
       </div>
 
-      <div id="insightStack" class="insight-stack"></div>
-    </div>
+      <div class="hero-divider" role="presentation"></div>
 
-    <canvas id="myChart"></canvas>
-  </div>
+      <div class="calculator-layout">
+        <div class="panel">
+          <div class="panel-card">
+            <div class="segmented" id="sideSegmented" data-active="long" role="group" aria-label="Trade side">
+              <button type="button" class="segmented-btn is-active" id="longBtn" aria-pressed="true">Long</button>
+              <button type="button" class="segmented-btn" id="shortBtn" aria-pressed="false">Short</button>
+              <span class="segmented-thumb" aria-hidden="true"></span>
+            </div>
 
-  <div class="content">
-    <h2>What is a Risk Reward Calculator?</h2>
+            <div class="field">
+              <label class="field-label" for="entry">Entry price</label>
+              <div class="field-control">
+                <input id="entry" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="100.00">
+              </div>
+              <p class="field-hint">Price at which the trade begins.</p>
+            </div>
 
-    <p>
-      A Risk Reward Calculator helps traders measure whether a trade is worth taking by comparing how much they could lose versus how much they could gain. It is one of the most useful tools in trading because good trading is not only about finding a good entry — it is also about knowing whether the upside is worth the downside.
-    </p>
+            <div class="field">
+              <label class="field-label" for="position">Position size</label>
+              <div class="field-control">
+                <input id="position" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="10">
+              </div>
+              <p class="field-hint">Number of units or shares in the trade.</p>
+            </div>
 
-    <p>
-      Before entering a trade, you need to understand the amount at risk if the trade fails and the amount you can make if it succeeds. This calculator turns that into a simple comparison so you can make clearer decisions.
-    </p>
+            <div class="field">
+              <label class="field-label" for="stop">Stop loss price</label>
+              <div class="field-control">
+                <input id="stop" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="95.00">
+              </div>
+              <p class="field-hint">Price where the trade should be closed if it goes against you.</p>
+            </div>
 
-    <h2>How This Calculator Works</h2>
+            <div class="field">
+              <label class="field-label" for="take">Take profit price</label>
+              <div class="field-control">
+                <input id="take" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="115.00">
+              </div>
+              <p class="field-hint">Price where you plan to exit with profit.</p>
+            </div>
 
-    <p>
-      The calculator uses your entry price, position size, stop loss, and take profit to estimate the dollar amount at risk and the dollar amount you could earn. It then compares those values to produce your risk/reward ratio.
-    </p>
-
-    <div class="formula">
-      Risk = |Entry − Stop Loss| × Position Size<br>
-      Reward = |Take Profit − Entry| × Position Size<br>
-      Risk / Reward Ratio = Reward ÷ Risk
-    </div>
-
-    <ul>
-      <li><strong>Entry Price</strong> = where the trade begins</li>
-      <li><strong>Position Size</strong> = how many units you are trading</li>
-      <li><strong>Stop Loss</strong> = where you accept the trade is wrong</li>
-      <li><strong>Take Profit</strong> = where you plan to exit with profit</li>
-    </ul>
-
-    <h2>Why Risk Reward Matters</h2>
-
-    <p>
-      Many traders focus only on whether a trade is likely to go up or down. That is not enough. A trade can look good and still be a bad idea if the downside is too large compared to the upside.
-    </p>
-
-    <p>
-      Risk reward helps you think like a disciplined trader. Instead of asking only “Will this trade win?”, you start asking “Is this trade worth the risk if I am wrong?”
-    </p>
-
-    <ul>
-      <li>It helps you avoid low-quality setups</li>
-      <li>It improves trade planning and consistency</li>
-      <li>It makes position sizing more meaningful</li>
-      <li>It supports long-term risk management</li>
-    </ul>
-
-    <h2>Understanding the Ratio</h2>
-
-    <p>
-      A risk/reward ratio tells you how much you stand to gain for every unit of risk. For example, a 1:2 ratio means you are risking 1 unit to try to make 2 units. In general, higher reward relative to risk is better, but that does not mean every high-ratio trade is automatically good.
-    </p>
-
-    <p>
-      A strong trade still needs realistic entry, a valid stop loss, and a target that the market can actually reach. Good traders look for setups where the ratio is attractive and the trade logic still makes sense.
-    </p>
-
-    <h2>Why Position Size Changes Everything</h2>
-
-    <p>
-      The same setup can produce very different results depending on your position size. A small position may make the trade manageable, while a large position can turn a reasonable setup into an overly risky one.
-    </p>
-
-    <p>
-      Risk reward is not only about price distance. It is also about how much capital is actually exposed.
-    </p>
-
-    <h2>Common Trading Mistake</h2>
-
-    <p>
-      A very common mistake is entering trades with poor reward potential just because the setup feels “safe.” In reality, a trade with weak upside and meaningful downside can hurt long-term performance, even if the win rate looks acceptable.
-    </p>
-
-    <p>
-      The better approach is to evaluate every trade before entering it and only take setups that offer a clear advantage.
-    </p>
-
-    <h2>How to Use This Calculator</h2>
-
-    <ul>
-      <li>Choose whether the trade is long or short</li>
-      <li>Enter your entry price</li>
-      <li>Enter your position size</li>
-      <li>Enter your stop loss price</li>
-      <li>Enter your take profit price</li>
-      <li>Click calculate to see risk, reward, and ratio</li>
-    </ul>
-
-    <h2>The Real Insight</h2>
-
-    <p>
-      Trading success is not only about being right. It is about making sure the trades you take are worth it when you are right — and survivable when you are wrong.
-    </p>
-
-    <p>
-      That is why risk reward is one of the most valuable calculations in trading. It helps you protect your capital, filter weak setups, and build a more disciplined strategy over time.
-    </p>
-
-    <p style="font-weight:bold; color:#f87171;">
-      ⚠️ A trade with weak reward and large risk can hurt your account even if the setup looks good.
-    </p>
-
-    <h3>Frequently Asked Questions</h3>
-
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          What is a good risk/reward ratio?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Many traders aim for at least 1:2, meaning they are trying to make twice as much as they are risking. However, the best ratio depends on the strategy, win rate, and market conditions.
-          </p>
+            <div class="button-row">
+              <button type="button" class="btn btn-secondary btn-block" id="resetBtn">Reset</button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Is a higher risk/reward ratio always better?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Not always. A very high ratio is useless if the target is unrealistic. The best trades combine a good ratio with a setup that has a real chance of reaching the target.
-          </p>
-        </div>
-      </div>
+        <div class="panel">
+          <div id="resultsBox" class="result-card is-empty" aria-live="polite">
+            <div class="result-content">
+              <span class="kicker">
+                <span class="kicker-icon">
+                  <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle></svg>
+                  <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="7.5" x2="12" y2="13"></line><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"></circle></svg>
+                  <svg class="icon-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.3 8.7-7 10-3.7-1.3-7-5-7-10V6l7-3z"></path><path d="M9 12.5l2 2 4-4.5"></path></svg>
+                  <svg class="icon-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="7.5" x2="12" y2="13"></line><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"></circle></svg>
+                  <svg class="icon-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5l9 15.5H3l9-15.5z"></path><line x1="12" y1="10" x2="12" y2="14.3"></line><circle cx="12" cy="17.3" r="1" fill="currentColor" stroke="none"></circle></svg>
+                </span>
+                <span id="kickerText">Ready</span>
+              </span>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Why does position size matter in risk/reward?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Position size determines how much money each price move is worth. A trade’s risk and reward only become meaningful once you know how much capital is actually exposed.
-          </p>
-        </div>
-      </div>
+              <div>
+                <p class="result-eyebrow">Risk / reward ratio</p>
+                <div class="result-headline">
+                  <span id="ratioOut" class="result-value-big">—</span>
+                  <span class="result-unit">reward per 1 risk</span>
+                </div>
+              </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Can a trade still be good with a low risk/reward ratio?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Yes, in some cases. A strategy with a high win rate may still work with a lower ratio, but the overall expectancy must still be positive.
-          </p>
-        </div>
-      </div>
+              <p id="ratioNote" class="result-note">Start typing and the panel will update automatically.</p>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Why is stop loss important for risk/reward?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            The stop loss defines your maximum acceptable loss. Without it, you cannot calculate risk properly, and the ratio becomes meaningless.
-          </p>
-        </div>
-      </div>
+              <div class="result-grid">
+                <div class="result-box">
+                  <span class="result-label">Risk</span>
+                  <span id="riskOut" class="result-value">—</span>
+                  <span class="result-note">Dollar amount you can lose</span>
+                </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Does this calculator work for forex, crypto, and stocks?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Yes. It can be used for any market where you have an entry price, stop loss, take profit, and position size.
-          </p>
+                <div class="result-box">
+                  <span class="result-label">Reward</span>
+                  <span id="rewardOut" class="result-value">—</span>
+                  <span class="result-note">Dollar amount you can gain</span>
+                </div>
+
+                <div class="result-box metric--compact">
+                  <span class="result-label">Position size</span>
+                  <span id="positionOut" class="result-value">—</span>
+                  <span class="result-note">Trade size in units</span>
+                </div>
+              </div>
+
+              <div class="result-status" id="resultStatus">
+                <span class="status-icon">
+                  <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"></line><circle cx="9" cy="7" r="2" fill="currentColor" stroke="none"></circle><line x1="4" y1="12" x2="20" y2="12"></line><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"></circle><line x1="4" y1="17" x2="20" y2="17"></line><circle cx="11" cy="17" r="2" fill="currentColor" stroke="none"></circle></svg>
+                  <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="7.5" x2="12" y2="13"></line><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"></circle></svg>
+                </span>
+                <p id="resultStatusText">Enter your entry price, position size, stop loss, and take profit to calculate the setup.</p>
+              </div>
+
+              <div id="insightStack" class="insight-stack"></div>
+            </div>
+          </div>
+
+          <div id="chartWrap" class="chart-wrap" hidden="">
+            <canvas id="myChart"></canvas>
+          </div>
+
+          <div class="callout callout--info">
+            <span class="callout-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+            </span>
+            <div>
+              <p class="callout-title">Professional trading note</p>
+              <p>A trade only deserves attention when the upside meaningfully exceeds the downside and the target is still realistic enough to execute.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="related">
-    <h3>Related Calculators</h3>
-    <p>You may also find these tools useful:</p>
-    <ul>
-      <li><a href="position-size-calculator.html">Position Size Calculator</a></li>
-      <li><a href="stop-loss-calculator.html">Stop Loss Calculator</a></li>
-      <li><a href="risk-of-ruin-calculator.html">Risk of Ruin Calculator</a></li>
-      <li><a href="expectancy-calculator.html">Expectancy Calculator</a></li>
-      <li><a href="drawdown-calculator.html">Drawdown Calculator</a></li>
-    </ul>
-  </div>
+    <article class="content">
+      <h2>What is a Risk Reward Calculator?</h2>
+      <p>
+        A Risk Reward Calculator helps traders measure whether a trade is worth taking by comparing how much they could lose versus how much they could gain. It is one of the most useful tools in trading because good trading is not only about finding a good entry — it is also about knowing whether the upside is worth the downside.
+      </p>
 
-  <div class="disclaimer">
-    <p>
-      <strong>Disclaimer:</strong> The calculators on this website are provided for informational and educational purposes only.
-      All results are estimates based on the values entered and do not constitute financial, investment, or trading advice.
-      Always conduct your own research before making financial decisions.
-    </p>
-  </div>
+      <p>
+        Before entering a trade, you need to understand the amount at risk if the trade fails and the amount you can make if it succeeds. This calculator turns that into a simple comparison so you can make clearer decisions.
+      </p>
 
-  <script src="footer.js"></script>
+      <h2>How This Calculator Works</h2>
+      <p>
+        The calculator uses your entry price, position size, stop loss, and take profit to estimate the dollar amount at risk and the dollar amount you could earn. It then compares those values to produce your risk/reward ratio.
+      </p>
 
+      <div class="formula">
+        <code>Risk = |Entry − Stop Loss| × Position Size</code>
+        <code>Reward = |Take Profit − Entry| × Position Size</code>
+        <code>Risk / Reward Ratio = Reward ÷ Risk</code>
+      </div>
+
+      <ul>
+        <li><strong>Entry Price</strong> = the price where the trade begins</li>
+        <li><strong>Position Size</strong> = number of units or shares</li>
+        <li><strong>Stop Loss</strong> = the price where you exit at a loss</li>
+        <li><strong>Take Profit</strong> = the price where you exit at a gain</li>
+      </ul>
+
+      <p>
+        The ratio is only part of the story. The distance between your stop and target also matters because it shows whether the trade structure is realistic.
+      </p>
+
+      <h2>Why Risk Reward Matters</h2>
+      <p>
+        A trade with a poor risk/reward profile can still fail even if the entry is good. A trade with a strong profile gives your strategy room to work and makes it easier to build positive expectancy over time.
+      </p>
+
+      <p>
+        Risk/reward is not about forcing every trade to be huge. It is about making sure the upside is large enough relative to the downside.
+      </p>
+
+      <h2>What the Results Mean</h2>
+      <p>
+        A ratio below 1 means the potential loss is larger than the potential gain. A ratio around 2 or more is often more comfortable for many trading styles, although the right number depends on win rate and execution quality.
+      </p>
+
+      <p>
+        This calculator also estimates the dollar amount you can lose and the dollar amount you can gain so you can judge the setup in practical terms, not just in abstract ratio form.
+      </p>
+
+      <h2>The Right Mindset</h2>
+      <p>
+        The right way to use a risk/reward calculator is to evaluate the setup before taking the trade. A high ratio alone does not guarantee success, but poor structure often makes success harder.
+      </p>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="callout-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l9 15.5H3l9-15.5z"></path><line x1="12" y1="10" x2="12" y2="14.3"></line><circle cx="12" cy="17.3" r="1" fill="currentColor" stroke="none"></circle></svg>
+        </span>
+        <p>Even a trade with a great ratio can be a bad trade if the target is unrealistic or the setup is poorly structured.</p>
+      </div>
+
+      <h2>How to Use This Calculator</h2>
+      <ul>
+        <li>Choose whether the trade is long or short</li>
+        <li>Enter the entry price, position size, stop loss, and take profit</li>
+        <li>Check the ratio, risk, and reward results</li>
+        <li>Use the chart and notes to judge the trade structure</li>
+        <li>Only proceed if the setup fits your trading plan</li>
+      </ul>
+
+      <p>
+        This tool helps you compare risk and reward more clearly before committing capital.
+      </p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+            <span>What is a risk reward calculator?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="disclosure-inner">
+              <p>A risk reward calculator compares how much you could lose on a trade with how much you could gain.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+            <span>Why is risk reward important?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="disclosure-inner">
+              <p>It helps you decide whether a trade offers enough potential upside to justify the downside.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+            <span>Can I use this calculator for long and short trades?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="disclosure-inner">
+              <p>Yes. It supports both long and short trade setups.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="related" aria-labelledby="relatedHeading">
+      <h2 id="relatedHeading">Related Calculators</h2>
+      <p style="color:var(--text-2); font-size:15px;">You may also find these tools useful:</p>
+      <div class="related-links">
+        <a class="related-chip" href="file:///C:/Users/salih/Downloads/position-size-calculator.html">Position Size Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="file:///C:/Users/salih/Downloads/stop-loss-calculator.html">Stop Loss Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="file:///C:/Users/salih/Downloads/profit-loss-calculator.html">Profit Loss Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="file:///C:/Users/salih/Downloads/trading-fees-calculator.html">Trading Fees Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="file:///C:/Users/salih/Downloads/risk-of-ruin-calculator.html">Risk of Ruin Calculator <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      <p>
+        <strong>Disclaimer:</strong> The calculators on this website are provided for informational and educational purposes only.
+        All results are estimates based on the values entered and do not constitute financial, investment, or trading advice.
+        Always conduct your own research before making financial decisions.
+      </p>
+    </div>
+  </main>
+
+  <script src="file:///C:/Users/salih/Downloads/footer.js"></script>
   <script>
-    let chart;
-    let tradeSide = "long";
+    (function () {
+      'use strict';
 
-    function setSide(side){
-      tradeSide = side;
-      document.getElementById("longBtn").classList.toggle("active", side === "long");
-      document.getElementById("shortBtn").classList.toggle("active", side === "short");
-    }
+      var FIELD_IDS = ['entry', 'position', 'stop', 'take'];
+      var EM_DASH = '\u2014';
+      var DEBOUNCE_MS = 120;
+      var RISK_THRESHOLD_MODERATE = 1.5;
+      var RISK_THRESHOLD_AGGRESSIVE = 3;
+      var CHART_COLORS = {
+        risk: '#ef4444',
+        reward: '#22c55e'
+      };
 
-    function money(value){
-      return "$" + Number(value).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-    }
+      var chart = null;
+      var tradeSide = 'long';
+      var debounceTimer = null;
+      var lastRatioText = null;
 
-    function formatUnits(value){
-      const abs = Math.abs(value);
-      if (abs >= 1e9) return (value / 1e9).toFixed(2) + "B";
-      if (abs >= 1e6) return (value / 1e6).toFixed(2) + "M";
-      if (abs >= 1e3) return (value / 1e3).toFixed(2) + "K";
-      return Number.isInteger(value)
-        ? value.toString()
-        : value.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 4
-          });
-    }
+      var resultsBox, ratioOut, ratioNote, riskOut, rewardOut, positionOut,
+          kickerText, resultStatusText, insightStack, chartWrap, longBtn, shortBtn,
+          sideSegmented;
 
-    function buildInsight({ risk, reward, rr, entry, stop, take, position, tradeSide }) {
-      const rows = [];
-      const stopDistance = Math.abs(entry - stop);
-      const targetDistance = Math.abs(take - entry);
-      const targetVsStop = stopDistance > 0 ? targetDistance / stopDistance : 0;
-
-      let overallText = "";
-      let overallClass = "insight-good";
-
-      if (rr < 1) {
-        overallText = "The downside is larger than the upside. That usually weakens the setup.";
-        overallClass = "insight-bad";
-      } else if (rr < 1.5) {
-        overallText = "This is a thin edge. It may work, but the target cushion is not strong.";
-        overallClass = "insight-warn";
-      } else if (rr < 2.5) {
-        overallText = "Solid structure. The upside is meaningfully larger than the downside.";
-        overallClass = "insight-good";
-      } else if (rr < 3.5) {
-        overallText = "Strong on paper. The target still needs to be realistic.";
-        overallClass = "insight-good";
-      } else {
-        overallText = "Very aggressive target. Attractive mathematically, but harder to execute live.";
-        overallClass = "insight-aggressive";
+      function money(value) {
+        if (!Number.isFinite(value)) return EM_DASH;
+        return '$' + Number(value).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
       }
 
-      rows.push({
-        title: "Overall setup",
-        text: overallText,
-        cls: overallClass
-      });
-
-      let dollarText = "";
-      let dollarClass = overallClass;
-
-      if (risk <= 0 || reward <= 0) {
-        dollarText = "The calculated dollar risk or reward is invalid, so the setup cannot be assessed properly.";
-        dollarClass = "insight-bad";
-      } else if (risk >= reward) {
-        dollarText = `You are risking ${money(risk)} to potentially make ${money(reward)}. The downside is heavier than the upside.`;
-        dollarClass = "insight-bad";
-      } else if (reward >= risk * 3) {
-        dollarText = `The trade risks ${money(risk)} and targets ${money(reward)}. That reward cushion is meaningful, assuming the target is reachable.`;
-        dollarClass = "insight-good";
-      } else {
-        dollarText = `The trade risks ${money(risk)} and targets ${money(reward)}. The dollar profile is workable, but not exceptionally wide.`;
-        dollarClass = rr < 1.5 ? "insight-warn" : "insight-good";
+      function formatUnits(value){
+        if (!Number.isFinite(value)) return EM_DASH;
+        var abs = Math.abs(value);
+        if (abs >= 1e9) return (value / 1e9).toFixed(2) + 'B';
+        if (abs >= 1e6) return (value / 1e6).toFixed(2) + 'M';
+        if (abs >= 1e3) return (value / 1e3).toFixed(2) + 'K';
+        return Number.isInteger(value)
+          ? value.toString()
+          : value.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 4
+            });
       }
 
-      rows.push({
-        title: "Dollar reality",
-        text: dollarText,
-        cls: dollarClass
-      });
-
-      let ratioText = "";
-      let ratioClass = overallClass;
-
-      if (rr < 1) {
-        ratioText = `The ratio is 1:${rr.toFixed(2)}. That means the market must move much farther in your favor than it needs to move against you.`;
-        ratioClass = "insight-bad";
-      } else if (rr < 2) {
-        ratioText = `The ratio is 1:${rr.toFixed(2)}. That is acceptable only if your strategy has a strong win rate or clear execution edge.`;
-        ratioClass = "insight-warn";
-      } else if (rr < 3.5) {
-        ratioText = `The ratio is 1:${rr.toFixed(2)}. This is generally the kind of profile traders look for when they want positive expectancy.`;
-        ratioClass = "insight-good";
-      } else {
-        ratioText = `The ratio is 1:${rr.toFixed(2)}. The math is attractive, but very large targets usually demand patience and excellent trade selection.`;
-        ratioClass = "insight-aggressive";
+      function readNumber(id) {
+        var el = document.getElementById(id);
+        if (!el) return null;
+        var value = parseFloat(el.value);
+        return Number.isFinite(value) ? value : null;
       }
 
-      rows.push({
-        title: "Ratio context",
-        text: ratioText,
-        cls: ratioClass
-      });
-
-      let structureText = "";
-      let structureClass = "insight-good";
-
-      if (targetVsStop >= 3.5) {
-        structureText = "Your target is much farther than your stop. That can be valid, but it usually requires a strong trend or a very clean setup.";
-        structureClass = "insight-aggressive";
-      } else if (targetVsStop >= 2) {
-        structureText = "The target is reasonably larger than the stop. That is a healthy structure for many trend-following setups.";
-        structureClass = "insight-good";
-      } else if (targetVsStop >= 1) {
-        structureText = "The target and stop are fairly close in size. This may be fine for faster trades, but the edge must be strong.";
-        structureClass = "insight-warn";
-      } else {
-        structureText = "Your target is closer than your stop. That usually weakens the setup unless the win rate is exceptionally high.";
-        structureClass = "insight-bad";
+      function setText(el, text) {
+        if (el && el.textContent !== text) el.textContent = text;
       }
 
-      rows.push({
-        title: "Trade structure",
-        text: structureText,
-        cls: structureClass
-      });
-
-      let executionText = "";
-      let executionClass = "insight-good";
-
-      if (position <= 0) {
-        executionText = "Position size is invalid, so the dollar risk cannot be trusted.";
-        executionClass = "insight-bad";
-      } else if (risk > 0 && risk < 50) {
-        executionText = "The dollar risk per setup is relatively small. That is usually easier to manage if it fits your account plan.";
-        executionClass = "insight-good";
-      } else if (risk >= 50 && risk < 250) {
-        executionText = "The dollar risk is noticeable. Make sure it still fits your total account risk rules.";
-        executionClass = "insight-warn";
-      } else {
-        executionText = "The dollar risk is large. Even a good setup can become dangerous if the position is oversized.";
-        executionClass = "insight-bad";
+      function setTone(tone) {
+        resultsBox.className = 'result-card is-' + tone;
       }
 
-      rows.push({
-        title: "Execution note",
-        text: executionText,
-        cls: executionClass
-      });
-
-      let finalText = "";
-      let finalClass = "insight-good";
-
-      if (rr >= 2 && risk < reward) {
-        finalText = "This is the kind of setup traders usually want to see: the upside is meaningfully larger than the downside, but the target still needs to be realistic.";
-        finalClass = "insight-good";
-      } else if (rr >= 1.5) {
-        finalText = "This setup is workable, but the outcome will depend heavily on discipline, entry quality, and whether the target is actually reachable.";
-        finalClass = "insight-warn";
-      } else {
-        finalText = "This setup needs more work. Either the stop is too wide, the target is too close, or the trade idea does not offer enough edge.";
-        finalClass = "insight-bad";
+      function pulseValue() {
+        ratioOut.classList.remove('is-pulsing');
+        void ratioOut.offsetWidth;
+        ratioOut.classList.add('is-pulsing');
       }
 
-      rows.push({
-        title: "Bottom line",
-        text: finalText,
-        cls: finalClass
-      });
-
-      return rows;
-    }
-
-    function renderInsights(rows){
-      const stack = document.getElementById("insightStack");
-      stack.innerHTML = rows.map(row => `
-        <div class="insight-row ${row.cls}">
-          <strong>${row.title}</strong>
-          <span>${row.text}</span>
-        </div>
-      `).join("");
-    }
-
-    function calculate(){
-      const entry = parseFloat(document.getElementById("entry").value);
-      const position = parseFloat(document.getElementById("position").value);
-      const stop = parseFloat(document.getElementById("stop").value);
-      const take = parseFloat(document.getElementById("take").value);
-
-      if([entry, position, stop, take].some(v => isNaN(v) || v <= 0)){
-        alert("Please fill all fields with valid positive numbers.");
-        return;
+      function setSide(side) {
+        tradeSide = side;
+        sideSegmented.dataset.active = tradeSide;
+        longBtn.classList.toggle('is-active', tradeSide === 'long');
+        shortBtn.classList.toggle('is-active', tradeSide === 'short');
+        longBtn.setAttribute('aria-pressed', String(tradeSide === 'long'));
+        shortBtn.setAttribute('aria-pressed', String(tradeSide === 'short'));
+        calculate();
       }
 
-      let riskDistance, rewardDistance;
-
-      if(tradeSide === "long"){
-        if(stop >= entry){
-          alert("For a long trade, stop loss must be below entry.");
-          return;
+      function clearChart() {
+        if (chart) {
+          chart.destroy();
+          chart = null;
         }
-        if(take <= entry){
-          alert("For a long trade, take profit must be above entry.");
-          return;
-        }
-        riskDistance = entry - stop;
-        rewardDistance = take - entry;
-      } else {
-        if(stop <= entry){
-          alert("For a short trade, stop loss must be above entry.");
-          return;
-        }
-        if(take >= entry){
-          alert("For a short trade, take profit must be below entry.");
-          return;
-        }
-        riskDistance = stop - entry;
-        rewardDistance = entry - take;
       }
 
-      const risk = riskDistance * position;
-      const reward = rewardDistance * position;
+      function drawChart(risk, reward) {
+        var ctx = document.getElementById('myChart');
+        if (!ctx || typeof Chart === 'undefined') return;
 
-      if(risk <= 0 || reward <= 0){
-        alert("Invalid setup. Check your entry, stop loss, and take profit.");
-        return;
-      }
+        clearChart();
 
-      const rr = reward / risk;
-
-      document.getElementById("riskOut").innerText = money(risk);
-      document.getElementById("rewardOut").innerText = money(reward);
-      document.getElementById("positionOut").innerText = `${formatUnits(position)} units`;
-
-      document.getElementById("ratioOut").innerText = `1:${rr.toFixed(2)}`;
-
-      const ratioNote = document.getElementById("ratioNote");
-      const ratioValueEl = document.getElementById("ratioOut");
-      const resultsBox = document.getElementById("resultsBox");
-
-      ratioValueEl.classList.remove("good","warn","bad","aggressive");
-      resultsBox.classList.remove("tone-good","tone-warn","tone-bad","tone-aggressive");
-
-      if (rr < 1){
-        ratioNote.textContent = "The downside is larger than the upside. That usually weakens the setup.";
-        ratioValueEl.classList.add("bad");
-        resultsBox.classList.add("tone-bad");
-      } else if (rr < 1.5){
-        ratioNote.textContent = "This is a thin edge. It may work, but the target cushion is not strong.";
-        ratioValueEl.classList.add("warn");
-        resultsBox.classList.add("tone-warn");
-      } else if (rr < 2.5){
-        ratioNote.textContent = "Solid structure. The upside is meaningfully larger than the downside.";
-        ratioValueEl.classList.add("good");
-        resultsBox.classList.add("tone-good");
-      } else if (rr < 3.5){
-        ratioNote.textContent = "Strong on paper. The target still needs to be realistic.";
-        ratioValueEl.classList.add("good");
-        resultsBox.classList.add("tone-good");
-      } else {
-        ratioNote.textContent = "Very aggressive target. Attractive mathematically, but harder to execute live.";
-        ratioValueEl.classList.add("aggressive");
-        resultsBox.classList.add("tone-aggressive");
-      }
-
-      document.getElementById("resultsBox").style.display = "block";
-
-      renderInsights(buildInsight({ risk, reward, rr, entry, stop, take, position, tradeSide }));
-      drawChart(risk, reward);
-
-      document.getElementById("resultsBox").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    function drawChart(risk, reward){
-      const ctx = document.getElementById("myChart");
-
-      if(chart){
-        chart.destroy();
-      }
-
-      chart = new Chart(ctx,{
-        type:'bar',
-        data:{
-          labels:['Risk','Reward'],
-          datasets:[{
-            label:'Trade Analysis',
-            data:[risk,reward],
-            backgroundColor:['#ef4444','#22c55e'],
-            borderRadius: 10,
-            borderSkipped: false
-          }]
-        },
-        options:{
-          responsive:true,
-          animation:{
-            duration: 850,
-            easing: "easeOutQuart"
+        chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Risk', 'Reward'],
+            datasets: [{
+              label: 'Trade Analysis',
+              data: [risk, reward],
+              backgroundColor: [CHART_COLORS.risk, CHART_COLORS.reward],
+              borderRadius: 10,
+              borderSkipped: false
+            }]
           },
-          plugins:{
-            legend:{
-              labels:{ color:'white' }
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+              duration: 850,
+              easing: 'easeOutQuart'
             },
-            tooltip:{
-              backgroundColor: "#0f172a",
-              borderColor: "rgba(255,255,255,0.08)",
-              borderWidth: 1,
-              titleColor: "#fff",
-              bodyColor: "#e2e8f0",
-              callbacks:{
-                label: function(context){
-                  return money(context.parsed.y);
+            plugins: {
+              legend: {
+                labels: { color: '#f8fafc' }
+              },
+              tooltip: {
+                backgroundColor: '#0f172a',
+                borderColor: 'rgba(255,255,255,0.08)',
+                borderWidth: 1,
+                titleColor: '#fff',
+                bodyColor: '#e2e8f0',
+                callbacks: {
+                  label: function(context){
+                    return money(context.parsed.y);
+                  }
                 }
               }
-            }
-          },
-          scales:{
-            x:{
-              ticks:{ color:'white' },
-              grid:{ color:'rgba(255,255,255,0.08)' }
             },
-            y:{
-              ticks:{ color:'white' },
-              grid:{ color:'rgba(255,255,255,0.08)' }
+            scales: {
+              x: {
+                ticks: { color: '#f8fafc' },
+                grid: { color: 'rgba(255,255,255,0.08)' }
+              },
+              y: {
+                ticks: { color: '#f8fafc' },
+                grid: { color: 'rgba(255,255,255,0.08)' }
+              }
             }
           }
+        });
+      }
+
+      function renderInsights(rows){
+        insightStack.innerHTML = rows.map(function (row) {
+          return '<div class="insight-row ' + row.cls + '"><strong>' + row.title + '</strong><span>' + row.text + '</span></div>';
+        }).join('');
+      }
+
+      function buildInsight(data) {
+        var risk = data.risk;
+        var reward = data.reward;
+        var rr = data.rr;
+        var entry = data.entry;
+        var stop = data.stop;
+        var take = data.take;
+        var position = data.position;
+        var side = data.tradeSide;
+
+        var rows = [];
+        var stopDistance = Math.abs(entry - stop);
+        var targetDistance = Math.abs(take - entry);
+        var targetVsStop = stopDistance > 0 ? targetDistance / stopDistance : 0;
+        var sideWord = side === 'long' ? 'long' : 'short';
+
+        var overallText = '';
+        var overallClass = 'insight-good';
+
+        if (rr < 1) {
+          overallText = 'The downside is larger than the upside. That usually weakens the setup.';
+          overallClass = 'insight-bad';
+        } else if (rr < 1.5) {
+          overallText = 'This is a thin edge. It may work, but the target cushion is not strong.';
+          overallClass = 'insight-warn';
+        } else if (rr < 2.5) {
+          overallText = 'Solid structure. The upside is meaningfully larger than the downside.';
+          overallClass = 'insight-good';
+        } else if (rr < 3.5) {
+          overallText = 'Strong on paper. The target still needs to be realistic.';
+          overallClass = 'insight-good';
+        } else {
+          overallText = 'Very aggressive target. Attractive mathematically, but harder to execute live.';
+          overallClass = 'insight-aggressive';
         }
-      });
-    }
 
-    document.addEventListener("DOMContentLoaded", function(){
-      document.querySelectorAll(".faq-question").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const item = btn.parentElement;
+        rows.push({
+          title: 'Overall setup',
+          text: overallText,
+          cls: overallClass
+        });
 
-          document.querySelectorAll(".faq-item").forEach(i => {
-            if(i !== item) i.classList.remove("active");
+        var dollarText = '';
+        var dollarClass = overallClass;
+
+        if (risk <= 0 || reward <= 0) {
+          dollarText = 'The calculated dollar risk or reward is invalid, so the setup cannot be assessed properly.';
+          dollarClass = 'insight-bad';
+        } else if (risk >= reward) {
+          dollarText = 'You are risking ' + money(risk) + ' to potentially make ' + money(reward) + '. The downside is heavier than the upside.';
+          dollarClass = 'insight-bad';
+        } else if (reward >= risk * 3) {
+          dollarText = 'The trade risks ' + money(risk) + ' and targets ' + money(reward) + '. That reward cushion is meaningful, assuming the target is reachable.';
+          dollarClass = 'insight-good';
+        } else {
+          dollarText = 'The trade risks ' + money(risk) + ' and targets ' + money(reward) + '. The dollar profile is workable, but not exceptionally wide.';
+          dollarClass = rr < 1.5 ? 'insight-warn' : 'insight-good';
+        }
+
+        rows.push({
+          title: 'Dollar reality',
+          text: dollarText,
+          cls: dollarClass
+        });
+
+        var ratioText = '';
+        var ratioClass = overallClass;
+
+        if (rr < 1) {
+          ratioText = 'The ratio is 1:' + rr.toFixed(2) + '. That means the market must move much farther in your favor than it needs to move against you.';
+          ratioClass = 'insight-bad';
+        } else if (rr < 2) {
+          ratioText = 'The ratio is 1:' + rr.toFixed(2) + '. That is acceptable only if your strategy has a strong win rate or clear execution edge.';
+          ratioClass = 'insight-warn';
+        } else if (rr < 3.5) {
+          ratioText = 'The ratio is 1:' + rr.toFixed(2) + '. This is generally the kind of profile traders look for when they want positive expectancy.';
+          ratioClass = 'insight-good';
+        } else {
+          ratioText = 'The ratio is 1:' + rr.toFixed(2) + '. The math is attractive, but very large targets usually demand patience and excellent trade selection.';
+          ratioClass = 'insight-aggressive';
+        }
+
+        rows.push({
+          title: 'Ratio context',
+          text: ratioText,
+          cls: ratioClass
+        });
+
+        var structureText = '';
+        var structureClass = 'insight-good';
+
+        if (targetVsStop >= 3.5) {
+          structureText = 'Your target is much farther than your stop. That can be valid, but it usually requires a strong trend or a very clean setup.';
+          structureClass = 'insight-aggressive';
+        } else if (targetVsStop >= 2) {
+          structureText = 'The target is reasonably larger than the stop. That is a healthy structure for many trend-following setups.';
+          structureClass = 'insight-good';
+        } else if (targetVsStop >= 1) {
+          structureText = 'The target and stop are fairly close in size. This may be fine for faster ' + sideWord + ' trades, but the edge must be strong.';
+          structureClass = 'insight-warn';
+        } else {
+          structureText = 'Your target is closer than your stop. That usually weakens the setup unless the win rate is exceptionally high.';
+          structureClass = 'insight-bad';
+        }
+
+        rows.push({
+          title: 'Trade structure',
+          text: structureText,
+          cls: structureClass
+        });
+
+        var executionText = '';
+        var executionClass = 'insight-good';
+
+        if (position <= 0) {
+          executionText = 'Position size is invalid, so the dollar risk cannot be trusted.';
+          executionClass = 'insight-bad';
+        } else if (risk > 0 && risk < 50) {
+          executionText = 'The dollar risk per setup is relatively small. That is usually easier to manage if it fits your account plan.';
+          executionClass = 'insight-good';
+        } else if (risk >= 50 && risk < 250) {
+          executionText = 'The dollar risk is noticeable. Make sure it still fits your total account risk rules.';
+          executionClass = 'insight-warn';
+        } else {
+          executionText = 'The dollar risk is large. Even a good setup can become dangerous if the position is oversized.';
+          executionClass = 'insight-bad';
+        }
+
+        rows.push({
+          title: 'Execution note',
+          text: executionText,
+          cls: executionClass
+        });
+
+        var finalText = '';
+        var finalClass = 'insight-good';
+
+        if (rr >= 2 && risk < reward) {
+          finalText = 'This is the kind of ' + sideWord + ' setup traders usually want to see: the upside is meaningfully larger than the downside, but the target still needs to be realistic.';
+          finalClass = 'insight-good';
+        } else if (rr >= 1.5) {
+          finalText = 'This setup is workable, but the outcome will depend heavily on discipline, entry quality, and whether the target is actually reachable.';
+          finalClass = 'insight-warn';
+        } else {
+          finalText = 'This setup needs more work. Either the stop is too wide, the target is too close, or the trade idea does not offer enough edge.';
+          finalClass = 'insight-bad';
+        }
+
+        rows.push({
+          title: 'Bottom line',
+          text: finalText,
+          cls: finalClass
+        });
+
+        return rows;
+      }
+
+      function setEmptyVisual(message) {
+        resultsBox.className = 'result-card is-empty';
+        setText(kickerText, 'Ready');
+        setText(ratioNote, 'Start typing and the panel will update automatically.');
+        setText(ratioOut, EM_DASH);
+        setText(riskOut, EM_DASH);
+        setText(rewardOut, EM_DASH);
+        setText(positionOut, EM_DASH);
+        setText(resultStatusText, message || 'Enter your trade values to see the ratio, dollar risk, and dollar reward.');
+        chartWrap.hidden = true;
+        insightStack.innerHTML = '';
+        clearChart();
+      }
+
+      function setAttention(message, note){
+        resultsBox.className = 'result-card is-attention';
+        setText(kickerText, 'Check your inputs');
+        setText(ratioNote, note || 'Some values need adjusting before we can calculate.');
+        setText(ratioOut, EM_DASH);
+        setText(riskOut, EM_DASH);
+        setText(rewardOut, EM_DASH);
+        setText(positionOut, EM_DASH);
+        setText(resultStatusText, message);
+        chartWrap.hidden = true;
+        insightStack.innerHTML = '';
+        clearChart();
+      }
+
+      function calculate(){
+        var entry = readNumber('entry');
+        var position = readNumber('position');
+        var stop = readNumber('stop');
+        var take = readNumber('take');
+
+        var allFilled = [entry, position, stop, take].every(function (v) { return v !== null; });
+        if (!allFilled) {
+          setEmptyVisual('Enter your entry price, position size, stop loss, and take profit to calculate the setup.');
+          return;
+        }
+
+        if ([entry, position, stop, take].some(function (v) { return v <= 0; })) {
+          setAttention('All fields must be greater than zero.', 'Some values need adjusting before we can calculate.');
+          return;
+        }
+
+        var riskDistance, rewardDistance;
+
+        if (tradeSide === 'long') {
+          if (stop >= entry) {
+            setAttention('For a long trade, stop loss must be below entry.', 'The stop loss is on the wrong side of the entry price.');
+            return;
+          }
+          if (take <= entry) {
+            setAttention('For a long trade, take profit must be above entry.', 'The take profit is on the wrong side of the entry price.');
+            return;
+          }
+          riskDistance = entry - stop;
+          rewardDistance = take - entry;
+        } else {
+          if (stop <= entry) {
+            setAttention('For a short trade, stop loss must be above entry.', 'The stop loss is on the wrong side of the entry price.');
+            return;
+          }
+          if (take >= entry) {
+            setAttention('For a short trade, take profit must be below entry.', 'The take profit is on the wrong side of the entry price.');
+            return;
+          }
+          riskDistance = stop - entry;
+          rewardDistance = entry - take;
+        }
+
+        var risk = riskDistance * position;
+        var reward = rewardDistance * position;
+
+        if (risk <= 0 || reward <= 0) {
+          setAttention('Invalid setup. Check your entry, stop loss, and take profit.', 'The calculator could not produce a valid risk/reward result.');
+          return;
+        }
+
+        var rr = reward / risk;
+        var ratioText = '1:' + rr.toFixed(2);
+
+        resultsBox.className = 'result-card is-' + (rr < 1 ? 'bad' : rr < 1.5 ? 'warn' : rr < 3.5 ? 'good' : 'attention');
+
+        setText(kickerText, rr < 1 ? 'Weak edge' : rr < 1.5 ? 'Thin edge' : rr < 3.5 ? 'Solid setup' : 'Aggressive target');
+        setText(ratioOut, ratioText);
+        setText(riskOut, money(risk));
+        setText(rewardOut, money(reward));
+        setText(positionOut, formatUnits(position) + ' units');
+
+        if (ratioText !== lastRatioText) {
+          pulseValue();
+          lastRatioText = ratioText;
+        }
+
+        var ratioNoteText = '';
+        if (rr < 1) {
+          ratioNoteText = 'The downside is larger than the upside. That usually weakens the setup.';
+        } else if (rr < 1.5) {
+          ratioNoteText = 'This is a thin edge. It may work, but the target cushion is not strong.';
+        } else if (rr < 2.5) {
+          ratioNoteText = 'Solid structure. The upside is meaningfully larger than the downside.';
+        } else if (rr < 3.5) {
+          ratioNoteText = 'Strong on paper. The target still needs to be realistic.';
+        } else {
+          ratioNoteText = 'Very aggressive target. Attractive mathematically, but harder to execute live.';
+        }
+        setText(ratioNote, ratioNoteText);
+
+        var rows = buildInsight({ risk: risk, reward: reward, rr: rr, entry: entry, stop: stop, take: take, position: position, tradeSide: tradeSide });
+        renderInsights(rows);
+        drawChart(risk, reward);
+        chartWrap.hidden = false;
+        setText(resultStatusText, 'The calculator has produced a valid setup. Review the ratio, dollar risk, dollar reward, and chart before deciding.');
+      }
+
+      function resetForm() {
+        FIELD_IDS.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+        setSide('long');
+        lastRatioText = null;
+        setEmptyVisual('Enter your trade values to see the ratio, dollar risk, and dollar reward.');
+      }
+
+      function queueCalculate() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(calculate, DEBOUNCE_MS);
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        resultsBox = document.getElementById('resultsBox');
+        ratioOut = document.getElementById('ratioOut');
+        ratioNote = document.getElementById('ratioNote');
+        riskOut = document.getElementById('riskOut');
+        rewardOut = document.getElementById('rewardOut');
+        positionOut = document.getElementById('positionOut');
+        kickerText = document.getElementById('kickerText');
+        resultStatusText = document.getElementById('resultStatusText');
+        insightStack = document.getElementById('insightStack');
+        chartWrap = document.getElementById('chartWrap');
+        longBtn = document.getElementById('longBtn');
+        shortBtn = document.getElementById('shortBtn');
+        sideSegmented = document.getElementById('sideSegmented');
+
+        setEmptyVisual();
+        calculate();
+
+        FIELD_IDS.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.addEventListener('input', queueCalculate);
+          el.addEventListener('change', queueCalculate);
+          el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              clearTimeout(debounceTimer);
+              calculate();
+              el.blur();
+            }
           });
+        });
 
-          item.classList.toggle("active");
+        longBtn.addEventListener('click', function () { setSide('long'); });
+        shortBtn.addEventListener('click', function () { setSide('short'); });
+        document.getElementById('resetBtn').addEventListener('click', resetForm);
+
+        document.querySelectorAll('.faq-item').forEach(function (item) {
+          var btn = item.querySelector('.faq-question');
+          if (!btn) return;
+          btn.addEventListener('click', function () {
+            var isOpen = item.classList.contains('is-open');
+
+            document.querySelectorAll('.faq-item').forEach(function (i) {
+              i.classList.remove('is-open');
+              var b = i.querySelector('.faq-question');
+              if (b) b.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+              item.classList.add('is-open');
+              btn.setAttribute('aria-expanded', 'true');
+            }
+          });
         });
       });
-    });
+    })();
   </script>
-</body>
-  </html>
+
+
+</body></html>
