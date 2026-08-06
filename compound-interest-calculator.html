@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ ç<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="canonical" href="https://novainvesttools.com/compound-interest-calculator.html">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compound Interest Calculator – Grow Your Investments</title>
   <meta name="description" content="Calculate compound interest and see how your investments grow over time. Simple and powerful financial tool.">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#08111f">
   <meta name="robots" content="index,follow,max-image-preview:large">
 
   <meta property="og:type" content="website">
@@ -115,295 +115,110 @@
   </script>
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      font-family: Arial, sans-serif;
-      background:#0f172a;
-      color:white;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      min-height:100vh;
-      margin:0;
-      padding:24px 0;
-    }
-
-    .toptext{
-      font-size:14px;
-      color:#6b7a99;
-      margin-bottom:5px;
-    }
-
-    .menu{
-      margin-bottom:25px;
-    }
-
-    .menu a{
-      color:#3b82f6;
-      margin:10px;
-      text-decoration:none;
-      font-weight:600;
-    }
-
     .container{
-      background:#1e293b;
-      padding:30px;
-      border-radius:16px;
-      width:90%;
-      max-width:620px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.35);
-      border:1px solid rgba(255,255,255,0.05);
-      backdrop-filter: blur(6px);
+      width:min(92%, 760px);
     }
 
-    h1{
-      margin-top:0;
-      margin-bottom:10px;
-      font-size:32px;
-      line-height:1.15;
+    .content,
+    .related,
+    .disclaimer{
+      width:min(90%, 760px);
     }
 
-    .quick-answer{
-      background: rgba(59,130,246,0.12);
-      border: 1px solid rgba(59,130,246,0.25);
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #e2e8f0;
-      margin: 0 0 18px;
-    }
-
-    .subhead{
-      color:#94a3b8;
-      font-size:15px;
-      line-height:1.6;
-      margin-bottom:18px;
-    }
-
-    .badge-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:14px 0 6px;
-    }
-
-    .badge{
+    .btn{
       display:inline-flex;
-      padding:5px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:700;
-      background:rgba(59,130,246,0.12);
-      color:#bfdbfe;
-      border:1px solid rgba(59,130,246,0.22);
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 18px;
+      border-radius:var(--r-md);
+      font-size:15px;
+      font-weight:800;
+      font-family:inherit;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease),
+                  transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease),
+                  color var(--dur-2) var(--ease);
+      text-decoration:none;
+      width:100%;
     }
 
-    .badge.soft{
-      background:rgba(255,255,255,0.05);
-      border-color:rgba(255,255,255,0.08);
-      color:#dbeafe;
+    .btn:active{ transform:translateY(1px); }
+
+    .btn-block{ width:100%; }
+
+    .btn-primary{
+      background:linear-gradient(180deg, var(--accent-2), var(--accent));
+      color:#fff;
+      box-shadow:0 10px 24px rgba(59,130,246,.28);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 30px rgba(59,130,246,.34);
+    }
+
+    .btn-secondary{
+      background:var(--surface-3);
+      border-color:var(--border-soft);
+      color:var(--text-2);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.10);
+      border-color:rgba(255,255,255,0.16);
     }
 
     .field{
-      margin:12px 0;
+      margin-top:var(--sp-4);
     }
 
-    .field label{
+    .field:first-child{
+      margin-top:0;
+    }
+
+    .field-label{
       display:block;
-      font-size:13px;
-      color:#cbd5e1;
       margin:0 0 6px;
-      font-weight:600;
-    }
-
-    input{
-      width:100%;
-      padding:14px;
-      margin:0;
-      border-radius:10px;
-      border:none;
-      background:#e5e7eb;
-      font-size:16px;
-      outline:none;
-    }
-
-    input:focus{
-      box-shadow:0 0 0 3px rgba(59,130,246,0.18);
-    }
-
-    button{
-      padding:14px;
-      background:#3b82f6;
-      border:none;
-      border-radius:10px;
-      color:white;
-      cursor:pointer;
-      margin-top:14px;
-      width:100%;
-      font-size:16px;
+      font-size:13px;
       font-weight:700;
-      transition:0.2s;
+      color:var(--text-2);
     }
 
-    button:hover{
-      background:#2563eb;
-      transform:translateY(-1px);
-    }
-
-    .result-card{
+    .chart-shell{
       display:none;
       margin-top:20px;
       padding:18px;
       border-radius:18px;
-      background:linear-gradient(180deg, rgba(15,23,42,0.92), rgba(17,24,39,0.88));
+      background:rgba(255,255,255,0.04);
       border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 18px 40px rgba(0,0,0,0.22);
-      overflow:hidden;
-      position:relative;
+      box-shadow:0 18px 40px rgba(0,0,0,0.18);
     }
 
-    .result-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 35%);
-      pointer-events:none;
+    .chart-shell h3{
+      margin:0 0 8px;
+      font-size:16px;
+      color:var(--text-1);
     }
 
-    .result-top{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      padding-bottom:16px;
-      border-bottom:1px solid rgba(255,255,255,0.06);
-      margin-bottom:16px;
-      position:relative;
-      z-index:1;
-    }
-
-    .result-kicker{
-      display:inline-flex;
-      align-items:center;
-      width:max-content;
-      padding:5px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:0.08em;
-      text-transform:uppercase;
-      background:rgba(59,130,246,0.12);
-      color:#bfdbfe;
-      border:1px solid rgba(59,130,246,0.20);
-    }
-
-    .result-title{
-      margin:0;
-      font-size:14px;
-      font-weight:700;
-      color:#cbd5e1;
-      letter-spacing:0.01em;
-    }
-
-    .result-main{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:baseline;
-      gap:10px;
-    }
-
-    .result-value-big{
-      font-size:clamp(2.1rem, 6vw, 3.2rem);
-      line-height:1;
-      font-weight:800;
-      letter-spacing:-0.04em;
-      color:#ffffff;
-      word-break:break-word;
-    }
-
-    .result-unit{
-      font-size:14px;
-      color:#94a3b8;
-      font-weight:600;
-      letter-spacing:0.02em;
-    }
-
-    .result-sub{
-      color:#94a3b8;
+    .chart-sub{
+      margin:0 0 12px;
+      color:var(--text-3);
       font-size:13px;
       line-height:1.55;
-      margin:0;
-      max-width:46ch;
     }
 
-    .result-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:12px;
+    .chart-wrap{
+      width:100%;
+      height:320px;
       position:relative;
-      z-index:1;
     }
 
-    .metric{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.06);
-      border-radius:14px;
-      padding:14px;
-      transition:0.2s ease;
-      min-height:92px;
-    }
-
-    .metric:hover{
-      transform:translateY(-1px);
-      border-color:rgba(59,130,246,0.18);
-      background:rgba(255,255,255,0.05);
-    }
-
-    .metric-label{
+    canvas{
+      width:100% !important;
+      height:100% !important;
       display:block;
-      color:#94a3b8;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:0.10em;
-      font-weight:800;
-      margin-bottom:8px;
-    }
-
-    .metric-value{
-      display:block;
-      font-size:18px;
-      line-height:1.2;
-      font-weight:800;
-      color:#e2e8f0;
-      word-break:break-word;
-    }
-
-    .metric-note{
-      display:block;
-      margin-top:6px;
-      color:#94a3b8;
-      font-size:12px;
-      line-height:1.45;
-    }
-
-    .metric-value.good{
-      color:#22c55e;
-    }
-
-    .metric-value.warn{
-      color:#f59e0b;
-    }
-
-    .metric-value.bad{
-      color:#ef4444;
     }
 
     .insight-stack{
@@ -415,13 +230,13 @@
     }
 
     .insight-row{
-      padding:14px 14px 14px 14px;
+      padding:14px;
       border-radius:14px;
       background:rgba(255,255,255,0.035);
       border:1px solid rgba(255,255,255,0.08);
       line-height:1.6;
       box-shadow:0 10px 24px rgba(0,0,0,0.10);
-      transition:0.2s ease;
+      transition:transform 0.2s ease;
     }
 
     .insight-row:hover{
@@ -483,149 +298,6 @@
       color:#93c5fd;
     }
 
-    .chart-shell{
-      display:none;
-      margin-top:20px;
-      padding:18px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 18px 40px rgba(0,0,0,0.18);
-    }
-
-    .chart-shell h3{
-      margin:0 0 8px;
-      font-size:16px;
-    }
-
-    .chart-sub{
-      margin:0 0 12px;
-      color:#94a3b8;
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .chart-wrap{
-      width:100%;
-      height:320px;
-      position:relative;
-    }
-
-    canvas{
-      width:100% !important;
-      height:100% !important;
-      display:block;
-    }
-
-    .content{
-      width:90%;
-      max-width:900px;
-      margin-top:34px;
-    }
-
-    .content h2{
-      margin-top:34px;
-      margin-bottom:10px;
-      font-size:28px;
-    }
-
-    .content p,
-    .content li{
-      color:#cbd5e1;
-      line-height:1.7;
-      font-size:15px;
-    }
-
-    .content ul{
-      padding-left:20px;
-    }
-
-    .formula{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:14px 16px;
-      border-radius:12px;
-      margin:12px 0;
-      color:#e2e8f0;
-      overflow:auto;
-      line-height:1.7;
-    }
-
-    .faq{
-      margin-top:14px;
-    }
-
-    .faq-item{
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .faq-question{
-      width:100%;
-      background:none;
-      border:none;
-      color:white;
-      text-align:left;
-      padding:14px 8px;
-      font-size:15px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      cursor:pointer;
-    }
-
-    .faq-question:hover{
-      color:#93c5fd;
-    }
-
-    .arrow{
-      transition:0.25s;
-    }
-
-    .faq-item.active .arrow{
-      transform:rotate(180deg);
-    }
-
-    .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 0.3s ease;
-      color:#cbd5e1;
-      font-size:14px;
-      padding:0 8px;
-    }
-
-    .faq-item.active .faq-answer{
-      max-height:260px;
-      padding-bottom:12px;
-    }
-
-    .related{
-      width:90%;
-      max-width:900px;
-      margin-top:34px;
-    }
-
-    .related a{
-      color:#93c5fd;
-      text-decoration:none;
-    }
-
-    .related a:hover{
-      text-decoration:underline;
-    }
-
-    .disclaimer{
-      margin-top:40px;
-      padding-top:20px;
-      border-top:1px solid rgba(255,255,255,0.1);
-      font-size:13px;
-      color:#9ca3af;
-      max-width:900px;
-      text-align:center;
-      line-height:1.6;
-      width:90%;
-    }
-
     @media (max-width: 700px){
       .container{
         padding:22px;
@@ -639,602 +311,836 @@
         font-size:24px;
       }
 
-      .result-grid{
-        grid-template-columns:1fr;
-      }
-
       .chart-wrap{
         height:260px;
+      }
+
+      .result-grid{
+        grid-template-columns:1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <p class="toptext">Explore more calculators</p>
-
-  <div class="menu">
-    <a href="index.html">Home</a>
-  </div>
-
-  <div class="container" data-search="compound interest calculator future value growth investing savings long term projection">
-    <h1>Compound Interest Calculator</h1>
-
-    <p class="quick-answer">
-      Compound interest grows your money faster because you earn interest on both your starting amount and the interest already earned.
-    </p>
-
-    <p class="subhead">
-      Calculate how your investment grows over time with annual compounding.
-      Useful for savings, investing, and long-term financial planning.
-    </p>
-
-    <div class="badge-row">
-      <span class="badge">Compound growth</span>
-      <span class="badge soft">Long-term planning</span>
-      <span class="badge soft">Future value</span>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="field">
-      <label for="principal">Initial Investment ($)</label>
-      <input id="principal" type="number" min="0" step="any" placeholder="e.g. 1000">
-    </div>
+  <main>
+    <div class="container" data-search="compound interest calculator future value growth investing savings long term projection">
+      <div class="hero">
+        <p class="eyebrow">Long-Term Planning</p>
+        <h1>Compound Interest Calculator</h1>
 
-    <div class="field">
-      <label for="rate">Annual Interest Rate (%)</label>
-      <input id="rate" type="number" step="any" placeholder="e.g. 10">
-    </div>
+        <p class="quick-answer">
+          Compound interest grows your money faster because you earn interest on both your starting amount and the interest already earned.
+        </p>
 
-    <div class="field">
-      <label for="years">Years</label>
-      <input id="years" type="number" min="0" step="any" placeholder="e.g. 5">
-    </div>
+        <p class="subhead">
+          Calculate how your investment grows over time with annual compounding.
+          Useful for savings, investing, and long-term financial planning.
+        </p>
 
-    <button onclick="calculate()" type="button">Calculate</button>
-
-    <div id="resultCard" class="result-card" aria-live="polite">
-      <div class="result-top">
-        <span class="result-kicker">Projection result</span>
-        <h2 class="result-title">Projected future value</h2>
-
-        <div class="result-main">
-          <span id="futureOut" class="result-value-big">—</span>
-          <span class="result-unit">future value</span>
-        </div>
-
-        <p id="resultSub" class="result-sub">—</p>
-      </div>
-
-      <div class="result-grid">
-        <div class="metric">
-          <span class="metric-label">Total Growth</span>
-          <span id="growthOut" class="metric-value">—</span>
-          <span class="metric-note">Increase above your principal</span>
-        </div>
-
-        <div class="metric">
-          <span class="metric-label">Interest Earned</span>
-          <span id="interestOut" class="metric-value">—</span>
-          <span class="metric-note">Dollar gain from compounding</span>
-        </div>
-
-        <div class="metric">
-          <span class="metric-label">Growth Multiple</span>
-          <span id="multipleOut" class="metric-value">—</span>
-          <span class="metric-note">How many times your money grows</span>
+        <div class="badge-row">
+          <span class="badge">Compound growth</span>
+          <span class="badge badge--soft">Long-term planning</span>
+          <span class="badge badge--soft">Future value</span>
         </div>
       </div>
 
-      <div id="insightStack" class="insight-stack"></div>
-    </div>
+      <div class="hero-divider" role="presentation"></div>
 
-    <div id="chartShell" class="chart-shell">
-      <h3>Growth projection chart</h3>
-      <p class="chart-sub">Blue line shows projected balance. Gray dashed line shows your starting investment.</p>
-      <div class="chart-wrap">
-        <canvas id="myChart"></canvas>
-      </div>
-    </div>
-  </div>
+      <div class="panel">
+        <div class="panel-card">
+          <div class="field">
+            <label class="field-label" for="principal">Initial investment ($)</label>
+            <div class="field-control field-control--prefix">
+              <span class="field-adornment field-adornment--prefix" aria-hidden="true">$</span>
+              <input id="principal" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 1000">
+            </div>
+          </div>
 
-  <div class="content">
-    <h2>What is Compound Interest?</h2>
-    <p>
-      Compound interest is the process of earning interest not only on your initial investment,
-      but also on the interest that accumulates over time. In simple terms, your money grows faster
-      because you earn interest on interest.
-    </p>
+          <div class="field">
+            <label class="field-label" for="rate">Annual interest rate (%)</label>
+            <div class="field-control field-control--suffix">
+              <input id="rate" type="number" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 10">
+              <span class="field-adornment field-adornment--suffix" aria-hidden="true">%</span>
+            </div>
+          </div>
 
-    <p>
-      This is one of the most powerful ideas in finance and long-term investing.
-      The longer your money stays invested, the more powerful compounding becomes.
-    </p>
+          <div class="field">
+            <label class="field-label" for="years">Years</label>
+            <div class="field-control">
+              <input id="years" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 5">
+            </div>
+          </div>
 
-    <h2>Compound Interest Formula</h2>
-    <p>The formula used in this calculator is:</p>
+          <div class="field" style="margin-top:18px;">
+            <button id="calculateBtn" type="button" class="btn btn-primary btn-block">Calculate</button>
+          </div>
 
-    <div class="formula">
-      Final Value = Initial Investment × (1 + r)<sup>t</sup>
-      <br>
-      r = annual interest rate in decimal form
-      <br>
-      t = number of years
-    </div>
+          <div id="resultCard" class="result-card is-empty" aria-live="polite" style="margin-top:20px;">
+            <div class="result-content">
+              <span class="kicker">
+                <span class="kicker-icon">
+                  <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+                  <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
+                  <svg class="icon-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.3 8.7-7 10-3.7-1.3-7-5-7-10V6l7-3z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
+                  <svg class="icon-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
+                  <svg class="icon-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5l9 15.5H3l9-15.5z"/><line x1="12" y1="10" x2="12" y2="14.3"/><circle cx="12" cy="17.3" r="1" fill="currentColor" stroke="none"/></svg>
+                </span>
+                <span id="kickerText">Ready</span>
+              </span>
 
-    <h2>Why Compound Interest Matters</h2>
-    <p>
-      Compound interest is the key difference between slow growth and exponential growth.
-      Starting early gives compounding more time to work.
-    </p>
+              <div>
+                <p class="result-eyebrow">Projected future value</p>
+                <div class="result-headline">
+                  <span id="futureOut" class="result-value">—</span>
+                  <span class="result-unit">future value</span>
+                </div>
+              </div>
 
-    <ul>
-      <li>Grow wealth faster over time</li>
-      <li>Benefit from long-term investing</li>
-      <li>Turn small investments into larger returns</li>
-      <li>Outperform simple interest strategies</li>
-    </ul>
+              <p id="resultSub" class="result-note">Start typing and the panel will update automatically.</p>
 
-    <h2>Simple vs Compound Interest</h2>
-    <p>
-      Unlike simple interest, which only applies to the original investment,
-      compound interest continuously builds on previous gains.
-    </p>
+              <div class="result-status" id="resultStatus">
+                <span class="status-icon">
+                  <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="11" cy="17" r="2" fill="currentColor" stroke="none"/></svg>
+                  <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
+                </span>
+                <p id="resultStatusText">Enter your initial investment, annual interest rate, and years to see your future value, total growth, and interest earned.</p>
+              </div>
 
-    <ul>
-      <li><strong>Simple Interest:</strong> earns interest only on the initial amount</li>
-      <li><strong>Compound Interest:</strong> earns interest on both the initial amount and accumulated interest</li>
-    </ul>
+              <div class="result-grid">
+                <div class="metric">
+                  <span class="metric-label">Total Growth</span>
+                  <span id="growthOut" class="metric-value">—</span>
+                  <span class="metric-note">Increase above your principal</span>
+                </div>
 
-    <h2>How to Use This Calculator</h2>
-    <ul>
-      <li>Enter your initial investment</li>
-      <li>Enter the annual interest rate</li>
-      <li>Enter the number of years</li>
-      <li>Click calculate to see your future value</li>
-    </ul>
+                <div class="metric">
+                  <span class="metric-label">Interest Earned</span>
+                  <span id="interestOut" class="metric-value">—</span>
+                  <span class="metric-note">Dollar gain from compounding</span>
+                </div>
 
-    <h2>Frequently Asked Questions</h2>
+                <div class="metric">
+                  <span class="metric-label">Growth Multiple</span>
+                  <span id="multipleOut" class="metric-value">—</span>
+                  <span class="metric-note">How many times your money grows</span>
+                </div>
+              </div>
 
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Is compound interest calculated daily, monthly, or yearly?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Compound interest can be calculated at different intervals such as daily, monthly, or yearly. This calculator uses annual compounding for simplicity.
-          </p>
-        </div>
-      </div>
+              <div id="insightStack" class="insight-stack"></div>
+            </div>
+          </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          What happens if I leave my investment for a longer time?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            The longer your investment stays invested, the more powerful compounding becomes, leading to much stronger growth over time.
-          </p>
-        </div>
-      </div>
+          <div id="chartShell" class="chart-shell">
+            <h3>Growth projection chart</h3>
+            <p class="chart-sub">Blue line shows projected balance. Gray dashed line shows your starting investment.</p>
+            <div class="chart-wrap">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Does a higher interest rate make a big difference?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Yes. Even small increases in the annual interest rate can significantly boost your final value over long periods.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Should I reinvest my earnings?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Yes. Reinvesting earnings is essential if you want to benefit fully from compound interest.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          Can compound interest make small investments grow a lot?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Yes. Even small amounts can grow substantially if they are invested for a long enough time with compounding.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          What is a good annual interest rate?
-          <span class="arrow">▼</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            A good interest rate depends on the investment type, but historically, stock markets average around 7–10% annually.
-          </p>
+          <div class="callout callout--info" style="margin-top:20px;">
+            <span class="callout-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <line x1="12" y1="11" x2="12" y2="16"></line>
+                <circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle>
+              </svg>
+            </span>
+            <div>
+              <p class="callout-title">Projection note</p>
+              <p>This calculator uses a simple annual compounding model. It is useful for planning, but real investments can vary because returns are not fixed every year.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="related">
-    <h3>Related Calculators</h3>
-    <p>You may also find these tools useful:</p>
-    <ul>
-      <li><a href="future-value-calculator.html">Future Value Calculator</a></li>
-      <li><a href="savings-calculator.html">Savings Calculator</a></li>
-      <li><a href="inflation-calculator.html">Inflation Calculator</a></li>
-      <li><a href="cagr-calculator.html">CAGR Calculator</a></li>
-      <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
-    </ul>
-  </div>
+    <article class="content">
+      <h2>What is Compound Interest?</h2>
+      <p>
+        Compound interest is the process of earning interest not only on your initial investment,
+        but also on the interest that accumulates over time. In simple terms, your money grows faster
+        because you earn interest on interest.
+      </p>
 
-  <div class="disclaimer">
-    <p>
-      <strong>Disclaimer:</strong> The calculators on this website are provided for informational and educational purposes only.
-      All results are estimates based on the values entered and do not constitute financial, investment, or trading advice.
-      Always conduct your own research before making financial decisions.
-    </p>
-  </div>
+      <p>
+        This is one of the most powerful ideas in finance and long-term investing.
+        The longer your money stays invested, the more powerful compounding becomes.
+      </p>
+
+      <h2>Compound Interest Formula</h2>
+      <p>The formula used in this calculator is:</p>
+
+      <div class="formula">
+        <code>Final Value = Initial Investment × (1 + r)<sup>t</sup></code>
+        <code>r = annual interest rate in decimal form</code>
+        <code>t = number of years</code>
+      </div>
+
+      <h2>Why Compound Interest Matters</h2>
+      <p>
+        Compound interest is the key difference between slow growth and exponential growth.
+        Starting early gives compounding more time to work.
+      </p>
+
+      <ul>
+        <li>Grow wealth faster over time</li>
+        <li>Benefit from long-term investing</li>
+        <li>Turn small investments into larger returns</li>
+        <li>Outperform simple interest strategies</li>
+      </ul>
+
+      <h2>Simple vs Compound Interest</h2>
+      <p>
+        Unlike simple interest, which only applies to the original investment,
+        compound interest continuously builds on previous gains.
+      </p>
+
+      <ul>
+        <li><strong>Simple Interest:</strong> earns interest only on the initial amount</li>
+        <li><strong>Compound Interest:</strong> earns interest on both the initial amount and accumulated interest</li>
+      </ul>
+
+      <h2>How to Use This Calculator</h2>
+      <ul>
+        <li>Enter your initial investment</li>
+        <li>Enter the annual interest rate</li>
+        <li>Enter the number of years</li>
+        <li>Click calculate to see your future value</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+            <span>Is compound interest calculated daily, monthly, or yearly?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="disclosure-inner">
+              <p>
+                Compound interest can be calculated at different intervals such as daily, monthly, or yearly. This calculator uses annual compounding for simplicity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+            <span>What happens if I leave my investment for a longer time?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="disclosure-inner">
+              <p>
+                The longer your investment stays invested, the more powerful compounding becomes, leading to much stronger growth over time.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+            <span>Does a higher interest rate make a big difference?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="disclosure-inner">
+              <p>
+                Yes. Even small increases in the annual interest rate can significantly boost your final value over long periods.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+            <span>Should I reinvest my earnings?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="disclosure-inner">
+              <p>
+                Yes. Reinvesting earnings is essential if you want to benefit fully from compound interest.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+            <span>Can compound interest make small investments grow a lot?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="disclosure-inner">
+              <p>
+                Yes. Even small amounts can grow substantially if they are invested for a long enough time with compounding.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+            <span>What is a good annual interest rate?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-disclosure disclosure" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="disclosure-inner">
+              <p>
+                A good interest rate depends on the investment type, but historically, stock markets average around 7–10% annually.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="related" aria-labelledby="relatedHeading">
+      <h2 id="relatedHeading">Related Calculators</h2>
+      <p style="color:var(--text-2); font-size:15px;">You may also find these tools useful:</p>
+      <div class="related-links">
+        <a class="related-chip" href="future-value-calculator.html">Future Value Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="savings-calculator.html">Savings Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="inflation-calculator.html">Inflation Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="cagr-calculator.html">CAGR Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="related-chip" href="retirement-calculator.html">Retirement Calculator <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      <p>
+        <strong>Disclaimer:</strong> The calculators on this website are provided for informational and educational purposes only.
+        All results are estimates based on the values entered and do not constitute financial, investment, or trading advice.
+        Always conduct your own research before making financial decisions.
+      </p>
+    </div>
+  </main>
 
   <script src="footer.js"></script>
   <script>
-    let chart = null;
+    (function () {
+      'use strict';
 
-    function money(value){
-      return "$" + Number(value).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-    }
+      var chart = null;
+      var calcBtn, resultCard, kickerText, resultSub, futureOut, resultStatusText,
+          growthOut, interestOut, multipleOut, insightStack, chartShell, resultStatus;
 
-    function pct(value){
-      return `${Number(value).toFixed(2)}%`;
-    }
-
-    function formatMultiple(value){
-      if (!Number.isFinite(value)) return "—";
-      return `${value.toFixed(2)}x`;
-    }
-
-    function buildInsight({ principal, rate, years, futureValue, balanceSeries }){
-      const totalGain = futureValue - principal;
-      const gainPct = principal > 0 ? ((futureValue / principal) - 1) * 100 : 0;
-      const growthMultiple = principal > 0 ? futureValue / principal : 0;
-      const roundedYears = Math.round(years);
-
-      const totalPeriods = Math.max(balanceSeries.length - 1, 0);
-      let finalThirdShare = null;
-
-      if (totalPeriods >= 3 && totalGain > 0){
-        const safeSecondThirdIndex = Math.min(
-          totalPeriods,
-          Math.max(2, Math.floor((2 * totalPeriods) / 3))
-        );
-        const finalThirdGain = balanceSeries[totalPeriods] - balanceSeries[safeSecondThirdIndex];
-        finalThirdShare = (finalThirdGain / totalGain) * 100;
+      function money(value) {
+        return '$' + Number(value).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
       }
 
-      const rows = [];
-
-      let overallText = "";
-      let overallClass = "insight-medium";
-
-      if (roundedYears >= 75){
-        overallText = `This is a very long-horizon scenario model. A constant ${rate.toFixed(2)}% annual return for ${roundedYears} years is mathematically valid, but it should not be treated as a literal forecast.`;
-        overallClass = "insight-weak";
-      } else if (rate >= 12 && roundedYears >= 20){
-        overallText = `This is an aggressive long-term assumption. The ending value can become very large, but sustaining double-digit returns for decades is hard to rely on.`;
-        overallClass = "insight-weak";
-      } else if (rate >= 8 && roundedYears >= 20){
-        overallText = `This is a strong long-term compounding scenario. The result can become powerful over time if the money stays invested for long enough.`;
-        overallClass = "insight-good";
-      } else if (rate >= 5 && roundedYears >= 10){
-        overallText = `This is a balanced long-term projection. Compounding is doing meaningful work, but the final outcome still depends on patience and consistency.`;
-        overallClass = "insight-good";
-      } else if (roundedYears <= 3){
-        overallText = `This is a short-horizon projection. Compounding helps, but the time frame is too short for the effect to become dramatic.`;
-        overallClass = "insight-medium";
-      } else {
-        overallText = `Compounding is working, but the projection is still moderate. Longer time horizons or a higher rate would change the outcome more than small tweaks.`;
-        overallClass = "insight-medium";
+      function pct(value) {
+        return Number(value).toFixed(2) + '%';
       }
 
-      rows.push({
-        title: "Overall projection",
-        text: overallText,
-        cls: overallClass
-      });
+      function formatMultiple(value) {
+        if (!Number.isFinite(value)) return '—';
+        return value.toFixed(2) + 'x';
+      }
 
-      let timeEffectText = "";
-      let timeEffectClass = "insight-medium";
+      function buildSeries(principal, rate, years) {
+        var decimalRate = rate / 100;
+        var balanceSeries = [];
+        var wholeYears = Math.max(0, Math.ceil(years));
 
-      if (totalGain > 0 && finalThirdShare !== null){
-        if (finalThirdShare >= 45){
-          timeEffectText = `About ${finalThirdShare.toFixed(1)}% of total gains appear in the final third of the period. That is classic compounding behavior: later years matter more than early ones.`;
-          timeEffectClass = "insight-good";
-        } else if (finalThirdShare >= 30){
-          timeEffectText = `The final third contributes about ${finalThirdShare.toFixed(1)}% of total gains, which shows a meaningful time effect.`;
-          timeEffectClass = "insight-good";
+        for (var year = 0; year <= wholeYears; year++) {
+          var cappedYear = Math.min(year, years);
+          balanceSeries.push(principal * Math.pow(1 + decimalRate, cappedYear));
+        }
+
+        return balanceSeries;
+      }
+
+      function buildInsight(params) {
+        var principal = params.principal;
+        var rate = params.rate;
+        var years = params.years;
+        var futureValue = params.futureValue;
+        var balanceSeries = params.balanceSeries;
+
+        var totalGain = futureValue - principal;
+        var gainPct = principal > 0 ? ((futureValue / principal) - 1) * 100 : 0;
+        var growthMultiple = principal > 0 ? futureValue / principal : 0;
+        var roundedYears = Math.round(years);
+
+        var totalPeriods = Math.max(balanceSeries.length - 1, 0);
+        var finalThirdShare = null;
+
+        if (totalPeriods >= 3 && totalGain > 0) {
+          var safeSecondThirdIndex = Math.min(
+            totalPeriods,
+            Math.max(2, Math.floor((2 * totalPeriods) / 3))
+          );
+          var finalThirdGain = balanceSeries[totalPeriods] - balanceSeries[safeSecondThirdIndex];
+          finalThirdShare = (finalThirdGain / totalGain) * 100;
+        }
+
+        var rows = [];
+
+        var overallText = '';
+        var overallClass = 'insight-medium';
+
+        if (roundedYears >= 75) {
+          overallText = 'This is a very long-horizon scenario model. A constant ' + rate.toFixed(2) + '% annual return for ' + roundedYears + ' years is mathematically valid, but it should not be treated as a literal forecast.';
+          overallClass = 'insight-weak';
+        } else if (rate >= 12 && roundedYears >= 20) {
+          overallText = 'This is an aggressive long-term assumption. The ending value can become very large, but sustaining double-digit returns for decades is hard to rely on.';
+          overallClass = 'insight-weak';
+        } else if (rate >= 8 && roundedYears >= 20) {
+          overallText = 'This is a strong long-term compounding scenario. The result can become powerful over time if the money stays invested for long enough.';
+          overallClass = 'insight-good';
+        } else if (rate >= 5 && roundedYears >= 10) {
+          overallText = 'This is a balanced long-term projection. Compounding is doing meaningful work, but the final outcome still depends on patience and consistency.';
+          overallClass = 'insight-good';
+        } else if (roundedYears <= 3) {
+          overallText = 'This is a short-horizon projection. Compounding helps, but the time frame is too short for the effect to become dramatic.';
+          overallClass = 'insight-medium';
         } else {
-          timeEffectText = `Most of the gain is arriving earlier in the period, which suggests the horizon is not long enough to fully unlock compounding power.`;
-          timeEffectClass = "insight-medium";
+          overallText = 'Compounding is working, but the projection is still moderate. Longer time horizons or a higher rate would change the outcome more than small tweaks.';
+          overallClass = 'insight-medium';
         }
-      } else if (totalGain > 0){
-        timeEffectText = "The projection is positive, but the horizon is too short to split into meaningful compounding stages.";
-        timeEffectClass = "insight-medium";
-      } else {
-        timeEffectText = "There is no positive gain to distribute across time, so compounding is not adding value at this setting.";
-        timeEffectClass = "insight-weak";
-      }
 
-      rows.push({
-        title: "Time effect",
-        text: timeEffectText,
-        cls: timeEffectClass
-      });
+        rows.push({
+          title: 'Overall projection',
+          text: overallText,
+          cls: overallClass
+        });
 
-      let realismText = "";
-      let realismClass = "insight-medium";
+        var timeEffectText = '';
+        var timeEffectClass = 'insight-medium';
 
-      if (rate <= 0){
-        realismText = "No positive return rate was entered, so this projection does not create compounding gains.";
-        realismClass = "insight-weak";
-      } else if (rate < 3){
-        realismText = `A ${rate.toFixed(2)}% return is conservative. It may preserve value better than it grows it.`;
-        realismClass = "insight-medium";
-      } else if (rate < 5){
-        realismText = `A ${rate.toFixed(2)}% return is modest. It can compound over time, but growth will be relatively slow.`;
-        realismClass = "insight-medium";
-      } else if (rate < 8){
-        realismText = `A ${rate.toFixed(2)}% return is a reasonable long-run planning assumption for a diversified portfolio, but it should still be treated as an estimate, not a promise.`;
-        realismClass = "insight-good";
-      } else if (rate < 12){
-        realismText = `A ${rate.toFixed(2)}% return is optimistic. It can happen in strong periods, but sustaining it for a long time is not something to assume casually.`;
-        realismClass = "insight-medium";
-      } else {
-        realismText = `A ${rate.toFixed(2)}% return is very aggressive. High returns can happen, but long-run consistency at this level is hard to rely on.`;
-        realismClass = "insight-weak";
-      }
-
-      if (roundedYears >= 40){
-        realismText += " Over very long horizons, a constant-rate model should be treated as illustrative because market cycles, inflation, taxes, and regime changes rarely stay flat for decades.";
-        if (rate >= 8){
-          realismClass = "insight-medium";
+        if (totalGain > 0 && finalThirdShare !== null) {
+          if (finalThirdShare >= 45) {
+            timeEffectText = 'About ' + finalThirdShare.toFixed(1) + '% of total gains appear in the final third of the period. That is classic compounding behavior: later years matter more than early ones.';
+            timeEffectClass = 'insight-good';
+          } else if (finalThirdShare >= 30) {
+            timeEffectText = 'The final third contributes about ' + finalThirdShare.toFixed(1) + '% of total gains, which shows a meaningful time effect.';
+            timeEffectClass = 'insight-good';
+          } else {
+            timeEffectText = 'Most of the gain is arriving earlier in the period, which suggests the horizon is not long enough to fully unlock compounding power.';
+            timeEffectClass = 'insight-medium';
+          }
+        } else if (totalGain > 0) {
+          timeEffectText = 'The projection is positive, but the horizon is too short to split into meaningful compounding stages.';
+          timeEffectClass = 'insight-medium';
+        } else {
+          timeEffectText = 'There is no positive gain to distribute across time, so compounding is not adding value at this setting.';
+          timeEffectClass = 'insight-weak';
         }
+
+        rows.push({
+          title: 'Time effect',
+          text: timeEffectText,
+          cls: timeEffectClass
+        });
+
+        var realismText = '';
+        var realismClass = 'insight-medium';
+
+        if (rate <= 0) {
+          realismText = 'No positive return rate was entered, so this projection does not create compounding gains.';
+          realismClass = 'insight-weak';
+        } else if (rate < 3) {
+          realismText = 'A ' + rate.toFixed(2) + '% return is conservative. It may preserve value better than it grows it.';
+          realismClass = 'insight-medium';
+        } else if (rate < 5) {
+          realismText = 'A ' + rate.toFixed(2) + '% return is modest. It can compound over time, but growth will be relatively slow.';
+          realismClass = 'insight-medium';
+        } else if (rate < 8) {
+          realismText = 'A ' + rate.toFixed(2) + '% return is a reasonable long-run planning assumption for a diversified portfolio, but it should still be treated as an estimate, not a promise.';
+          realismClass = 'insight-good';
+        } else if (rate < 12) {
+          realismText = 'A ' + rate.toFixed(2) + '% return is optimistic. It can happen in strong periods, but sustaining it for a long time is not something to assume casually.';
+          realismClass = 'insight-medium';
+        } else {
+          realismText = 'A ' + rate.toFixed(2) + '% return is very aggressive. High returns can happen, but long-run consistency at this level is hard to rely on.';
+          realismClass = 'insight-weak';
+        }
+
+        if (roundedYears >= 40) {
+          realismText += ' Over very long horizons, a constant-rate model should be treated as illustrative because market cycles, inflation, taxes, and regime changes rarely stay flat for decades.';
+          if (rate >= 8) {
+            realismClass = 'insight-medium';
+          }
+        }
+
+        if (roundedYears >= 75) {
+          realismText += ' At century scale, the projection is useful for showing the power of compounding, but not for making precise financial plans.';
+          realismClass = 'insight-weak';
+        }
+
+        rows.push({
+          title: 'Realism check',
+          text: realismText,
+          cls: realismClass
+        });
+
+        var planningText = '';
+        var planningClass = 'insight-muted';
+
+        if (roundedYears >= 50) {
+          planningText = 'Use this as a scenario model. The main lesson is how compounding behaves over time, not what the exact final number will be.';
+          planningClass = 'insight-muted';
+        } else if (growthMultiple >= 3) {
+          planningText = 'The projection is powerful enough that staying invested matters more than small short-term noise. Time is doing real work here.';
+          planningClass = 'insight-good';
+        } else if (growthMultiple >= 1.5) {
+          planningText = 'This is a healthy projection, but the final outcome still depends heavily on the exact rate and the full holding period.';
+          planningClass = 'insight-good';
+        } else {
+          planningText = 'The projection is positive, but it is not yet compelling enough to rely on compounding alone.';
+          planningClass = 'insight-medium';
+        }
+
+        planningText += ' The chart shows nominal value only, so real purchasing power would be lower once inflation is considered.';
+
+        rows.push({
+          title: 'Planning takeaway',
+          text: planningText,
+          cls: planningClass
+        });
+
+        return rows.map(function (row) {
+          return '<div class="insight-row ' + row.cls + '"><strong>' + row.title + '</strong><span>' + row.text + '</span></div>';
+        }).join('');
       }
 
-      if (roundedYears >= 75){
-        realismText += " At century scale, the projection is useful for showing the power of compounding, but not for making precise financial plans.";
-        realismClass = "insight-weak";
+      function setEmptyVisual() {
+        resultCard.className = 'result-card is-empty';
+        chartShell.style.display = 'none';
+        resultStatus.style.display = 'flex';
+        insightStack.innerHTML = '';
+        kickerText.textContent = 'Ready';
+        futureOut.textContent = '—';
+        resultSub.textContent = 'Start typing and the panel will update automatically.';
+        resultStatusText.textContent = 'Enter your initial investment, annual interest rate, and years to see your future value, total growth, and interest earned.';
       }
 
-      rows.push({
-        title: "Realism check",
-        text: realismText,
-        cls: realismClass
-      });
-
-      let planningText = "";
-      let planningClass = "insight-muted";
-
-      if (roundedYears >= 50){
-        planningText = "Use this as a scenario model. The main lesson is how compounding behaves over time, not what the exact final number will be.";
-        planningClass = "insight-muted";
-      } else if (growthMultiple >= 3){
-        planningText = "The projection is powerful enough that staying invested matters more than small short-term noise. Time is doing real work here.";
-        planningClass = "insight-good";
-      } else if (growthMultiple >= 1.5){
-        planningText = "This is a healthy projection, but the final outcome still depends heavily on the exact rate and the full holding period.";
-        planningClass = "insight-good";
-      } else {
-        planningText = "The projection is positive, but it is not yet compelling enough to rely on compounding alone.";
-        planningClass = "insight-medium";
+      function setTone(tone) {
+        resultCard.className = 'result-card is-' + tone;
       }
 
-      planningText += " The chart shows nominal value only, so real purchasing power would be lower once inflation is considered.";
-
-      rows.push({
-        title: "Planning takeaway",
-        text: planningText,
-        cls: planningClass
-      });
-
-      return rows.map(row => `
-        <div class="insight-row ${row.cls}">
-          <strong>${row.title}</strong>
-          <span>${row.text}</span>
-        </div>
-      `).join("");
-    }
-
-    function calculate(){
-      const principal = parseFloat(document.getElementById("principal").value);
-      const rate = parseFloat(document.getElementById("rate").value);
-      const years = parseFloat(document.getElementById("years").value);
-
-      if ([principal, rate, years].some(v => Number.isNaN(v))){
-        alert("Fill all fields");
-        return;
+      function readNumber(id) {
+        var el = document.getElementById(id);
+        if (!el) return null;
+        var value = parseFloat(el.value);
+        return Number.isFinite(value) ? value : null;
       }
 
-      if (principal <= 0 || years <= 0){
-        alert("Initial investment and years must be greater than zero.");
-        return;
+      function pulseValue() {
+        futureOut.classList.remove('is-pulsing');
+        void futureOut.offsetWidth;
+        futureOut.classList.add('is-pulsing');
       }
 
-      if (rate <= -100){
-        alert("Interest rate must be greater than -100%.");
-        return;
-      }
+      function drawChart(balanceSeries) {
+        var canvas = document.getElementById('myChart');
+        var ctx = canvas.getContext('2d');
 
-      const decimalRate = rate / 100;
-      const futureValue = principal * Math.pow(1 + decimalRate, years);
-      const growth = futureValue - principal;
-      const growthPct = ((futureValue / principal) - 1) * 100;
-      const growthMultiple = principal > 0 ? futureValue / principal : 0;
+        if (chart) {
+          chart.destroy();
+        }
 
-      const balanceSeries = [];
-      const wholeYears = Math.max(0, Math.ceil(years));
-      for (let year = 0; year <= wholeYears; year++){
-        const cappedYear = Math.min(year, years);
-        balanceSeries.push(principal * Math.pow(1 + decimalRate, cappedYear));
-      }
+        var labels = balanceSeries.map(function (_, index) {
+          return Math.min(index, balanceSeries.length - 1);
+        });
 
-      document.getElementById("futureOut").textContent = money(futureValue);
-      document.getElementById("growthOut").textContent = pct(growthPct);
-      document.getElementById("interestOut").textContent = money(growth);
-      document.getElementById("multipleOut").textContent = formatMultiple(growthMultiple);
-
-      const resultSub = document.getElementById("resultSub");
-      if (years <= 3){
-        resultSub.textContent = "Short horizon. Compounding is working, but the effect is still modest.";
-      } else if (rate >= 8 && years >= 20){
-        resultSub.textContent = "Strong long-term compounding setup. Time is doing a lot of the work.";
-      } else if (rate >= 5 && years >= 10){
-        resultSub.textContent = "Healthy long-term projection with meaningful compounding.";
-      } else {
-        resultSub.textContent = "Compounding is active, but the projection remains relatively moderate.";
-      }
-
-      document.getElementById("resultCard").style.display = "block";
-      document.getElementById("chartShell").style.display = "block";
-      document.getElementById("insightStack").innerHTML = buildInsight({
-        principal,
-        rate,
-        years,
-        futureValue,
-        balanceSeries
-      });
-
-      drawChart(balanceSeries);
-      document.getElementById("resultCard").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    function drawChart(balanceSeries){
-      const ctx = document.getElementById("myChart").getContext("2d");
-
-      if (chart){
-        chart.destroy();
-      }
-
-      const labels = balanceSeries.map((_, index) => Math.min(index, balanceSeries.length - 1));
-
-      chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels,
-          datasets: [
-            {
-              label: "Projected balance",
-              data: balanceSeries,
-              borderColor: "#3b82f6",
-              backgroundColor: "rgba(59,130,246,0.12)",
-              tension: 0.25,
-              fill: true,
-              pointRadius: 3,
-              pointHoverRadius: 5,
-              borderWidth: 2.5
-            },
-            {
-              label: "Initial investment",
-              data: labels.map(() => balanceSeries[0]),
-              borderColor: "#94a3b8",
-              backgroundColor: "rgba(148,163,184,0.04)",
-              tension: 0,
-              fill: false,
-              pointRadius: 0,
-              borderDash: [6, 6],
-              borderWidth: 2
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: {
-            duration: 850,
-            easing: "easeOutQuart"
-          },
-          plugins: {
-            legend: {
-              labels: { color: "white" }
-            },
-            tooltip: {
-              backgroundColor: "#0f172a",
-              borderColor: "rgba(255,255,255,0.08)",
-              borderWidth: 1,
-              titleColor: "#fff",
-              bodyColor: "#e2e8f0",
-              callbacks: {
-                label: function(context){
-                  return `${context.dataset.label}: ${money(context.parsed.y)}`;
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              ticks: {
-                color: "white"
+        chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Projected balance',
+                data: balanceSeries,
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59,130,246,0.12)',
+                tension: 0.25,
+                fill: true,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                borderWidth: 2.5
               },
-              grid: {
-                color: "rgba(255,255,255,0.08)"
-              },
-              title: {
-                display: true,
-                text: "Years",
-                color: "white"
+              {
+                label: 'Initial investment',
+                data: labels.map(function () {
+                  return balanceSeries[0];
+                }),
+                borderColor: '#94a3b8',
+                backgroundColor: 'rgba(148,163,184,0.04)',
+                tension: 0,
+                fill: false,
+                pointRadius: 0,
+                borderDash: [6, 6],
+                borderWidth: 2
               }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+              duration: 850,
+              easing: 'easeOutQuart'
             },
-            y: {
-              ticks: {
-                color: "white",
-                callback: function(value){
-                  return "$" + Number(value).toLocaleString();
+            plugins: {
+              legend: {
+                labels: {
+                  color: 'white'
                 }
               },
-              grid: {
-                color: "rgba(255,255,255,0.08)"
+              tooltip: {
+                backgroundColor: '#0f172a',
+                borderColor: 'rgba(255,255,255,0.08)',
+                borderWidth: 1,
+                titleColor: '#fff',
+                bodyColor: '#e2e8f0',
+                callbacks: {
+                  label: function (context) {
+                    return context.dataset.label + ': ' + money(context.parsed.y);
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                ticks: {
+                  color: 'white'
+                },
+                grid: {
+                  color: 'rgba(255,255,255,0.08)'
+                },
+                title: {
+                  display: true,
+                  text: 'Years',
+                  color: 'white'
+                }
               },
-              title: {
-                display: true,
-                text: "Balance ($)",
-                color: "white"
+              y: {
+                ticks: {
+                  color: 'white',
+                  callback: function (value) {
+                    return '$' + Number(value).toLocaleString();
+                  }
+                },
+                grid: {
+                  color: 'rgba(255,255,255,0.08)'
+                },
+                title: {
+                  display: true,
+                  text: 'Balance ($)',
+                  color: 'white'
+                }
               }
             }
           }
+        });
+      }
+
+      function calculate() {
+        var principal = readNumber('principal');
+        var rate = readNumber('rate');
+        var years = readNumber('years');
+
+        var allFilled = [principal, rate, years].every(function (v) {
+          return v !== null;
+        });
+
+        if (!allFilled) {
+          setEmptyVisual();
+          return;
         }
-      });
-    }
 
-    document.addEventListener("DOMContentLoaded", function(){
-      document.querySelectorAll(".faq-question").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const item = btn.parentElement;
+        if (principal <= 0 || years <= 0) {
+          setTone('attention');
+          chartShell.style.display = 'none';
+          resultStatus.style.display = 'flex';
+          insightStack.innerHTML = '';
+          kickerText.textContent = 'Check your inputs';
+          futureOut.textContent = '—';
+          resultSub.textContent = 'Some values need adjusting before we can calculate.';
+          resultStatusText.textContent = 'Initial investment and years must be greater than zero.';
+          return;
+        }
 
-          document.querySelectorAll(".faq-item").forEach(i => {
-            if(i !== item) i.classList.remove("active");
+        if (rate <= -100) {
+          setTone('attention');
+          chartShell.style.display = 'none';
+          resultStatus.style.display = 'flex';
+          insightStack.innerHTML = '';
+          kickerText.textContent = 'Check your inputs';
+          futureOut.textContent = '—';
+          resultSub.textContent = 'Some values need adjusting before we can calculate.';
+          resultStatusText.textContent = 'Interest rate must be greater than -100%.';
+          return;
+        }
+
+        var decimalRate = rate / 100;
+        var futureValue = principal * Math.pow(1 + decimalRate, years);
+        var growth = futureValue - principal;
+        var growthPct = ((futureValue / principal) - 1) * 100;
+        var growthMultiple = principal > 0 ? futureValue / principal : 0;
+
+        var balanceSeries = buildSeries(principal, rate, years);
+
+        var tone = 'good';
+        var kicker = 'Healthy growth';
+        var subText = 'Compounding is building value over time.';
+
+        if (rate < 3) {
+          tone = 'warn';
+          kicker = 'Slow growth';
+          subText = 'The projection is positive, but growth will be relatively slow.';
+        } else if (rate < 0) {
+          tone = 'bad';
+          kicker = 'Value decline';
+          subText = 'A negative rate reduces the balance over time.';
+        } else if (years <= 3) {
+          tone = 'warn';
+          kicker = 'Short horizon';
+          subText = 'Compounding is working, but the time frame is still short.';
+        } else if (rate >= 8 && years >= 20) {
+          tone = 'good';
+          kicker = 'Strong long-term';
+          subText = 'This is a powerful compounding setup over a long horizon.';
+        }
+
+        setTone(tone);
+        kickerText.textContent = kicker;
+        resultSub.textContent = subText;
+
+        futureOut.textContent = money(futureValue);
+        resultStatus.style.display = 'none';
+        chartShell.style.display = 'block';
+
+        document.getElementById('growthOut').textContent = pct(growthPct);
+        document.getElementById('interestOut').textContent = money(growth);
+        document.getElementById('multipleOut').textContent = formatMultiple(growthMultiple);
+
+        if (years <= 3) {
+          resultStatusText.textContent = 'Short horizon. Compounding is working, but the effect is still modest.';
+        } else if (rate >= 8 && years >= 20) {
+          resultStatusText.textContent = 'Strong long-term compounding setup. Time is doing a lot of the work.';
+        } else if (rate >= 5 && years >= 10) {
+          resultStatusText.textContent = 'Healthy long-term projection with meaningful compounding.';
+        } else {
+          resultStatusText.textContent = 'Compounding is active, but the projection remains relatively moderate.';
+        }
+
+        insightStack.innerHTML = buildInsight({
+          principal: principal,
+          rate: rate,
+          years: years,
+          futureValue: futureValue,
+          balanceSeries: balanceSeries
+        });
+
+        pulseValue();
+        drawChart(balanceSeries);
+      }
+
+      function queueCalculate() {
+        clearTimeout(window.__compoundTimer);
+        window.__compoundTimer = setTimeout(calculate, 120);
+      }
+
+      function resetForm() {
+        ['principal', 'rate', 'years'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+        setEmptyVisual();
+        if (chart) {
+          chart.destroy();
+          chart = null;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        calcBtn = document.getElementById('calculateBtn');
+        resultCard = document.getElementById('resultCard');
+        kickerText = document.getElementById('kickerText');
+        resultSub = document.getElementById('resultSub');
+        futureOut = document.getElementById('futureOut');
+        resultStatusText = document.getElementById('resultStatusText');
+        growthOut = document.getElementById('growthOut');
+        interestOut = document.getElementById('interestOut');
+        multipleOut = document.getElementById('multipleOut');
+        insightStack = document.getElementById('insightStack');
+        chartShell = document.getElementById('chartShell');
+        resultStatus = document.getElementById('resultStatus');
+
+        setEmptyVisual();
+
+        ['principal', 'rate', 'years'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.addEventListener('input', queueCalculate);
+          el.addEventListener('change', queueCalculate);
+          el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              calculate();
+              el.blur();
+            }
           });
+        });
 
-          item.classList.toggle("active");
+        calcBtn.addEventListener('click', calculate);
+
+        document.getElementById('principal').value = '';
+        document.getElementById('rate').value = '';
+        document.getElementById('years').value = '';
+
+        document.querySelectorAll('.faq-item').forEach(function (item) {
+          var btn = item.querySelector('.faq-question');
+          if (!btn) return;
+
+          btn.addEventListener('click', function () {
+            var isOpen = item.classList.contains('is-open');
+
+            document.querySelectorAll('.faq-item').forEach(function (i) {
+              i.classList.remove('is-open');
+              var b = i.querySelector('.faq-question');
+              if (b) b.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+              item.classList.add('is-open');
+              btn.setAttribute('aria-expanded', 'true');
+            }
+          });
         });
       });
-    });
+    })();
   </script>
 </body>
-            </html>
+                  </html>
                                                            </html>           
