@@ -85,44 +85,366 @@
           "@type": "Answer",
           "text": "The longer your money stays invested, the more powerful compounding becomes because growth builds on previous growth."
         }
-      },
-      {
-        "@type": "Question",
-        "name": "Does a higher interest rate make a big difference?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Even small increases in the annual rate can significantly increase the final value over long periods."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I reinvest my earnings?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Reinvesting earnings is essential if you want to benefit fully from compounding."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can compound interest grow small amounts a lot?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Even small initial amounts can grow substantially if they are invested for a long enough time with compounding."
-        }
       }
     ]
   }
   </script>
 
   <style>
-    .container{
-      width:min(92%, 760px);
+    :root{
+      color-scheme: dark;
+
+      --bg-1:#08111f;
+      --bg-2:#0a1426;
+      --bg-3:#050a12;
+
+      --surface-1:rgba(255,255,255,0.035);
+      --surface-2:rgba(255,255,255,0.05);
+      --surface-3:rgba(255,255,255,0.065);
+
+      --border-soft:rgba(255,255,255,0.075);
+      --border-med:rgba(255,255,255,0.1);
+      --border-strong:rgba(96,165,250,0.18);
+
+      --text-1:#f8fafc;
+      --text-2:#d6deea;
+      --text-3:#97a7bc;
+
+      --accent:#3b82f6;
+      --accent-2:#60a5fa;
+      --accent-3:#8ab4ff;
+      --accent-wash:rgba(59,130,246,0.10);
+
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+
+      --good-wash:rgba(34,197,94,0.10);
+      --warn-wash:rgba(245,158,11,0.10);
+      --bad-wash:rgba(239,68,68,0.10);
+
+      --r-sm:10px;
+      --r-md:14px;
+      --r-lg:18px;
+      --r-xl:24px;
+      --r-pill:999px;
+
+      --sp-1:4px;
+      --sp-2:8px;
+      --sp-3:12px;
+      --sp-4:16px;
+      --sp-5:20px;
+      --sp-6:24px;
+      --sp-7:32px;
+      --sp-8:40px;
+      --sp-9:56px;
+
+      --shadow-sm:0 6px 18px rgba(2,6,23,.22);
+      --shadow-md:0 16px 40px rgba(2,6,23,.28);
+      --shadow-lg:0 28px 70px rgba(2,6,23,.38);
+      --shadow-inset:inset 0 1px 0 rgba(255,255,255,0.04);
+
+      --ease:cubic-bezier(.4,0,.2,1);
+      --dur-1:120ms;
+      --dur-2:200ms;
+      --dur-3:320ms;
+
+      --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      --font-mono:"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
     }
 
-    .content,
-    .related,
-    .disclaimer{
-      width:min(90%, 760px);
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      padding:0 0 40px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      font-family:var(--font-sans);
+      color:var(--text-2);
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.10), transparent 26%),
+        radial-gradient(circle at top right, rgba(96,165,250,0.06), transparent 24%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 18%),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03), transparent 35%);
+    }
+
+    ::selection{
+      background:rgba(59,130,246,0.3);
+      color:#fff;
+    }
+
+    a, button, input{
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible{
+      outline:2px solid var(--accent-2);
+      outline-offset:3px;
+      border-radius:var(--r-sm);
+    }
+
+    .site-header{
+      width:100%;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      position:relative;
+      z-index:1;
+    }
+
+    .site-header-inner{
+      width:min(92%, 1120px);
+      margin:0 auto;
+      padding:16px 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .site-nav a{
+      color:var(--accent-3);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:var(--r-sm);
+      transition:opacity var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+    }
+
+    .site-nav a:hover{
+      opacity:0.85;
+      transform:translateY(-1px);
+    }
+
+    main{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .container{
+      width:min(92%, 1120px);
+      margin-top:var(--sp-8);
+      padding:var(--sp-7);
+      border-radius:var(--r-xl);
+      background:
+        linear-gradient(180deg, rgba(23,33,50,0.96), rgba(14,22,36,0.96));
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:var(--shadow-lg);
+      position:relative;
+      overflow:hidden;
+      z-index:1;
+    }
+
+    .container::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at top right, rgba(59,130,246,0.10), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.03), transparent 26%);
+    }
+
+    .hero{
+      position:relative;
+      z-index:1;
+    }
+
+    .eyebrow{
+      margin:0 0 8px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--accent-2);
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(28px,4vw,38px);
+      line-height:1.12;
+      letter-spacing:-0.03em;
+      color:var(--text-1);
+    }
+
+    .quick-answer{
+      margin:0 0 14px;
+      max-width:70ch;
+      padding:14px 16px;
+      border-radius:var(--r-lg);
+      background:rgba(59,130,246,0.08);
+      border:1px solid rgba(96,165,250,0.16);
+      color:#e2e8f0;
+      font-size:15px;
+      line-height:1.65;
+      box-shadow:var(--shadow-inset);
+    }
+
+    .subhead{
+      margin:0 0 18px;
+      max-width:70ch;
+      color:var(--text-2);
+      font-size:15px;
+      line-height:1.7;
+    }
+
+    .badge-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:var(--sp-3);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:var(--r-pill);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      border:1px solid rgba(96,165,250,0.16);
+      color:#dbeafe;
+      background:rgba(59,130,246,0.08);
+    }
+
+    .badge--soft{
+      background:rgba(255,255,255,0.035);
+      border-color:rgba(255,255,255,0.08);
+      color:#d9e7fb;
+    }
+
+    .hero-divider{
+      height:1px;
+      margin:var(--sp-7) 0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    }
+
+    .calculator-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(320px,0.85fr);
+      gap:var(--sp-6);
+      align-items:start;
+      position:relative;
+      z-index:1;
+    }
+
+    .panel{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:var(--sp-6);
+    }
+
+    .panel-card{
+      padding:var(--sp-5);
+      border-radius:var(--r-lg);
+      background:var(--surface-1);
+      border:1px solid var(--border-soft);
+      box-shadow:var(--shadow-md), var(--shadow-inset);
+    }
+
+    .field{
+      margin-top:var(--sp-4);
+    }
+
+    .field:first-child{
+      margin-top:0;
+    }
+
+    .field-label{
+      display:block;
+      margin:0 0 6px;
+      font-size:13px;
+      font-weight:700;
+      color:var(--text-2);
+    }
+
+    .field-control{
+      position:relative;
+    }
+
+    .field-control input{
+      width:100%;
+      padding:14px;
+      border-radius:var(--r-md);
+      border:1px solid rgba(148,163,184,.16);
+      background:#e7edf6;
+      color:#0f172a;
+      font-family:inherit;
+      font-size:16px;
+      outline:none;
+      transition:border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+    }
+
+    .field-control input::placeholder{
+      color:#54657d;
+      opacity:.92;
+    }
+
+    .field-control input:hover{
+      border-color:rgba(96,165,250,.34);
+    }
+
+    .field-control input:focus{
+      border-color:rgba(59,130,246,.55);
+      box-shadow:0 0 0 4px rgba(59,130,246,.14);
+      transform:translateY(-1px);
+    }
+
+    .field-control--prefix input{
+      padding-left:28px;
+    }
+
+    .field-control--suffix input{
+      padding-right:34px;
+    }
+
+    .field-adornment{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      font-weight:800;
+      font-size:15px;
+      color:#5b6b80;
+      pointer-events:none;
+    }
+
+    .field-adornment--prefix{ left:14px; }
+    .field-adornment--suffix{ right:14px; }
+
+    .field-hint{
+      margin:6px 2px 0;
+      font-size:12px;
+      line-height:1.55;
+      color:var(--text-3);
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button{
+      -webkit-appearance:none;
+      margin:0;
+    }
+
+    input[type="number"]{
+      -moz-appearance:textfield;
+      appearance:textfield;
     }
 
     .btn{
@@ -146,8 +468,6 @@
 
     .btn:active{ transform:translateY(1px); }
 
-    .btn-block{ width:100%; }
-
     .btn-primary{
       background:linear-gradient(180deg, var(--accent-2), var(--accent));
       color:#fff;
@@ -170,153 +490,555 @@
       border-color:rgba(255,255,255,0.16);
     }
 
-    .field{
-      margin-top:var(--sp-4);
+    .result-card{
+      position:sticky;
+      top:var(--sp-5);
+      padding:var(--sp-6);
+      border-radius:var(--r-xl);
+      border:1px solid rgba(96,165,250,0.16);
+      background:
+        linear-gradient(180deg, rgba(11,18,30,0.98), rgba(14,22,36,0.97));
+      box-shadow:0 0 0 1px rgba(59,130,246,.06) inset, var(--shadow-lg);
+      overflow:hidden;
     }
 
-    .field:first-child{
-      margin-top:0;
+    .result-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at top right, rgba(96,165,250,.12), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(59,130,246,.08), transparent 26%);
     }
 
-    .field-label{
-      display:block;
-      margin:0 0 6px;
-      font-size:13px;
-      font-weight:700;
+    .result-content{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      gap:var(--sp-4);
+    }
+
+    .result-card.is-good{ border-color:rgba(34,197,94,.22); }
+    .result-card.is-warn{ border-color:rgba(245,158,11,.22); }
+    .result-card.is-bad{ border-color:rgba(239,68,68,.24); }
+    .result-card.is-attention{ border-color:rgba(59,130,246,.22); }
+    .result-card.is-empty{ border-color:rgba(96,165,250,.16); }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      width:max-content;
+      padding:6px 10px;
+      border-radius:var(--r-pill);
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      background:var(--surface-2);
+      border:1px solid rgba(255,255,255,0.07);
       color:var(--text-2);
     }
 
-    .chart-shell{
+    .kicker-icon{
+      display:inline-flex;
+      width:14px;
+      height:14px;
+    }
+
+    .kicker-icon svg{
       display:none;
-      margin-top:20px;
-      padding:18px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 18px 40px rgba(0,0,0,0.18);
+      width:14px;
+      height:14px;
     }
 
-    .chart-shell h3{
-      margin:0 0 8px;
-      font-size:16px;
-      color:var(--text-1);
+    .result-card.is-empty .kicker-icon .icon-empty{ display:block; }
+    .result-card.is-attention .kicker-icon .icon-attention{ display:block; }
+    .result-card.is-good .kicker-icon .icon-good{ display:block; }
+    .result-card.is-warn .kicker-icon .icon-warn{ display:block; }
+    .result-card.is-bad .kicker-icon .icon-bad{ display:block; }
+
+    .result-card.is-good .kicker{
+      background:var(--good-wash);
+      border-color:rgba(34,197,94,.24);
+      color:#bbf7d0;
     }
 
-    .chart-sub{
-      margin:0 0 12px;
-      color:var(--text-3);
+    .result-card.is-warn .kicker{
+      background:var(--warn-wash);
+      border-color:rgba(245,158,11,.24);
+      color:#fde68a;
+    }
+
+    .result-card.is-bad .kicker{
+      background:var(--bad-wash);
+      border-color:rgba(239,68,68,.24);
+      color:#fecaca;
+    }
+
+    .result-card.is-attention .kicker{
+      background:var(--accent-wash);
+      border-color:rgba(59,130,246,.24);
+      color:#bfdbfe;
+    }
+
+    .result-eyebrow{
+      margin:0;
       font-size:13px;
-      line-height:1.55;
+      font-weight:700;
+      color:var(--text-3);
     }
 
-    .chart-wrap{
-      width:100%;
-      height:320px;
-      position:relative;
+    .result-headline{
+      display:flex;
+      align-items:baseline;
+      gap:var(--sp-2);
+      flex-wrap:wrap;
     }
 
-    canvas{
-      width:100% !important;
-      height:100% !important;
+    .result-value{
+      font-size:clamp(2.1rem, 6vw, 3.1rem);
+      font-weight:900;
+      letter-spacing:-0.04em;
+      line-height:1;
+      color:var(--text-1);
+      transform-origin:left center;
+    }
+
+    .result-unit{
+      font-size:14px;
+      font-weight:700;
+      color:var(--text-3);
+    }
+
+    .result-note{
+      display:none;
+      margin:0;
+      font-size:13px;
+      line-height:1.6;
+      color:var(--text-2);
+      max-width:46ch;
+    }
+
+    .result-card.is-good .result-note,
+    .result-card.is-warn .result-note,
+    .result-card.is-bad .result-note{
       display:block;
     }
 
-    .insight-stack{
-      margin-top:16px;
-      display:grid;
+    .result-card.is-empty .result-value{
+      color:var(--text-3);
+      animation:breathe 2.3s ease-in-out infinite;
+    }
+
+    @keyframes breathe{
+      0%,100%{ opacity:.55; }
+      50%{ opacity:1; }
+    }
+
+    .result-value.is-pulsing{
+      animation:valuePulse 260ms var(--ease);
+    }
+
+    @keyframes valuePulse{
+      0%{ transform:scale(1); }
+      40%{ transform:scale(1.025); }
+      100%{ transform:scale(1); }
+    }
+
+    .result-card.is-warn .result-value{ color:var(--warn); }
+    .result-card.is-bad .result-value{ color:var(--bad); }
+
+    .result-status{
+      display:none;
       gap:12px;
+      align-items:flex-start;
+      padding-top:4px;
+      color:var(--text-3);
+    }
+
+    .result-card.is-empty .result-status,
+    .result-card.is-attention .result-status{
+      display:flex;
+    }
+
+    .result-card.is-attention .result-status{
+      color:var(--accent-2);
+    }
+
+    .status-icon{
+      flex-shrink:0;
+      margin-top:1px;
+    }
+
+    .status-icon svg{
+      display:none;
+      width:22px;
+      height:22px;
+    }
+
+    .result-card.is-empty .status-icon .icon-empty{ display:block; }
+    .result-card.is-attention .status-icon .icon-attention{ display:block; }
+
+    .result-status p{
+      margin:0;
+      font-size:13.5px;
+      line-height:1.65;
+    }
+
+    .result-list{
+      display:none;
+      flex-direction:column;
+    }
+
+    .result-card.is-good .result-list,
+    .result-card.is-warn .result-list,
+    .result-card.is-bad .result-list{
+      display:flex;
+    }
+
+    .result-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      padding:var(--sp-3) 0;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .result-row-label{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--text-3);
+    }
+
+    .result-row-label svg{
+      width:15px;
+      height:15px;
+      flex-shrink:0;
+      opacity:.85;
+    }
+
+    .result-row-value-group{
+      text-align:right;
+    }
+
+    .result-row-value{
+      display:block;
+      font-size:16px;
+      font-weight:800;
+      color:var(--text-1);
+    }
+
+    .result-row-sub{
+      display:block;
+      margin-top:2px;
+      font-size:11.5px;
+      color:var(--text-3);
+    }
+
+    .callout{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:16px 18px;
+      border-radius:var(--r-lg);
+      border:1px solid rgba(255,255,255,0.07);
+      background:var(--surface-2);
+    }
+
+    .callout-icon{
+      flex-shrink:0;
+      width:20px;
+      height:20px;
+      margin-top:2px;
+      color:var(--accent-3);
+    }
+
+    .callout-icon svg{
+      width:20px;
+      height:20px;
+      display:block;
+    }
+
+    .callout-title{
+      margin:0 0 5px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.02em;
+      color:#dbeafe;
+    }
+
+    .callout p{
+      margin:0;
+      font-size:14px;
+      line-height:1.7;
+      color:var(--text-2);
+    }
+
+    .callout--info{
+      border-color:rgba(96,165,250,0.16);
+    }
+
+    .callout--warning{
+      border-color:rgba(239,68,68,.22);
+      background:var(--bad-wash);
+    }
+
+    .callout--warning .callout-icon{
+      color:#fca5a5;
+    }
+
+    .callout--warning .callout-title,
+    .callout--warning p{
+      color:#fecaca;
+    }
+
+    .content,
+    .related,
+    .disclaimer{
+      width:min(90%, 900px);
+      margin-top:var(--sp-9);
       position:relative;
       z-index:1;
     }
 
-    .insight-row{
-      padding:14px;
-      border-radius:14px;
-      background:rgba(255,255,255,0.035);
-      border:1px solid rgba(255,255,255,0.08);
-      line-height:1.6;
-      box-shadow:0 10px 24px rgba(0,0,0,0.10);
-      transition:transform 0.2s ease;
+    .content h2,
+    .related h2{
+      margin:38px 0 12px;
+      font-size:26px;
+      line-height:1.2;
+      letter-spacing:-0.02em;
+      color:var(--text-1);
     }
 
-    .insight-row:hover{
+    .content h3{
+      margin:30px 0 10px;
+      font-size:19px;
+      line-height:1.25;
+      color:var(--text-1);
+    }
+
+    .content p,
+    .content li{
+      color:var(--text-2);
+      line-height:1.75;
+      font-size:15px;
+    }
+
+    .content ul{
+      padding-left:20px;
+      margin-top:10px;
+    }
+
+    .content li + li{
+      margin-top:6px;
+    }
+
+    .formula{
+      background:var(--surface-2);
+      border:1px solid rgba(255,255,255,0.07);
+      padding:16px 18px;
+      border-radius:var(--r-md);
+      margin:14px 0;
+      box-shadow:var(--shadow-inset);
+    }
+
+    .formula code{
+      display:block;
+      font-family:var(--font-mono);
+      font-size:13.5px;
+      line-height:2;
+      color:#dbeafe;
+      letter-spacing:.01em;
+    }
+
+    .faq{
+      margin-top:6px;
+    }
+
+    .faq-item{
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item:last-child{
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-question{
+      width:100%;
+      background:none;
+      border:none;
+      color:var(--text-1);
+      text-align:left;
+      padding:16px 4px;
+      font-size:15px;
+      font-weight:700;
+      font-family:inherit;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      cursor:pointer;
+      transition:color var(--dur-1) var(--ease);
+    }
+
+    .faq-question:hover{
+      color:var(--accent-3);
+    }
+
+    .faq-chevron{
+      flex-shrink:0;
+      width:18px;
+      height:18px;
+      color:var(--text-3);
+      transition:transform var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+    }
+
+    .faq-item.is-open .faq-chevron{
+      transform:rotate(180deg);
+      color:var(--accent-3);
+    }
+
+    .faq-disclosure{
+      display:grid;
+      grid-template-rows:0fr;
+      opacity:0;
+      transition:grid-template-rows var(--dur-3) var(--ease), opacity var(--dur-2) var(--ease);
+    }
+
+    .faq-item.is-open .faq-disclosure{
+      grid-template-rows:1fr;
+      opacity:1;
+    }
+
+    .faq-disclosure .disclosure-inner{
+      overflow:hidden;
+      min-height:0;
+      padding:0 4px 16px;
+    }
+
+    .faq-disclosure p{
+      margin:0;
+    }
+
+    .related-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:var(--sp-3);
+      margin-top:14px;
+    }
+
+    .related-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:10px 16px;
+      border-radius:var(--r-pill);
+      background:var(--surface-2);
+      border:1px solid rgba(255,255,255,0.07);
+      color:#bfdbfe;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:700;
+      transition:background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+    }
+
+    .related-chip:hover{
+      background:rgba(59,130,246,0.10);
+      border-color:rgba(96,165,250,0.18);
+      color:#fff;
       transform:translateY(-1px);
     }
 
-    .insight-row strong{
-      display:block;
-      margin-bottom:4px;
+    .related-chip .arrow{
+      opacity:.6;
+    }
+
+    .disclaimer{
+      padding-top:var(--sp-6);
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .disclaimer p{
+      margin:0;
       font-size:13px;
-      letter-spacing:0.03em;
-      text-transform:uppercase;
-      font-weight:800;
+      color:var(--text-3);
+      text-align:center;
+      line-height:1.65;
     }
 
-    .insight-row span{
-      display:block;
-      font-size:14px;
-      color:#e5e7eb;
+    .disclaimer strong{
+      color:var(--text-2);
     }
 
-    .insight-good{
-      background:rgba(34,197,94,0.08);
-      border-color:rgba(34,197,94,0.18);
-      box-shadow:0 0 18px rgba(34,197,94,0.08);
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{
+        animation-duration:0.001ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.001ms !important;
+        scroll-behavior:auto !important;
+      }
     }
 
-    .insight-good strong{
-      color:#86efac;
-    }
+    @media (max-width: 900px){
+      .calculator-layout{
+        grid-template-columns:1fr;
+      }
 
-    .insight-medium{
-      background:rgba(250,204,21,0.08);
-      border-color:rgba(250,204,21,0.18);
-      box-shadow:0 0 18px rgba(250,204,21,0.08);
-    }
-
-    .insight-medium strong{
-      color:#fde68a;
-    }
-
-    .insight-weak{
-      background:rgba(239,68,68,0.08);
-      border-color:rgba(239,68,68,0.18);
-      box-shadow:0 0 18px rgba(239,68,68,0.08);
-    }
-
-    .insight-weak strong{
-      color:#fca5a5;
-    }
-
-    .insight-muted{
-      background:rgba(59,130,246,0.07);
-      border-color:rgba(59,130,246,0.14);
-      box-shadow:0 0 18px rgba(59,130,246,0.06);
-    }
-
-    .insight-muted strong{
-      color:#93c5fd;
+      .result-card{
+        position:static;
+      }
     }
 
     @media (max-width: 700px){
       .container{
-        padding:22px;
+        width:min(94%, 1120px);
+        padding:24px;
+        border-radius:var(--r-lg);
+      }
+
+      .site-header-inner{
+        width:min(94%, 1120px);
+      }
+
+      .content h2,
+      .related h2{
+        font-size:22px;
+      }
+
+      .content h3{
+        font-size:17px;
+      }
+
+      .result-card{
+        padding:18px;
+      }
+    }
+
+    @media (max-width: 480px){
+      .container{
+        padding:20px;
+        margin-top:20px;
       }
 
       h1{
-        font-size:28px;
+        font-size:26px;
       }
 
-      .content h2{
-        font-size:24px;
+      .result-value{
+        font-size:2.1rem;
       }
 
-      .chart-wrap{
-        height:260px;
-      }
-
-      .result-grid{
-        grid-template-columns:1fr;
+      .badge-row{
+        gap:8px;
       }
     }
   </style>
@@ -342,8 +1064,7 @@
         </p>
 
         <p class="subhead">
-          Calculate how your investment grows over time with annual compounding.
-          Useful for savings, investing, and long-term financial planning.
+          Calculate how your investment grows over time with annual compounding. Useful for savings, investing, and long-term financial planning.
         </p>
 
         <div class="badge-row">
@@ -355,288 +1076,285 @@
 
       <div class="hero-divider" role="presentation"></div>
 
-      <div class="panel">
-        <div class="panel-card">
-          <div class="field">
-            <label class="field-label" for="principal">Initial investment ($)</label>
-            <div class="field-control field-control--prefix">
-              <span class="field-adornment field-adornment--prefix" aria-hidden="true">$</span>
-              <input id="principal" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 1000">
+      <div class="calculator-layout">
+        <div class="panel">
+          <div class="panel-card">
+            <div class="field">
+              <label class="field-label" for="principal">Initial investment</label>
+              <div class="field-control field-control--prefix">
+                <span class="field-adornment field-adornment--prefix" aria-hidden="true">$</span>
+                <input id="principal" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="1000">
+              </div>
+              <p class="field-hint">The amount you start with.</p>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="field-label" for="rate">Annual interest rate (%)</label>
-            <div class="field-control field-control--suffix">
-              <input id="rate" type="number" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 10">
-              <span class="field-adornment field-adornment--suffix" aria-hidden="true">%</span>
+            <div class="field">
+              <label class="field-label" for="rate">Annual interest rate</label>
+              <div class="field-control field-control--suffix">
+                <input id="rate" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="10">
+                <span class="field-adornment field-adornment--suffix" aria-hidden="true">%</span>
+              </div>
+              <p class="field-hint">Expected annual growth rate.</p>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="field-label" for="years">Years</label>
-            <div class="field-control">
-              <input id="years" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 5">
+            <div class="field">
+              <label class="field-label" for="years">Years</label>
+              <div class="field-control">
+                <input id="years" type="number" min="0" step="any" inputmode="decimal" autocomplete="off" placeholder="5">
+              </div>
+              <p class="field-hint">How long the money stays invested.</p>
             </div>
-          </div>
 
-          <div class="field" style="margin-top:18px;">
-            <button id="calculateBtn" type="button" class="btn btn-primary btn-block">Calculate</button>
-          </div>
+            <div class="field" style="margin-top:18px;">
+              <button id="calculateBtn" type="button" class="btn btn-primary btn-block">Calculate</button>
+            </div>
 
-          <div id="resultCard" class="result-card is-empty" aria-live="polite" style="margin-top:20px;">
-            <div class="result-content">
-              <span class="kicker">
-                <span class="kicker-icon">
-                  <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
-                  <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
-                  <svg class="icon-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.3 8.7-7 10-3.7-1.3-7-5-7-10V6l7-3z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
-                  <svg class="icon-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
-                  <svg class="icon-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5l9 15.5H3l9-15.5z"/><line x1="12" y1="10" x2="12" y2="14.3"/><circle cx="12" cy="17.3" r="1" fill="currentColor" stroke="none"/></svg>
+            <div class="field" style="margin-top:12px;">
+              <button id="resetBtn" type="button" class="btn btn-secondary btn-block">Reset</button>
+            </div>
+
+            <div id="resultCard" class="result-card is-empty" aria-live="polite" style="margin-top:20px;">
+              <div class="result-content">
+                <span class="kicker">
+                  <span class="kicker-icon">
+                    <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+                    <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
+                    <svg class="icon-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.3 8.7-7 10-3.7-1.3-7-5-7-10V6l7-3z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
+                    <svg class="icon-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
+                    <svg class="icon-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5l9 15.5H3l9-15.5z"/><line x1="12" y1="10" x2="12" y2="14.3"/><circle cx="12" cy="17.3" r="1" fill="currentColor" stroke="none"/></svg>
+                  </span>
+                  <span id="kickerText">Ready</span>
                 </span>
-                <span id="kickerText">Ready</span>
+
+                <div>
+                  <p class="result-eyebrow">Projected future value</p>
+                  <div class="result-headline">
+                    <span id="futureOut" class="result-value">—</span>
+                    <span class="result-unit">future value</span>
+                  </div>
+                </div>
+
+                <p id="resultSub" class="result-note">Start typing and the panel will update automatically.</p>
+
+                <div class="result-status" id="resultStatus">
+                  <span class="status-icon">
+                    <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="11" cy="17" r="2" fill="currentColor" stroke="none"/></svg>
+                    <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
+                  </span>
+                  <p id="resultStatusText">Enter your initial investment, annual interest rate, and years to see your future value, total growth, and interest earned.</p>
+                </div>
+
+                <div class="result-list" id="resultList">
+                  <div class="result-row">
+                    <span class="result-row-label">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 3 3 8.5 12 14 21 8.5 12 3"/><polyline points="3 15 12 20.5 21 15"/></svg>
+                      Total growth
+                    </span>
+                    <span class="result-row-value-group">
+                      <span id="growthOut" class="result-row-value">—</span>
+                      <span class="result-row-sub">Increase above your principal</span>
+                    </span>
+                  </div>
+
+                  <div class="result-row">
+                    <span class="result-row-label">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/></svg>
+                      Interest earned
+                    </span>
+                    <span class="result-row-value-group">
+                      <span id="interestOut" class="result-row-value">—</span>
+                      <span class="result-row-sub">Dollar gain from compounding</span>
+                    </span>
+                  </div>
+
+                  <div class="result-row">
+                    <span class="result-row-label">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="8 7.5 4 12 8 16.5"/><polyline points="16 7.5 20 12 16 16.5"/></svg>
+                      Growth multiple
+                    </span>
+                    <span class="result-row-value-group">
+                      <span id="multipleOut" class="result-row-value">—</span>
+                      <span class="result-row-sub">How many times your money grows</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout callout--info" style="margin-top:20px;">
+              <span class="callout-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <line x1="12" y1="11" x2="12" y2="16"></line>
+                  <circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle>
+                </svg>
               </span>
-
               <div>
-                <p class="result-eyebrow">Projected future value</p>
-                <div class="result-headline">
-                  <span id="futureOut" class="result-value">—</span>
-                  <span class="result-unit">future value</span>
-                </div>
+                <p class="callout-title">Projection note</p>
+                <p>This calculator uses a simple annual compounding model. It is useful for planning, but real investments can vary because returns are not fixed every year.</p>
               </div>
-
-              <p id="resultSub" class="result-note">Start typing and the panel will update automatically.</p>
-
-              <div class="result-status" id="resultStatus">
-                <span class="status-icon">
-                  <svg class="icon-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="11" cy="17" r="2" fill="currentColor" stroke="none"/></svg>
-                  <svg class="icon-attention" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.3" r="1" fill="currentColor" stroke="none"/></svg>
-                </span>
-                <p id="resultStatusText">Enter your initial investment, annual interest rate, and years to see your future value, total growth, and interest earned.</p>
-              </div>
-
-              <div class="result-grid">
-                <div class="metric">
-                  <span class="metric-label">Total Growth</span>
-                  <span id="growthOut" class="metric-value">—</span>
-                  <span class="metric-note">Increase above your principal</span>
-                </div>
-
-                <div class="metric">
-                  <span class="metric-label">Interest Earned</span>
-                  <span id="interestOut" class="metric-value">—</span>
-                  <span class="metric-note">Dollar gain from compounding</span>
-                </div>
-
-                <div class="metric">
-                  <span class="metric-label">Growth Multiple</span>
-                  <span id="multipleOut" class="metric-value">—</span>
-                  <span class="metric-note">How many times your money grows</span>
-                </div>
-              </div>
-
-              <div id="insightStack" class="insight-stack"></div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div id="chartShell" class="chart-shell">
-            <h3>Growth projection chart</h3>
-            <p class="chart-sub">Blue line shows projected balance. Gray dashed line shows your starting investment.</p>
-            <div class="chart-wrap">
-              <canvas id="myChart"></canvas>
-            </div>
-          </div>
+      <article class="content">
+        <h2>What is Compound Interest?</h2>
+        <p>
+          Compound interest is the process of earning interest not only on your initial investment, but also on the interest that accumulates over time. In simple terms, your money grows faster because you earn interest on interest.
+        </p>
 
-          <div class="callout callout--info" style="margin-top:20px;">
-            <span class="callout-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="9"></circle>
-                <line x1="12" y1="11" x2="12" y2="16"></line>
-                <circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle>
+        <p>
+          This is one of the most powerful ideas in finance and long-term investing. The longer your money stays invested, the more powerful compounding becomes.
+        </p>
+
+        <h2>Compound Interest Formula</h2>
+        <p>The formula used in this calculator is:</p>
+
+        <div class="formula">
+          <code>Final Value = Initial Investment × (1 + r)<sup>t</sup></code>
+          <code>r = annual interest rate in decimal form</code>
+          <code>t = number of years</code>
+        </div>
+
+        <h2>Why Compound Interest Matters</h2>
+        <p>
+          Compound interest is the key difference between slow growth and exponential growth. Starting early gives compounding more time to work.
+        </p>
+
+        <ul>
+          <li>Grow wealth faster over time</li>
+          <li>Benefit from long-term investing</li>
+          <li>Turn small investments into larger returns</li>
+          <li>Outperform simple interest strategies</li>
+        </ul>
+
+        <h2>Simple vs Compound Interest</h2>
+        <p>
+          Unlike simple interest, which only applies to the original investment, compound interest continuously builds on previous gains.
+        </p>
+
+        <ul>
+          <li><strong>Simple Interest:</strong> earns interest only on the initial amount</li>
+          <li><strong>Compound Interest:</strong> earns interest on both the initial amount and accumulated interest</li>
+        </ul>
+
+        <h2>How to Use This Calculator</h2>
+        <ul>
+          <li>Enter your initial investment</li>
+          <li>Enter the annual interest rate</li>
+          <li>Enter the number of years</li>
+          <li>Click calculate to see your future value</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+              <span>Is compound interest calculated daily, monthly, or yearly?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-            </span>
-            <div>
-              <p class="callout-title">Projection note</p>
-              <p>This calculator uses a simple annual compounding model. It is useful for planning, but real investments can vary because returns are not fixed every year.</p>
+            </button>
+            <div class="faq-disclosure disclosure" id="faq-a1" role="region" aria-labelledby="faq-q1">
+              <div class="disclosure-inner">
+                <p>Compound interest can be calculated at different intervals such as daily, monthly, or yearly. This calculator uses annual compounding for simplicity.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+              <span>What happens if I leave my investment for a longer time?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-disclosure disclosure" id="faq-a2" role="region" aria-labelledby="faq-q2">
+              <div class="disclosure-inner">
+                <p>The longer your investment stays invested, the more powerful compounding becomes, leading to much stronger growth over time.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+              <span>Does a higher interest rate make a big difference?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-disclosure disclosure" id="faq-a3" role="region" aria-labelledby="faq-q3">
+              <div class="disclosure-inner">
+                <p>Yes. Even small increases in the annual interest rate can significantly boost your final value over long periods.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+              <span>Should I reinvest my earnings?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-disclosure disclosure" id="faq-a4" role="region" aria-labelledby="faq-q4">
+              <div class="disclosure-inner">
+                <p>Yes. Reinvesting earnings is essential if you want to benefit fully from compound interest.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+              <span>Can compound interest make small investments grow a lot?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-disclosure disclosure" id="faq-a5" role="region" aria-labelledby="faq-q5">
+              <div class="disclosure-inner">
+                <p>Yes. Even small amounts can grow substantially if they are invested for a long enough time with compounding.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+              <span>What is a good annual interest rate?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-disclosure disclosure" id="faq-a6" role="region" aria-labelledby="faq-q6">
+              <div class="disclosure-inner">
+                <p>A good interest rate depends on the investment type, but historically, stock markets average around 7–10% annually.</p>
+              </div>
             </div>
           </div>
         </div>
+      </article>
+
+      <section class="related" aria-labelledby="relatedHeading">
+        <h2 id="relatedHeading">Related Calculators</h2>
+        <p style="color:var(--text-2); font-size:15px;">You may also find these tools useful:</p>
+        <div class="related-links">
+          <a class="related-chip" href="future-value-calculator.html">Future Value Calculator <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="related-chip" href="savings-calculator.html">Savings Calculator <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="related-chip" href="inflation-calculator.html">Inflation Calculator <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="related-chip" href="cagr-calculator.html">CAGR Calculator <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="related-chip" href="retirement-calculator.html">Retirement Calculator <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <div class="disclaimer">
+        <p>
+          <strong>Disclaimer:</strong> The calculators on this website are provided for informational and educational purposes only.
+          All results are estimates based on the values entered and do not constitute financial, investment, or trading advice.
+          Always conduct your own research before making financial decisions.
+        </p>
       </div>
-    </div>
-
-    <article class="content">
-      <h2>What is Compound Interest?</h2>
-      <p>
-        Compound interest is the process of earning interest not only on your initial investment,
-        but also on the interest that accumulates over time. In simple terms, your money grows faster
-        because you earn interest on interest.
-      </p>
-
-      <p>
-        This is one of the most powerful ideas in finance and long-term investing.
-        The longer your money stays invested, the more powerful compounding becomes.
-      </p>
-
-      <h2>Compound Interest Formula</h2>
-      <p>The formula used in this calculator is:</p>
-
-      <div class="formula">
-        <code>Final Value = Initial Investment × (1 + r)<sup>t</sup></code>
-        <code>r = annual interest rate in decimal form</code>
-        <code>t = number of years</code>
-      </div>
-
-      <h2>Why Compound Interest Matters</h2>
-      <p>
-        Compound interest is the key difference between slow growth and exponential growth.
-        Starting early gives compounding more time to work.
-      </p>
-
-      <ul>
-        <li>Grow wealth faster over time</li>
-        <li>Benefit from long-term investing</li>
-        <li>Turn small investments into larger returns</li>
-        <li>Outperform simple interest strategies</li>
-      </ul>
-
-      <h2>Simple vs Compound Interest</h2>
-      <p>
-        Unlike simple interest, which only applies to the original investment,
-        compound interest continuously builds on previous gains.
-      </p>
-
-      <ul>
-        <li><strong>Simple Interest:</strong> earns interest only on the initial amount</li>
-        <li><strong>Compound Interest:</strong> earns interest on both the initial amount and accumulated interest</li>
-      </ul>
-
-      <h2>How to Use This Calculator</h2>
-      <ul>
-        <li>Enter your initial investment</li>
-        <li>Enter the annual interest rate</li>
-        <li>Enter the number of years</li>
-        <li>Click calculate to see your future value</li>
-      </ul>
-
-      <h2>Frequently Asked Questions</h2>
-
-      <div class="faq">
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
-            <span>Is compound interest calculated daily, monthly, or yearly?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-disclosure disclosure" id="faq-a1" role="region" aria-labelledby="faq-q1">
-            <div class="disclosure-inner">
-              <p>
-                Compound interest can be calculated at different intervals such as daily, monthly, or yearly. This calculator uses annual compounding for simplicity.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
-            <span>What happens if I leave my investment for a longer time?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-disclosure disclosure" id="faq-a2" role="region" aria-labelledby="faq-q2">
-            <div class="disclosure-inner">
-              <p>
-                The longer your investment stays invested, the more powerful compounding becomes, leading to much stronger growth over time.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
-            <span>Does a higher interest rate make a big difference?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-disclosure disclosure" id="faq-a3" role="region" aria-labelledby="faq-q3">
-            <div class="disclosure-inner">
-              <p>
-                Yes. Even small increases in the annual interest rate can significantly boost your final value over long periods.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
-            <span>Should I reinvest my earnings?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-disclosure disclosure" id="faq-a4" role="region" aria-labelledby="faq-q4">
-            <div class="disclosure-inner">
-              <p>
-                Yes. Reinvesting earnings is essential if you want to benefit fully from compound interest.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
-            <span>Can compound interest make small investments grow a lot?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-disclosure disclosure" id="faq-a5" role="region" aria-labelledby="faq-q5">
-            <div class="disclosure-inner">
-              <p>
-                Yes. Even small amounts can grow substantially if they are invested for a long enough time with compounding.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
-            <span>What is a good annual interest rate?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-disclosure disclosure" id="faq-a6" role="region" aria-labelledby="faq-q6">
-            <div class="disclosure-inner">
-              <p>
-                A good interest rate depends on the investment type, but historically, stock markets average around 7–10% annually.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <section class="related" aria-labelledby="relatedHeading">
-      <h2 id="relatedHeading">Related Calculators</h2>
-      <p style="color:var(--text-2); font-size:15px;">You may also find these tools useful:</p>
-      <div class="related-links">
-        <a class="related-chip" href="future-value-calculator.html">Future Value Calculator <span class="arrow" aria-hidden="true">→</span></a>
-        <a class="related-chip" href="savings-calculator.html">Savings Calculator <span class="arrow" aria-hidden="true">→</span></a>
-        <a class="related-chip" href="inflation-calculator.html">Inflation Calculator <span class="arrow" aria-hidden="true">→</span></a>
-        <a class="related-chip" href="cagr-calculator.html">CAGR Calculator <span class="arrow" aria-hidden="true">→</span></a>
-        <a class="related-chip" href="retirement-calculator.html">Retirement Calculator <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-    </section>
-
-    <div class="disclaimer">
-      <p>
-        <strong>Disclaimer:</strong> The calculators on this website are provided for informational and educational purposes only.
-        All results are estimates based on the values entered and do not constitute financial, investment, or trading advice.
-        Always conduct your own research before making financial decisions.
-      </p>
     </div>
   </main>
 
@@ -646,10 +1364,13 @@
       'use strict';
 
       var chart = null;
-      var calcBtn, resultCard, kickerText, resultSub, futureOut, resultStatusText,
-          growthOut, interestOut, multipleOut, insightStack, chartShell, resultStatus;
+
+      var resultCard, kickerText, resultSub, futureOut, resultStatusText,
+          growthOut, interestOut, multipleOut, resultStatus,
+          calculateBtn, resetBtn;
 
       function money(value) {
+        if (!Number.isFinite(value)) return '—';
         return '$' + Number(value).toLocaleString(undefined, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
@@ -657,12 +1378,42 @@
       }
 
       function pct(value) {
+        if (!Number.isFinite(value)) return '—';
         return Number(value).toFixed(2) + '%';
       }
 
       function formatMultiple(value) {
         if (!Number.isFinite(value)) return '—';
         return value.toFixed(2) + 'x';
+      }
+
+      function readNumber(id) {
+        var el = document.getElementById(id);
+        if (!el) return null;
+        var value = parseFloat(el.value);
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function setTone(tone) {
+        resultCard.className = 'result-card is-' + tone;
+      }
+
+      function setEmptyVisual() {
+        resultCard.className = 'result-card is-empty';
+        resultStatus.style.display = 'flex';
+        kickerText.textContent = 'Ready';
+        futureOut.textContent = '—';
+        resultSub.textContent = 'Start typing and the panel will update automatically.';
+        resultStatusText.textContent = 'Enter your initial investment, annual interest rate, and years to see your future value, total growth, and interest earned.';
+        growthOut.textContent = '—';
+        interestOut.textContent = '—';
+        multipleOut.textContent = '—';
+      }
+
+      function pulseValue() {
+        futureOut.classList.remove('is-pulsing');
+        void futureOut.offsetWidth;
+        futureOut.classList.add('is-pulsing');
       }
 
       function buildSeries(principal, rate, years) {
@@ -686,7 +1437,6 @@
         var balanceSeries = params.balanceSeries;
 
         var totalGain = futureValue - principal;
-        var gainPct = principal > 0 ? ((futureValue / principal) - 1) * 100 : 0;
         var growthMultiple = principal > 0 ? futureValue / principal : 0;
         var roundedYears = Math.round(years);
 
@@ -832,34 +1582,6 @@
         }).join('');
       }
 
-      function setEmptyVisual() {
-        resultCard.className = 'result-card is-empty';
-        chartShell.style.display = 'none';
-        resultStatus.style.display = 'flex';
-        insightStack.innerHTML = '';
-        kickerText.textContent = 'Ready';
-        futureOut.textContent = '—';
-        resultSub.textContent = 'Start typing and the panel will update automatically.';
-        resultStatusText.textContent = 'Enter your initial investment, annual interest rate, and years to see your future value, total growth, and interest earned.';
-      }
-
-      function setTone(tone) {
-        resultCard.className = 'result-card is-' + tone;
-      }
-
-      function readNumber(id) {
-        var el = document.getElementById(id);
-        if (!el) return null;
-        var value = parseFloat(el.value);
-        return Number.isFinite(value) ? value : null;
-      }
-
-      function pulseValue() {
-        futureOut.classList.remove('is-pulsing');
-        void futureOut.offsetWidth;
-        futureOut.classList.add('is-pulsing');
-      }
-
       function drawChart(balanceSeries) {
         var canvas = document.getElementById('myChart');
         var ctx = canvas.getContext('2d');
@@ -980,25 +1702,25 @@
 
         if (principal <= 0 || years <= 0) {
           setTone('attention');
-          chartShell.style.display = 'none';
           resultStatus.style.display = 'flex';
-          insightStack.innerHTML = '';
-          kickerText.textContent = 'Check your inputs';
           futureOut.textContent = '—';
           resultSub.textContent = 'Some values need adjusting before we can calculate.';
           resultStatusText.textContent = 'Initial investment and years must be greater than zero.';
+          growthOut.textContent = '—';
+          interestOut.textContent = '—';
+          multipleOut.textContent = '—';
           return;
         }
 
         if (rate <= -100) {
           setTone('attention');
-          chartShell.style.display = 'none';
           resultStatus.style.display = 'flex';
-          insightStack.innerHTML = '';
-          kickerText.textContent = 'Check your inputs';
           futureOut.textContent = '—';
           resultSub.textContent = 'Some values need adjusting before we can calculate.';
           resultStatusText.textContent = 'Interest rate must be greater than -100%.';
+          growthOut.textContent = '—';
+          interestOut.textContent = '—';
+          multipleOut.textContent = '—';
           return;
         }
 
@@ -1038,11 +1760,10 @@
 
         futureOut.textContent = money(futureValue);
         resultStatus.style.display = 'none';
-        chartShell.style.display = 'block';
 
-        document.getElementById('growthOut').textContent = pct(growthPct);
-        document.getElementById('interestOut').textContent = money(growth);
-        document.getElementById('multipleOut').textContent = formatMultiple(growthMultiple);
+        growthOut.textContent = pct(growthPct);
+        interestOut.textContent = money(growth);
+        multipleOut.textContent = formatMultiple(growthMultiple);
 
         if (years <= 3) {
           resultStatusText.textContent = 'Short horizon. Compounding is working, but the effect is still modest.';
@@ -1054,16 +1775,13 @@
           resultStatusText.textContent = 'Compounding is active, but the projection remains relatively moderate.';
         }
 
-        insightStack.innerHTML = buildInsight({
-          principal: principal,
-          rate: rate,
-          years: years,
-          futureValue: futureValue,
-          balanceSeries: balanceSeries
-        });
+        resultCard.className = 'result-card is-' + tone;
+        futureOut.classList.remove('is-pulsing');
+        void futureOut.offsetWidth;
+        futureOut.classList.add('is-pulsing');
 
-        pulseValue();
         drawChart(balanceSeries);
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
       function queueCalculate() {
@@ -1076,15 +1794,16 @@
           var el = document.getElementById(id);
           if (el) el.value = '';
         });
-        setEmptyVisual();
         if (chart) {
           chart.destroy();
           chart = null;
         }
+        setEmptyVisual();
       }
 
       document.addEventListener('DOMContentLoaded', function () {
-        calcBtn = document.getElementById('calculateBtn');
+        calculateBtn = document.getElementById('calculateBtn');
+        resetBtn = document.getElementById('resetBtn');
         resultCard = document.getElementById('resultCard');
         kickerText = document.getElementById('kickerText');
         resultSub = document.getElementById('resultSub');
@@ -1093,8 +1812,6 @@
         growthOut = document.getElementById('growthOut');
         interestOut = document.getElementById('interestOut');
         multipleOut = document.getElementById('multipleOut');
-        insightStack = document.getElementById('insightStack');
-        chartShell = document.getElementById('chartShell');
         resultStatus = document.getElementById('resultStatus');
 
         setEmptyVisual();
@@ -1113,11 +1830,8 @@
           });
         });
 
-        calcBtn.addEventListener('click', calculate);
-
-        document.getElementById('principal').value = '';
-        document.getElementById('rate').value = '';
-        document.getElementById('years').value = '';
+        calculateBtn.addEventListener('click', calculate);
+        resetBtn.addEventListener('click', resetForm);
 
         document.querySelectorAll('.faq-item').forEach(function (item) {
           var btn = item.querySelector('.faq-question');
@@ -1142,5 +1856,5 @@
     })();
   </script>
 </body>
-                  </html>
+ </html>
                                                            </html>           
